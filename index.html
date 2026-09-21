@@ -180,6 +180,29 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
  .edition{column-gap:20px}
  .edition>.nav-main button{padding-inline:10px;font-size:12px}
 }
+/* ===== Ngjyra e kategorisë te menyja ===== */
+.nav-main button{--category-color:var(--red)}
+.nav-main button[data-cat="national"]{--category-color:#ff8a83}
+.nav-main button[data-cat="world"]{--category-color:#84b9ee}
+.nav-main button[data-cat="sport"]{--category-color:#e6bc72}
+.nav-main button[data-cat="culture"]{--category-color:#c6a2ed}
+.nav-main button[data-cat="health"]{--category-color:#80cbb7}
+[data-theme="light"] .nav-main button[data-cat="national"]{--category-color:#a62e38}
+[data-theme="light"] .nav-main button[data-cat="world"]{--category-color:#24649f}
+[data-theme="light"] .nav-main button[data-cat="sport"]{--category-color:#865c17}
+[data-theme="light"] .nav-main button[data-cat="culture"]{--category-color:#77429e}
+[data-theme="light"] .nav-main button[data-cat="health"]{--category-color:#23705a}
+.nav-main button.on[data-cat]{color:var(--category-color)}
+.nav-main button.on::after{background:var(--category-color)!important}
+.nav-main button[data-cat]:hover{color:var(--category-color)}
+/* ===== Header ngjitës ===== */
+.edition{position:sticky;top:0;z-index:30;background:var(--bg);transition:padding .2s ease,box-shadow .2s ease}
+.edition::before{content:"";position:absolute;left:-100vw;right:-100vw;top:0;bottom:0;background:var(--bg);z-index:-1}
+.edition.stuck{padding-top:calc(10px + env(safe-area-inset-top,0px));padding-bottom:10px;box-shadow:0 10px 18px -16px rgba(0,0,0,.55)}
+.edition.stuck .eyebrow,.edition.stuck time{display:none}
+.edition.stuck h2{font-size:24px!important;letter-spacing:-.6px}
+.edition.stuck .header-btn{width:36px;height:36px}
+@media(max-width:759px){.edition.stuck h2{font-size:21px!important}.edition.stuck .nav-main{padding-top:2px}}
 /* ===== Fotot në desktop ===== */
 .hero img,#feed .thumb{object-position:center 25%}
 @media(min-width:760px){
@@ -336,18 +359,28 @@ document.getElementById('themeToggle').addEventListener('click',()=>{
 // hint = kategoria e sigurt kur feed-i është feed kategorie (p.sh. /sport/feed/).
 // Feed-et që nuk ekzistojnë anashkalohen pa problem.
 const FEEDS = [
- {src:'Reporteri',url:'https://reporteri.net/feed/'},
- {src:'Reporteri',url:'https://reporteri.net/sport/feed/',hint:'sport'},
- {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
+ // 5 portalet që përditësohen më shpesh: kontrollohen të parat në çdo cikël
  {src:'Telegrafi',url:'https://telegrafi.com/feed/'},
  {src:'Gazeta Express',url:'https://www.gazetaexpress.com/feed/'},
- {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture',wp:true},
- {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
- {src:'Zëri',url:'https://zeri.info/',kind:'website'},
- {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true},
  {src:'Indeksonline',url:'https://indeksonline.net/feed/',wp:true},
+ {src:'Reporteri',url:'https://reporteri.net/feed/'},
  {src:'Lajmi.net',url:'https://lajmi.net/feed/',wp:true},
- {src:'Lajmi.net',url:'https://lajmi.net/kategoria/sport/feed/',hint:'sport'}
+ // feed-e kategorish nga të njëjtat portale
+ {src:'Telegrafi',url:'https://telegrafi.com/sport/feed/',hint:'sport'},
+ {src:'Reporteri',url:'https://reporteri.net/sport/feed/',hint:'sport'},
+ {src:'Lajmi.net',url:'https://lajmi.net/kategoria/sport/feed/',hint:'sport'},
+ {src:'Gazeta Express',url:'https://www.gazetaexpress.com/sport/feed/',hint:'sport'},
+ {src:'Indeksonline',url:'https://indeksonline.net/sport/feed/',hint:'sport'},
+ {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
+ {src:'Telegrafi',url:'https://telegrafi.com/kultura/feed/',hint:'culture'},
+ {src:'Lajmi.net',url:'https://lajmi.net/kategoria/showbiz/arte/feed/',hint:'culture'},
+ // federatat e futbollit
+ {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',wp:true},
+ {src:'FFK',url:'https://ffk-kosova.com/feed/',hint:'sport',wp:true},
+ // burime të tjera
+ {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true},
+ {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
+ {src:'Zëri',url:'https://zeri.info/',kind:'website'}
 ];
 const REFRESH_MS=5*60*1000;
 const sourceStatus={};
@@ -403,6 +436,7 @@ function catFromUrl(url){
 // [regex, pikë]; kategoria fiton vetëm me ≥2 pikë
 const KW={
   sport:[
+    [/\b(superliga e kosoves|liga e pare|liga e dyte|kupa e kosoves|kupa e shqiperise|abissnet|kategoria superiore|kategoria e pare|fshf|ffk|fbk|federata e futbollit|federata shqiptare e futbollit|federata e basketbollit|kombetarja e kosoves|kombetarja shqiptare|kombetarja e shqiperise|kuqezinjte|shqiponjat|kf |kb |kv |fk |bc |feronikeli|vllaznia|partizani|egnatia|golden eagle|fadil vokrri|air albania stadium|sylvinho)/,2],
     [/\b(futboll|basketboll|volejboll|hendboll|superlig|premier league|champions league|liga e kampioneve|conference league|europa league|la liga|serie a|bundesliga|ligue 1|uefa|fifa|formula 1|grand prix|olimpiad|dardanet|kombetarja|kampionat|golashenues|mesfushor|portier|nba|euroliga|atp|wta|ufc|wimbledon|roland garros|mundial|merkato|transferim)/,2],
     [/\b(ndeshj|gol|golin|golat|trajner|klub|stadium|lojtar|skuadr|barazim|tenis|boks|real madrid|barcelona|liverpool|juventus|chelsea|arsenal|manchester|bayern|psg|messi|ronaldo|mbappe|xhaka|haaland|muriqi|rashica)/,1]
   ],
@@ -430,6 +464,7 @@ function catFromKeywords(text){
   for(const c in KW) score[c]=KW[c].reduce((s,[rx,w])=>s+new Set(t.match(new RegExp(rx.source,"g"))||[]).size*w,0);
   // lajmet që përmendin Kosovën/Shqipërinë mbeten "Lajme", edhe me aktorë të huaj
   if(score.national>=2) score.world=0;
+  if(score.sport>=4) return "sport";
   const order=["sport","other","culture","national","world"];
   let best="national",bestScore=1;
   for(const c of order) if(score[c]>bestScore){best=c;bestScore=score[c];}
@@ -863,7 +898,7 @@ function startFeatRotate(count){
 // të përziera që slide-t të ndërrojnë kategori (L, S, B, K, L, S, B, L, S)
 const LEAD_MIX=[['national',3],['sport',3],['world',2],['culture',1]];
 function leadSlides(items,isHome){
-  if(!isHome){const withImg=items.filter(hasArticleImage);return [...withImg,...items.filter(x=>!hasArticleImage(x))].slice(0,5);}
+  if(!isHome) return items.slice(0,5); // kategoria: rendi strikt sipas kohës, më i fundit i pari
   // përparësi lajmeve me foto; nëse s'mjaftojnë, plotësohet me të tjerat
   const pick=(cat,n)=>{const all=items.filter(x=>x.cat===cat);const withImg=all.filter(hasArticleImage);return [...withImg,...all.filter(x=>!hasArticleImage(x))].slice(0,n);};
   const buckets=LEAD_MIX.map(([cat,n])=>pick(cat,n));
@@ -902,6 +937,8 @@ function trendScore(n, pool){
   }
   return s;
 }
+const CAT_PAGE=15; // 5 rreshta x 3 kolona
+const catVisible={};
 function arranged(items){
   return items.slice().sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0));
 }
@@ -994,7 +1031,14 @@ function render(){
     <section class="news-category" data-category="${group.cat}" aria-labelledby="section-${group.cat}">
       <div class="news-section-heading"><h3 id="section-${group.cat}">${group.title}</h3></div>
       <div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):'<p class="section-empty">'+(loading?t('loading'):t('noNews'))+'</p>'}</div>
-    </section>`).join(''):rest.map(articleCard).join('');
+    </section>`).join(''):(()=>{
+      const limit=catVisible[category]||CAT_PAGE;
+      const shown=rest.slice(0,limit);
+      return `<section class="news-category" data-category="${category}">
+        <div class="news-section-heading"><h3>${labels[category]||t('latestNews')}</h3></div>
+        <div class="category-grid">${shown.length?shown.map(articleCard).join(''):'<p class="section-empty">'+(loading?t('loading'):t('noNews'))+'</p>'}</div>
+      </section>`;
+    })();
 }
 function renderSaved(){
   const items=news.filter(n=>saved.has(n.id));
@@ -1275,7 +1319,6 @@ async function fetchArticles(feed){
  let items=[];
  if(feed.wp && !/[?&]paged=/.test(feed.url)){ try{items=await fetchWpJson(feed);}catch{items=[];} }
  if(!items.length) items=feed.kind==='website'?await fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
- if(feed.src==='KultPlus')await fillKultImages(items);
  return items;
 }
 function readableContent(content, description){
@@ -1408,9 +1451,15 @@ document.getElementById("mainNav").addEventListener("click",e=>{
   document.querySelectorAll("#mainNav button").forEach(x=>x.classList.toggle("on",x===b));
   category=b.dataset.cat||"all";
   sourceFilter="all";featIndex=0;chips();
+  catVisible[category]=CAT_PAGE;
   $("homeView").hidden=false; $("savedView").hidden=true;
   document.querySelectorAll(".tabbar button").forEach(x=>x.classList.toggle("on",x.dataset.tab==="home"));
   render();
+  // butoni i zgjedhur mbetet i dukshëm, faqja kthehet te fillimi i lajmeve
+  try{ b.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"}); }catch{}
+  const hv=$("homeView"), ed=document.querySelector(".edition");
+  const top=hv.getBoundingClientRect().top+window.scrollY-(ed?ed.offsetHeight:0)-8;
+  if(window.scrollY>top) window.scrollTo({top,behavior:"smooth"});
   // Kur hap një kategori, merr menjëherë lajmet e fundit nga të gjitha burimet
   // (nëse kontrolli i fundit ishte më shumë se 30 sekonda më parë)
   if(Date.now()-lastRefresh>30000) refreshAll({silent:true});
@@ -1478,7 +1527,13 @@ document.addEventListener("keydown",e=>{
   const card=e.target.closest("article[data-open]");
   if(card && (e.key==="Enter"||e.key===" ")){e.preventDefault();openArticle(Number(card.dataset.open));}
 });
-$("loadMore").onclick=()=>loadCategory(category,true);
+$("loadMore").onclick=()=>{
+  const cat=category;
+  catVisible[cat]=(catVisible[cat]||CAT_PAGE)+CAT_PAGE;
+  const have=filtered().length-5;
+  render();
+  if(have<catVisible[cat]) loadCategory(cat,true); // s'mjaftojnë: merr faqe më të vjetra
+};
 const brandHome=document.querySelector('.brand-logo');brandHome&&brandHome.addEventListener('click',e=>{
   e.preventDefault();category='all';sourceFilter='all';
   $('homeView').hidden=false;$('savedView').hidden=true;
@@ -1493,6 +1548,17 @@ document.addEventListener("visibilitychange",()=>{
 window.addEventListener('online',()=>refreshAll({silent:true}));
 window.addEventListener('pageshow',()=>{if(!refreshing && Date.now()-refreshStarted>=REFRESH_MS)refreshAll({silent:true});});
 setInterval(()=>{updateRefreshInfo();},1000);
+(()=>{ // header-i ngjitës bëhet më i vogël kur lëviz poshtë
+  const ed=document.querySelector(".edition");
+  let start=null;
+  const onScroll=()=>{
+    if(start===null) start=ed.getBoundingClientRect().top+window.scrollY;
+    ed.classList.toggle("stuck",window.scrollY>start+4);
+  };
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",()=>{start=null;onScroll();});
+  onScroll();
+})();
 (()=>{ // rrëshqitja me gisht te lajmet kryesore
   let x0=null,y0=null;
   const el=$("featured");
