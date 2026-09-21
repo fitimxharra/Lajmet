@@ -27,7 +27,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('newsTheme')==='
 .feat-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--strong)}
 .feat-dots button.on{background:var(--red);width:18px;border-radius:8px}.hero{position:relative;cursor:pointer;background:var(--soft)}.hero img{width:100%;height:250px;object-fit:cover}.hero-label{position:absolute;bottom:16px;left:18px;color:#fff;background:#171a17d9;padding:8px 11px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.feature-body{padding:22px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--red);font-weight:750;margin:0 0 10px}.headline{font-family:Georgia,serif;font-size:30px;line-height:1.14;letter-spacing:-.8px;margin:0 0 12px;font-weight:500}.headline button{font:inherit;letter-spacing:inherit;line-height:inherit;background:none;border:0;padding:0;text-align:left;color:inherit}.feat-excerpt{font-size:14px;line-height:1.6;color:var(--secondary);margin:0 0 20px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.row-act{display:flex;align-items:center;justify-content:space-between;padding-top:15px;border-top:1px solid var(--line)}.row-act .link{background:none;border:0;padding:8px 0;font-size:12px;font-weight:700}.row-act .link span{margin-left:14px;color:var(--red);font-size:19px}.bm{display:inline-grid;place-items:center;min-width:42px;min-height:42px;padding:10px;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent}.bm.on{color:var(--red);background:var(--soft)}.bm svg{width:19px;height:19px}
 .sec{display:flex;align-items:center;justify-content:space-between;padding:25px 0 14px}.sec h3{font-size:21px;letter-spacing:-.6px;font-weight:650;margin:0}.sec p{font-size:11px;color:var(--muted);margin:5px 0 0}.list{display:grid;gap:10px}.list article{display:grid;grid-template-columns:minmax(0,1fr) 96px;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px;cursor:pointer}.list .src{font-size:10px;color:var(--red);font-weight:700;letter-spacing:.3px;margin-bottom:8px}.list h4{font-family:Georgia,serif;font-size:18px;line-height:1.3;font-weight:500;letter-spacing:-.25px;margin:0}.excerpt{display:none}.thumb{width:96px;height:100px;object-fit:cover;border-radius:9px;background:var(--soft)}.article-meta{font-size:10px;color:var(--muted);margin-top:10px}.note{font-size:11px;color:var(--muted);line-height:1.6;padding:15px 2px}.empty{font-size:14px;line-height:1.6;padding:30px 22px;color:var(--muted)}#savedView{padding-top:22px}.saved-title{font-family:Georgia,serif;font-size:30px;font-weight:400;margin:0 0 12px}
-.tabbar{position:fixed;z-index:5;bottom:calc(14px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(400px,calc(100% - 36px));display:grid;grid-template-columns:repeat(3,1fr);padding:7px;background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:0 10px 35px #0003}.tabbar button{border:0;background:none;color:var(--muted);border-radius:16px;padding:10px 4px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;font-size:10px;min-height:56px}.tabbar button.on{background:var(--soft);color:var(--ink);font-weight:700}.tabbar svg{width:21px;height:21px}.tabbar button.on svg{color:var(--red)}
+.tabbar{position:fixed;z-index:5;bottom:calc(14px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(400px,calc(100% - 36px));display:grid;grid-template-columns:repeat(4,1fr);padding:7px;background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:0 10px 35px #0003}.tabbar button{border:0;background:none;color:var(--muted);border-radius:16px;padding:10px 4px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;font-size:10px;min-height:56px}.tabbar button.on{background:var(--soft);color:var(--ink);font-weight:700}.tabbar svg{width:21px;height:21px}.tabbar button.on svg{color:var(--red)}
 dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:0;width:min(680px,100%);height:100dvh;max-height:100dvh;max-width:100%;margin:auto}dialog::backdrop{background:#000a;backdrop-filter:blur(5px)}.reader-top{position:sticky;top:0;z-index:2;background:var(--bg);display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid var(--line)}.reader-top strong{font-size:14px}.reader{padding:28px 24px 48px}.reader h2{font-family:Georgia,serif;font-size:34px;line-height:1.16;font-weight:500;letter-spacing:-.9px;margin:12px 0 22px}.reader>img{border-radius:14px}.reader p{font-family:Georgia,serif;font-size:18px;line-height:1.8;color:var(--ink)}.reader .note{font-family:system-ui,sans-serif;font-size:11px;line-height:1.5;color:var(--muted);padding:0}.credits{font-size:12px;line-height:1.7;color:var(--secondary);padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:16px}.action{border:0;border-radius:10px;background:var(--button);color:white;padding:14px 18px;font-size:13px;font-weight:650}.source-list{list-style:none;margin:0;padding:0 22px}.source-list li{padding:12px 0;border-bottom:1px solid var(--line)}.source-list .bm{border-radius:10px;text-align:left;width:100%;justify-content:start;padding:16px}.searchbox{width:calc(100% - 44px);margin:20px 22px 8px;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--ink)}button:focus-visible,[data-open]:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media(min-width:760px){.app{padding-inline:36px}.top{padding-top:30px}.edition{padding:35px 0}.edition time{max-width:none}.nav-main button{padding-inline:26px}#homeView{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:28px;align-items:start}.feat-head{grid-column:1;grid-row:1}.sec{grid-column:2;grid-row:1;padding:12px 0}.sec h3{font-size:19px}#featured{grid-column:1;grid-row:2;position:sticky;top:20px}#feed{grid-column:2;grid-row:2}#loadStatus{grid-column:1/-1}.hero img{height:300px}.headline{font-size:36px}.feature-body{padding:27px}#savedView{grid-template-columns:1fr 1fr}.saved-title{grid-column:1/-1}}
 @media(max-width:360px){.app{padding-inline:15px}.brand h1{font-size:18px}.brand p{font-size:8px}.top{gap:7px}.search,.theme-toggle{width:38px;height:38px}.nav-main button{padding-inline:14px}.headline{font-size:27px}.list article{grid-template-columns:minmax(0,1fr) 78px;padding:13px}.thumb{width:78px;height:88px}}
@@ -180,6 +180,27 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
  .edition{column-gap:20px}
  .edition>.nav-main button{padding-inline:10px;font-size:12px}
 }
+/* ===== Rreth nesh / About ===== */
+.about{padding:28px 24px 120px;max-width:620px;margin:0 auto}
+.about .eyebrow{margin:0 0 8px}
+.about h2{font-family:Georgia,serif;font-weight:500;font-size:34px;line-height:1.1;letter-spacing:-.8px;margin:0 0 14px}
+.about h3{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;margin:30px 0 10px;color:var(--red)}
+.about p{font-size:15px;line-height:1.7;color:var(--secondary);margin:0 0 12px}
+.about .lead{font-size:17px;color:var(--ink)}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 6px}
+.about-stats div{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface)}
+.about-stats b{display:block;font-family:Georgia,serif;font-size:26px;font-weight:500;color:var(--ink)}
+.about-stats span{font-size:11px;color:var(--muted);line-height:1.4;display:block;margin-top:4px}
+.about-sources{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px;padding:0;list-style:none}
+.about-sources li{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:12px;background:var(--surface)}
+.about-sources li small{color:var(--muted);margin-left:6px}
+.lang-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;border:1px solid var(--line);border-radius:14px;background:var(--surface);margin:8px 0 4px}
+.lang-switch button{border:0;border-radius:10px;padding:12px;font-size:13px;font-weight:650;background:transparent;color:var(--muted)}
+.lang-switch button.on{background:var(--button);color:#fff}
+.about-foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.7}
+.about-foot a{color:var(--red)}
+.translating{font-size:11px;color:var(--muted);font-style:italic}
+@media(max-width:420px){.about h2{font-size:29px}.about-stats b{font-size:22px}}
 </style>
 </head>
 <body>
@@ -210,7 +231,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
     <div class="weather-location"><button id="weatherPrev" type="button" aria-label="Qyteti paraprak">‹</button><strong id="weatherCity" aria-live="polite">Prishtinë</strong><button id="weatherNext" type="button" aria-label="Qyteti tjetër">›</button></div><div id="weatherContent" aria-live="polite"><p class="weather-status">Duke ngarkuar motin…</p></div>
   </aside>
 </header>
-<section class="edition" aria-label="Edicioni i ditës"><div><p class="eyebrow">lajmetemia.com</p><h2>Sot, <em>në fokus.</em></h2></div><div class="edition-tools"><time id="editionDate"></time>  <div class="header-actions">
+<section class="edition" aria-label="Edicioni i ditës"><div><p class="eyebrow">lajmetemia.com</p><h2 data-i18n-html="todayFocus">Sot, <em>në fokus.</em></h2></div><div class="edition-tools"><time id="editionDate"></time>  <div class="header-actions">
     <button class="header-btn theme-toggle" id="themeToggle" type="button" aria-label="Aktivizo pamjen e bardhë" aria-pressed="true" title="Ndrysho pamjen">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14a8.5 8.5 0 0 1-10-10A8.5 8.5 0 1 0 20 14Z"/></svg>
@@ -220,17 +241,17 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
     </button>
   </div></div>
   <nav class="nav-main" id="mainNav" aria-label="Kategoritë e lajmeve">
-    <button class="on" data-page="home">Ballina</button>
-    <button data-page="news" data-cat="national">Lajme</button>
-    <button data-page="world" data-cat="world">Botë</button>
-    <button data-page="sport" data-cat="sport">Sport</button>
-    <button data-page="culture" data-cat="culture">Kulturë</button>
-    <button data-page="health" data-cat="health">Shëndet</button>
+    <button class="on" data-page="home" data-i18n="navHome">Ballina</button>
+    <button data-page="news" data-cat="national" data-i18n="navNews">Lajme</button>
+    <button data-page="world" data-cat="world" data-i18n="navWorld">Botë</button>
+    <button data-page="sport" data-cat="sport" data-i18n="navSport">Sport</button>
+    <button data-page="culture" data-cat="culture" data-i18n="navCulture">Kulturë</button>
+    <button data-page="health" data-cat="health" data-i18n="navHealth">Shëndet</button>
   </nav>
 </section>
 
   <main id="homeView">
-    <div class="feat-head"><h2>Lajmi kryesor</h2><b id="featNum">01</b></div>
+    <div class="feat-head"><h2 data-i18n="topStories">Lajmet kryesore</h2><b id="featNum">01</b></div>
     <div id="featured"></div>
     <div class="sec">
       <div><h3>Lajmet e fundit</h3><p id="refreshInfo">Artikuj nga të gjitha burimet</p></div>
@@ -245,17 +266,28 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 <nav class="tabbar">
   <button class="on" data-tab="home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11 12 4l8 7v9H4z"/></svg>
-    Ballina
+    <span data-i18n="tabHome">Ballina</span>
   </button>
   <button data-tab="sources">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 6h14M5 12h14M5 18h10"/></svg>
-    Burimet
+    <span data-i18n="tabSources">Burimet</span>
   </button>
   <button data-tab="saved">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v16l-5-3-5 3z"/></svg>
-    Të ruajtura
+    <span data-i18n="tabSaved">Të ruajtura</span>
+  </button>
+  <button data-tab="about">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+    <span data-i18n="tabAbout">Rreth nesh</span>
   </button>
 </nav>
+<dialog id="aboutDialog">
+  <div class="reader-top">
+    <strong>Lajmet e mia</strong>
+    <button class="bm" data-close="aboutDialog" aria-label="Mbyll">✕</button>
+  </div>
+  <div class="about" id="aboutBody"></div>
+</dialog>
 <dialog id="articleDialog">
   <div class="reader-top">
     <strong>Lajmet e mia</strong>
@@ -296,10 +328,10 @@ const FEEDS = [
  {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
  {src:'Telegrafi',url:'https://telegrafi.com/feed/'},
  {src:'Gazeta Express',url:'https://www.gazetaexpress.com/feed/'},
- {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture'},
+ {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture',wp:true},
  {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
  {src:'Zëri',url:'https://zeri.info/',kind:'website'},
- {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport'}
+ {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true}
 ];
 const REFRESH_MS=5*60*1000;
 const sourceStatus={};
@@ -399,7 +431,238 @@ function activeSources(){
   const pool=category==="all"?news:news.filter(n=>n.cat===category);
   return [...new Set(pool.map(n=>n.source))];
 }
-const labels={national:"Lajme",world:"Botë",sport:"Sport",culture:"Kulturë",other:"Magazinë",health:"Shëndet"};
+const LABELS={
+  sq:{national:"Lajme",world:"Botë",sport:"Sport",culture:"Kulturë",other:"Magazinë",health:"Shëndet"},
+  en:{national:"News",world:"World",sport:"Sport",culture:"Culture",other:"Lifestyle",health:"Health"}
+};
+let lang="sq";
+try{ if(localStorage.getItem("newsLang")==="en") lang="en"; }catch{}
+let labels=LABELS[lang];
+// ===== GJUHA / LANGUAGE =====
+const CONTACT_EMAIL=""; // shkruaj këtu email-in për kontakt/reklama, p.sh. "info@domeni.com"
+const I18N={
+ sq:{
+  navHome:"Ballina",navNews:"Lajme",navWorld:"Botë",navSport:"Sport",navCulture:"Kulturë",navHealth:"Shëndet",
+  tabHome:"Ballina",tabSources:"Burimet",tabSaved:"Të ruajtura",tabAbout:"Rreth nesh",
+  topStories:"Lajmet kryesore",todayFocus:"Sot, <em>në fokus.</em>",
+  latestHeadlines:"Titujt e fundit",latestNews:"Lajmet e fundit",readArticle:"Lexo artikullin",newBadge:"E re",
+  loading:"Duke ngarkuar lajmet…",loadingShort:"Duke ngarkuar…",loadMore:"Shfaq më shumë lajme",
+  noArticles:"Nuk ka artikuj në këtë filtër.",noNews:"Nuk ka lajme për momentin.",noSaved:"Nuk ke lajme të ruajtura.",savedTitle:"Për më vonë.",
+  grpLocal:"Lajme lokale",grpWorld:"Ndërkombëtare",grpCulture:"Kulturë & Shëndet",grpSport:"Sport",
+  previewOnly:"Përmbledhje · Nuk është artikulli i plotë.",fromRss:"Teksti i marrë nga burimi.",published:"Publikuar:",
+  source:"Burimi",author:"Autori",original:"Artikulli origjinal",saveArticle:"Ruaje artikullin",shareArticle:"Ndaje artikullin",backToList:"Kthehu te lista",
+  searching:"Duke kërkuar lajme të reja…",checked:"Kontrolluar",next:"tjetri pas",allSources:"Artikuj nga të gjitha burimet",
+  stChecking:"Duke kontrolluar lajme të reja…",stLoading:"Duke ngarkuar lajmet e fundit nga të gjitha burimet…",
+  stFound:"U gjetën {n} lajme të reja nga {f} burime. Kontrolli i radhës pas 5 min.",stNone:"Nuk ka lajme të reja{w}. Kontrolli i radhës pas 5 min.",
+  stFail:"Asnjë burim nuk u përgjigj. Riprovohet automatikisht pas 5 min.",stMissing:" Pa lajme të reja nga: {s}.",
+  stMore:"Duke ngarkuar më shumë lajme: {c}…",stAdded:"U shtuan {n} lajme te {c}.",stNoMore:"Nuk u gjetën lajme shtesë.",
+  translating:"Duke përkthyer…"
+ },
+ en:{
+  navHome:"Home",navNews:"News",navWorld:"World",navSport:"Sport",navCulture:"Culture",navHealth:"Health",
+  tabHome:"Home",tabSources:"Sources",tabSaved:"Saved",tabAbout:"About",
+  topStories:"Top stories",todayFocus:"Today, <em>in focus.</em>",
+  latestHeadlines:"Latest headlines",latestNews:"Latest news",readArticle:"Read article",newBadge:"New",
+  loading:"Loading news…",loadingShort:"Loading…",loadMore:"Show more stories",
+  noArticles:"No articles in this filter.",noNews:"No stories right now.",noSaved:"You have no saved stories.",savedTitle:"For later.",
+  grpLocal:"Local news",grpWorld:"International",grpCulture:"Culture & Health",grpSport:"Sport",
+  previewOnly:"Summary · Not the full article.",fromRss:"Text provided by the source.",published:"Published:",
+  source:"Source",author:"Author",original:"Original article",saveArticle:"Save article",shareArticle:"Share article",backToList:"Back to the list",
+  searching:"Checking for new stories…",checked:"Checked",next:"next in",allSources:"Stories from all sources",
+  stChecking:"Checking for new stories…",stLoading:"Loading the latest stories from all sources…",
+  stFound:"{n} new stories from {f} sources. Next check in 5 min.",stNone:"No new stories{w}. Next check in 5 min.",
+  stFail:"No source responded. Retrying automatically in 5 min.",stMissing:" No new stories from: {s}.",
+  stMore:"Loading more stories: {c}…",stAdded:"Added {n} stories to {c}.",stNoMore:"No more stories found.",
+  translating:"Translating…"
+ }
+};
+function t(k,vars){
+  let s=(I18N[lang]&&I18N[lang][k])??I18N.sq[k]??k;
+  if(vars) for(const v in vars) s=s.split("{"+v+"}").join(vars[v]);
+  return s;
+}
+function applyStaticText(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.dataset.i18n);});
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{el.innerHTML=t(el.dataset.i18nHtml);});
+  const d=document.getElementById("editionDate");
+  if(d) d.textContent=new Intl.DateTimeFormat(lang==="en"?"en-GB":"sq",{day:"numeric",month:"long",year:"numeric"}).format(new Date());
+}
+function setLang(l){
+  lang=l==="en"?"en":"sq";
+  labels=LABELS[lang];
+  try{localStorage.setItem("newsLang",lang);}catch{}
+  applyStaticText();
+  chips();render();renderSaved();updateRefreshInfo();
+  if($("aboutDialog").open) renderAbout();
+}
+
+// ----- Përkthimi automatik i lajmeve (vetëm në English) -----
+const TR_KEY="newsTranslationsEnV1";
+let trCache={};
+try{trCache=JSON.parse(localStorage.getItem(TR_KEY)||"{}")||{};}catch{trCache={};}
+const trQueue=new Map(); let trTimer=null, trBusy=false, trPausedUntil=0, trSaveTimer=null;
+function baseTitle(n){return (n.title||"").replace(/\s+—\s+.*$/,"");}
+function dispTitle(n){
+  const b=baseTitle(n);
+  if(lang!=="en") return b;
+  const c=trCache[n.url]; if(c&&c.t) return c.t;
+  queueTr(n); return b;
+}
+function dispSummary(n){
+  const b=n.summary||"";
+  if(lang!=="en") return b;
+  const c=trCache[n.url]; if(c&&c.t) return c.s||"";
+  queueTr(n); return b;
+}
+function queueTr(n){
+  if(!n||!n.url||trCache[n.url]||trQueue.has(n.url)) return;
+  trQueue.set(n.url,n);
+  if(!trTimer) trTimer=setTimeout(flushTr,80);
+}
+function saveTr(){
+  clearTimeout(trSaveTimer);
+  trSaveTimer=setTimeout(()=>{
+    try{
+      const keys=Object.keys(trCache);
+      if(keys.length>800) keys.slice(0,keys.length-800).forEach(k=>delete trCache[k]);
+      localStorage.setItem(TR_KEY,JSON.stringify(trCache));
+    }catch{}
+  },500);
+}
+async function googleTranslate(text){
+  const res=await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=sq&tl=en&dt=t",{
+    method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    body:"q="+encodeURIComponent(text)
+  });
+  if(!res.ok) throw new Error("translate "+res.status);
+  const data=await res.json();
+  return (data[0]||[]).map(seg=>seg&&seg[0]||"").join("");
+}
+async function myMemoryTranslate(text){
+  const res=await fetch("https://api.mymemory.translated.net/get?langpair=sq|en&q="+encodeURIComponent(text.slice(0,480)));
+  const data=await res.json();
+  const out=data?.responseData?.translatedText;
+  if(!out||/MYMEMORY WARNING|QUERY LENGTH/i.test(out)) throw new Error("mymemory");
+  return out;
+}
+// Përkthen një listë tekstesh; kthen listë me të njëjtën gjatësi
+async function translateList(texts){
+  const clean=texts.map(x=>String(x||"").replace(/\s+/g," ").trim());
+  const out=new Array(clean.length).fill("");
+  let batch=[],len=0;
+  const run=async idx=>{
+    const joined=idx.map(i=>clean[i]).join("\n");
+    let lines=[];
+    try{ lines=(await googleTranslate(joined)).split("\n"); }catch{ lines=[]; }
+    if(lines.length===idx.length){ idx.forEach((i,k)=>out[i]=lines[k].trim()); return; }
+    // ndarja nuk përputhet ose Google dështoi: përkthe një nga një
+    for(const i of idx){
+      if(!clean[i]) continue;
+      try{ out[i]=(await googleTranslate(clean[i])).trim(); }
+      catch{ try{ out[i]=(await myMemoryTranslate(clean[i])).trim(); }catch{ out[i]=""; } }
+    }
+  };
+  for(let i=0;i<clean.length;i++){
+    if(len+clean[i].length>3500 && batch.length){ await run(batch); batch=[];len=0; }
+    batch.push(i); len+=clean[i].length+1;
+  }
+  if(batch.length) await run(batch);
+  return out;
+}
+async function flushTr(){
+  trTimer=null;
+  if(trBusy||lang!=="en"||!trQueue.size) return;
+  if(Date.now()<trPausedUntil){ trTimer=setTimeout(flushTr,trPausedUntil-Date.now()); return; }
+  trBusy=true;
+  const items=[...trQueue.values()].slice(0,20);
+  items.forEach(n=>trQueue.delete(n.url));
+  const texts=[]; items.forEach(n=>{texts.push(baseTitle(n)); texts.push((n.summary||"").slice(0,300));});
+  let done=0;
+  try{
+    const out=await translateList(texts);
+    items.forEach((n,i)=>{ const tt=out[i*2]; if(tt){ trCache[n.url]={t:tt,s:out[i*2+1]||""}; done++; } });
+  }catch{}
+  trBusy=false;
+  if(done){ saveTr(); if(lang==="en"){ render(); renderSaved(); } }
+  else trPausedUntil=Date.now()+60000; // shërbimi s'po përgjigjet: prit 1 minutë
+  if(trQueue.size) trTimer=setTimeout(flushTr,done?150:60000);
+}
+const bodyTr=new Map();
+async function translateReader(n,parts){
+  const box=$("articleBody"); if(!box) return;
+  const cached=bodyTr.get(n.url);
+  const show=list=>{ if($("articleDialog").open && box.isConnected) box.innerHTML=list.map(p=>"<p>"+esc(p)+"</p>").join(""); };
+  if(cached){ show(cached); return; }
+  box.insertAdjacentHTML("afterbegin",'<p class="translating" id="trNote">'+t("translating")+'</p>');
+  const texts=parts.slice(0,40);
+  const out=await translateList(texts);
+  const list=out.map((p,i)=>p||texts[i]);
+  bodyTr.set(n.url,list);
+  show(list);
+  const h=document.querySelector("#reader h2");
+  if(h && !trCache[n.url]){ const [tt]=await translateList([baseTitle(n)]); if(tt){ h.textContent=tt; trCache[n.url]={t:tt,s:""}; saveTr(); } }
+}
+
+// ----- Rreth nesh / About -----
+function renderAbout(){
+  const names=[...new Set(FEEDS.map(f=>f.src))];
+  const counts={}; news.forEach(n=>{counts[n.source]=(counts[n.source]||0)+1;});
+  const year=new Date().getFullYear();
+  const en=lang==="en";
+  const sources=names.map(s=>`<li>${esc(s)}${counts[s]?`<small>${counts[s]}</small>`:""}</li>`).join("");
+  const contact=CONTACT_EMAIL?`<h3>${en?"Contact & advertising":"Kontakt & reklamim"}</h3>
+    <p>${en?"For partnerships, advertising, or to suggest a new source, write to us at":"Për bashkëpunime, reklamim ose për të sugjeruar një burim të ri, na shkruani në"} <a href="mailto:${esc(CONTACT_EMAIL)}" style="color:var(--red)">${esc(CONTACT_EMAIL)}</a>.</p>`:"";
+  $("aboutBody").innerHTML=en?`
+    <p class="eyebrow">About</p>
+    <h2>The stories that matter, in one place.</h2>
+    <p class="lead">Lajmet e mia is an independent news aggregator that gathers the latest articles from leading Albanian-language news outlets in real time and presents them on a clean, fast, easy-to-read page.</p>
+    <div class="about-stats">
+      <div><b>5 min</b><span>automatic refresh</span></div>
+      <div><b>${names.length}</b><span>news sources</span></div>
+      <div><b>5</b><span>categories</span></div>
+    </div>
+    <h3>How it works</h3>
+    <p>Every five minutes, the site automatically checks all sources for new stories. Articles are sorted into News, World, Sport, Culture and Health, based on each outlet's own categories and an analysis of the content. Fresh stories are marked with a “New” label.</p>
+    <h3>Our sources</h3>
+    <ul class="about-sources">${sources}</ul>
+    <h3>Our principles</h3>
+    <p>We respect the work of journalists. Every article clearly credits its source and links back to the original page. We do not alter content or present it as our own. Copyright in texts and photographs belongs to the respective publishers.</p>
+    <h3>Language</h3>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="sq" class="${lang==="sq"?"on":""}" aria-pressed="${lang==="sq"}">Shqip</button>
+      <button type="button" data-lang="en" class="${lang==="en"?"on":""}" aria-pressed="${lang==="en"}">English</button>
+    </div>
+    <p class="note" style="padding-top:6px">In English, headlines and articles are machine-translated automatically, so minor inaccuracies are possible. The original Albanian text is always one click away.</p>
+    ${contact}
+    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Created by Fitim Xharra. Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
+  `:`
+    <p class="eyebrow">Rreth nesh</p>
+    <h2>Lajmet që kanë rëndësi, në një vend.</h2>
+    <p class="lead">Lajmet e mia është një agregator i pavarur lajmesh, që mbledh në kohë reale artikujt më të fundit nga portalet kryesore shqiptare dhe i paraqet në një faqe të pastër, të shpejtë dhe të lehtë për t'u lexuar.</p>
+    <div class="about-stats">
+      <div><b>5 min</b><span>rifreskim automatik</span></div>
+      <div><b>${names.length}</b><span>burime lajmesh</span></div>
+      <div><b>5</b><span>kategori</span></div>
+    </div>
+    <h3>Si funksionon</h3>
+    <p>Çdo 5 minuta, faqja kontrollon automatikisht të gjitha burimet për lajme të reja. Artikujt ndahen në Lajme, Botë, Sport, Kulturë dhe Shëndet, bazuar në kategoritë e vetë portaleve dhe në analizën e përmbajtjes. Lajmet e sapoardhura shënohen me etiketën «E re».</p>
+    <h3>Burimet tona</h3>
+    <ul class="about-sources">${sources}</ul>
+    <h3>Parimet tona</h3>
+    <p>Respektojmë punën e gazetarëve. Çdo artikull tregon qartë burimin dhe lidhet me faqen origjinale. Nuk i ndryshojmë përmbajtjet dhe nuk i paraqesim si tonat. Të drejtat e autorit për tekstet dhe fotografitë u takojnë botuesve përkatës.</p>
+    <h3>Gjuha · Language</h3>
+    <div class="lang-switch" role="group" aria-label="Gjuha">
+      <button type="button" data-lang="sq" class="${lang==="sq"?"on":""}" aria-pressed="${lang==="sq"}">Shqip</button>
+      <button type="button" data-lang="en" class="${lang==="en"?"on":""}" aria-pressed="${lang==="en"}">English</button>
+    </div>
+    <p class="note" style="padding-top:6px">Në English, titujt dhe artikujt përkthehen automatikisht me makinë, prandaj mund të ketë pasaktësi të vogla.</p>
+    ${contact}
+    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Krijuar nga Fitim Xharra. Të dhënat e motit: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
+  `;
+}
+function showAbout(){ renderAbout(); $("aboutDialog").showModal(); }
+
 let category="all", sourceFilter="all";
 let saved; let savedArticles={};
 try{
@@ -477,11 +740,13 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 function relTime(iso){
   const t=Date.parse(iso); if(!t) return "";
   const m=Math.max(0,Math.round((Date.now()-t)/60000));
-  if(m<1) return "tani";
-  if(m<60) return m+" min më parë";
+  const en=lang==="en";
+  if(m<1) return en?"just now":"tani";
+  if(m<60) return en?m+" min ago":m+" min më parë";
   const h=Math.round(m/60);
-  if(h<24) return h+" orë më parë";
-  return Math.round(h/24)+" ditë më parë";
+  if(h<24) return en?h+(h===1?" hour ago":" hours ago"):h+" orë më parë";
+  const d=Math.round(h/24);
+  return en?d+(d===1?" day ago":" days ago"):d+" ditë më parë";
 }
 function safeURL(v){try{const u=new URL(v);if(u.protocol==="http:")u.protocol="https:";const path=(u.pathname||"").replace(/\/+$/,"");if(u.protocol!=="https:"||!path)return null;return u.href}catch{return null}}
 function chips(){
@@ -500,10 +765,11 @@ function hasArticleImage(n){
   try{return ["https:","http:"].includes(new URL(n.image).protocol);}catch{return false;}
 }
 function hideFailedArticleImage(img){
+  // Fotoja që nuk hapet hiqet, por lajmi mbetet në listë
   const url=img.getAttribute("src");
   if(url) failedArticleImages.add(url);
-  const card=img.closest("article,.feat-slide");
-  if(card) card.hidden=true;
+  const hero=img.closest(".hero");
+  if(hero) hero.remove(); else img.remove();
   if(imageRenderPending) return;
   imageRenderPending=true;
   setTimeout(()=>{
@@ -513,7 +779,6 @@ function hideFailedArticleImage(img){
 }
 function filtered(){
   return news.filter(n=>{
-    if(!hasArticleImage(n)) return false;
     if(sourceFilter!=="all" && n.source!==sourceFilter) return false;
     if(category==="all") return true;
     return n.cat===category;
@@ -548,17 +813,34 @@ function visitKey(){
 let thisVisit=visitKey();
 let featIndex=0;
 let featTimer=null;
+let featCount=0;
+function goFeat(i){
+  const count=featCount||1;
+  featIndex=((i%count)+count)%count;
+  const track=$("featTrack");
+  if(track) track.style.transform="translateX(-"+featIndex*100+"%)";
+  const num=$("featNum");
+  if(num) num.textContent=String(featIndex+1).padStart(2,"0")+" / "+String(count).padStart(2,"0");
+  document.querySelectorAll(".feat-dots button").forEach((b,k)=>b.classList.toggle("on",k===featIndex));
+}
 function startFeatRotate(count){
   clearInterval(featTimer);
+  featCount=count;
   if(count<2) return;
-  featTimer=setInterval(()=>{
-    featIndex=(featIndex+1)%count;
-    const track=$("featTrack");
-    if(track) track.style.transform="translateX(-"+(featIndex%count)*100+"%)";
-    const num=$("featNum");
-    if(num) num.textContent=String(featIndex+1).padStart(2,"0")+" / "+String(count).padStart(2,"0");
-    document.querySelectorAll(".feat-dots button").forEach((b,i)=>b.classList.toggle("on",i===featIndex));
-  },6000);
+  featIndex=featIndex%count;
+  featTimer=setInterval(()=>{ if(!document.hidden) goFeat(featIndex+1); },6000);
+}
+// Lajmet kryesore në Ballinë: 3 kombëtare, 2 ndërkombëtare, 1 kulturë, 3 sport,
+// të përziera që slide-t të ndërrojnë kategori (L, S, B, K, L, S, B, L, S)
+const LEAD_MIX=[['national',3],['sport',3],['world',2],['culture',1]];
+function leadSlides(items,isHome){
+  if(!isHome){const withImg=items.filter(hasArticleImage);return [...withImg,...items.filter(x=>!hasArticleImage(x))].slice(0,5);}
+  // përparësi lajmeve me foto; nëse s'mjaftojnë, plotësohet me të tjerat
+  const pick=(cat,n)=>{const all=items.filter(x=>x.cat===cat);const withImg=all.filter(hasArticleImage);return [...withImg,...all.filter(x=>!hasArticleImage(x))].slice(0,n);};
+  const buckets=LEAD_MIX.map(([cat,n])=>pick(cat,n));
+  const out=[];
+  for(let round=0;buckets.some(b=>b.length);round++) buckets.forEach(b=>{ if(b.length) out.push(b.shift()); });
+  return out;
 }
 function feedPage(){ return 1; }
 function pickFeatured(items){
@@ -604,7 +886,7 @@ async function loadCategory(cat,more=false){
   if(!more) state.page=1;
   state.busy=true;
   const page=state.page+1;
-  if(category===cat){$("loadStatus").textContent="Duke ngarkuar më shumë lajme: "+labels[cat]+"…";render();}
+  if(category===cat){$("loadStatus").textContent=t("stMore",{c:labels[cat]});render();}
   const batches=await Promise.all(feeds.map(async f=>{
     try{
       const url=new URL(f.url); url.searchParams.set("paged",String(page));
@@ -617,7 +899,7 @@ async function loadCategory(cat,more=false){
   state.busy=false;
   if(category===cat){
     chips();render();
-    $("loadStatus").textContent=added?"U shtuan "+added+" lajme te "+labels[cat]+".":"Nuk u gjetën lajme shtesë.";
+    $("loadStatus").textContent=added?t("stAdded",{n:added,c:labels[cat]}):t("stNoMore");
   }
   renderSaved();
 }
@@ -626,24 +908,24 @@ function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,t
 function homepageCardGroups(items){
  const take=(cat,count)=>items.filter(n=>n.cat===cat).slice(0,count);
  return [
-  {cat:'national',title:'Lajme lokale',items:take('national',6)},
-  {cat:'world',title:'Ndërkombëtare',items:take('world',3)},
-  {cat:'culture',title:'Kulturë & Shëndet',items:[...take('culture',2),...take('health',1)]},
-  {cat:'sport',title:'Sport',items:take('sport',6)}
+  {cat:'national',title:t('grpLocal'),items:take('national',6)},
+  {cat:'world',title:t('grpWorld'),items:take('world',3)},
+  {cat:'culture',title:t('grpCulture'),items:[...take('culture',2),...take('health',1)]},
+  {cat:'sport',title:t('grpSport'),items:take('sport',6)}
  ];
 }
 function render(){
   const state=categoryState[category];
   $("loadMore").hidden=category==="all";
   $("loadMore").disabled=Boolean(state?.busy);
-  $("loadMore").textContent=state?.busy?"Duke ngarkuar…":"Shfaq më shumë lajme";
+  $("loadMore").textContent=state?.busy?t('loadingShort'):t('loadMore');
   let items=arranged(filtered());
   const isHome=sourceFilter==='all'&&category==='all';
-  const leadItems=isHome?arranged(homeGroups(items).flatMap(g=>g.items)):items;
+
   $('featured').hidden=false;
   document.querySelector('.feat-head').hidden=false;
-  document.querySelector('#homeView .sec h3').textContent=isHome?'Titujt e fundit':labels[category]||'Lajmet e fundit';
-  const top=leadItems.slice(0,1);
+  document.querySelector('#homeView .sec h3').textContent=isHome?t('latestHeadlines'):labels[category]||t('latestNews');
+  const top=leadSlides(items,isHome);
   const rest=items.filter(n=>!top.some(t=>t.id===n.id));
   const feat=top[featIndex%Math.max(top.length,1)]||null;
   $("featNum").textContent=top.length?String((featIndex%top.length)+1).padStart(2,"0")+" / "+String(top.length).padStart(2,"0"):"—";
@@ -653,12 +935,12 @@ function render(){
     <div class="feat-track" id="featTrack" style="transform:translateX(-${(featIndex%top.length)*100}%)">
       ${top.map(n=>`
       <div class="feat-slide">
-        ${n.image?`<div class="hero" data-open="${n.id}"><img src="${esc(n.image)}" alt="" onerror="hideFailedArticleImage(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
+        ${hasArticleImage(n)?`<div class="hero" data-open="${n.id}"><img src="${esc(n.image)}" alt="" onerror="hideFailedArticleImage(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
         <div class="feature-body">
           <div class="kicker">${esc(n.source)} · ${labels[n.cat]||'Lajme'}</div>
-          <h3 class="headline"><button data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</button></h3>
-          <p class="feat-excerpt">${esc(n.summary||'')}</p>
-          <div class="row-act"><button class="link" data-open="${n.id}">Lexo artikullin <span aria-hidden="true">↗</span></button>
+          <h3 class="headline"><button data-open="${n.id}">${esc(dispTitle(n))}</button></h3>
+          <p class="feat-excerpt">${esc(dispSummary(n))}</p>
+          <div class="row-act"><button class="link" data-open="${n.id}">${t('readArticle')} <span aria-hidden="true">↗</span></button>
           <div style="display:flex;gap:8px">
           <button class="bm" data-share="${n.id}" aria-label="Ndaj artikullin" title="Ndaj">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 16V4m0 0 4 4M12 4 8 8"/></svg>
@@ -668,34 +950,34 @@ function render(){
       </div>`).join('')}
     </div>
     ${top.length>1?`<div class="feat-dots">${top.map((_,i)=>`<button type="button" data-feat-go="${i}" class="${i===(featIndex%top.length)?'on':''}" aria-label="Artikulli ${i+1}"></button>`).join('')}</div>`:''}
-  `:`<p class="empty">${loading?'Duke ngarkuar artikujt…':'Nuk ka artikuj në këtë filtër.'}</p>`;
+  `:`<p class="empty">${loading?t('loading'):t('noArticles')}</p>`;
   startFeatRotate(top.length);
   const articleCard=n=>`
     <article data-open="${n.id}" tabindex="0" role="button">
       <div>
         <div class="src">${esc(n.source)}</div>
-        <h4 data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</h4>
-        <div class="article-meta">${isNew(n)?'<b class="new-badge">E re</b> · ':''}${labels[n.cat]||"Lajme"} · ${esc(relTime(n.publishedAt))} · Lexo artikullin ↗</div>
+        <h4 data-open="${n.id}">${esc(dispTitle(n))}</h4>
+        <div class="article-meta">${isNew(n)?'<b class="new-badge">'+t('newBadge')+'</b> · ':''}${labels[n.cat]||labels.national} · ${esc(relTime(n.publishedAt))} · ${t('readArticle')} ↗</div>
       </div>
-      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
+      ${hasArticleImage(n)?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
     </article>`;
   $('feed').innerHTML=isHome?homepageCardGroups(rest).map(group=>`
     <section class="news-category" data-category="${group.cat}" aria-labelledby="section-${group.cat}">
       <div class="news-section-heading"><h3 id="section-${group.cat}">${group.title}</h3></div>
-      <div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):'<p class="section-empty">'+(loading?'Duke ngarkuar lajmet…':'Nuk ka lajme me fotografi të disponueshme.')+'</p>'}</div>
+      <div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):'<p class="section-empty">'+(loading?t('loading'):t('noNews'))+'</p>'}</div>
     </section>`).join(''):rest.map(articleCard).join('');
 }
 function renderSaved(){
-  const items=news.filter(n=>saved.has(n.id)&&hasArticleImage(n));
-  $("savedView").innerHTML=items.length?'<h2 class="saved-title">Për më vonë.</h2>'+items.map(n=>`
+  const items=news.filter(n=>saved.has(n.id));
+  $("savedView").innerHTML=items.length?'<h2 class="saved-title">'+t('savedTitle')+'</h2>'+items.map(n=>`
     <article data-open="${n.id}" tabindex="0" role="button">
       <div>
         <div class="src">${esc(n.source)}</div>
-        <h4 data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</h4>
-        <div class="article-meta">${labels[n.cat]||"Lajme"} · ${esc(relTime(n.publishedAt))} · Lexo artikullin ↗</div>
+        <h4 data-open="${n.id}">${esc(dispTitle(n))}</h4>
+        <div class="article-meta">${labels[n.cat]||labels.national} · ${esc(relTime(n.publishedAt))} · ${t('readArticle')} ↗</div>
       </div>
-      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
-    </article>`).join(""):`<p class="empty">Nuk ke lajme të ruajtura.</p>`;
+      ${hasArticleImage(n)?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
+    </article>`).join(""):`<p class="empty">${t('noSaved')}</p>`;
 }
 function strip(html){
   const d=document.createElement("div");
@@ -737,7 +1019,7 @@ function paras(text){
 function openArticle(id){
   const n=news.find(x=>x.id===id)||savedArticles[id];
   if(!n) return;
-  const title=(n.title||"").replace(/\s+—\s+.*$/,"");
+  const title=dispTitle(n);
   const text=strip(n.content||n.body||n.summary||"");
   const parts=text.split(/\n+/).filter(s=>{
     const x=s.trim();
@@ -752,24 +1034,25 @@ function openArticle(id){
   $("reader").innerHTML=`
     <div class="kicker">${labels[n.cat]||""} | ${esc(n.source||"")}</div>
     <h2>${esc(title)}</h2>
-    ${n.image && !/unsplash/.test(n.image)?`<img src="${esc(n.image)}" alt="" style="width:100%;height:200px;object-fit:cover;margin:8px 0">`:""}
-    <div class="credits">Burimi: ${esc(n.source)}${n.author && n.author!==n.source ? " · Autori: "+esc(n.author) : ""}</div>
-    <p class="note">${n.previewOnly?"Përmbledhje e ruajtur · Nuk është artikulli i plotë.":"Teksti i marrë nga RSS i burimit."}${n.publishedAt?" Publikuar: "+esc(relTime(n.publishedAt)||n.publishedAt):""}</p>
+    ${hasArticleImage(n) && !/unsplash/.test(n.image)?`<img src="${esc(n.image)}" onerror="this.remove()" alt="" style="width:100%;height:200px;object-fit:cover;margin:8px 0">`:""}
+    <div class="credits">${t('source')}: ${esc(n.source)}${n.author && n.author!==n.source ? " · "+t('author')+": "+esc(n.author) : ""}</div>
+    <p class="note">${n.previewOnly?t('previewOnly'):t('fromRss')}${n.publishedAt?" "+t('published')+" "+esc(relTime(n.publishedAt)||n.publishedAt):""}</p>
     <div class="reader-actions">
       <button class="icon-act ${saved.has(n.id)?'on':''}" data-save="${n.id}" type="button" aria-pressed="${saved.has(n.id)}" aria-label="Ruaje artikullin">
         <svg viewBox="0 0 24 24" fill="${saved.has(n.id)?'currentColor':'none'}" stroke="currentColor" stroke-width="1.7"><path d="M7 4h10v16l-5-3-5 3z"/></svg>
-        Ruaje artikullin
+        ${t('saveArticle')}
       </button>
       <button class="icon-act" data-share="${n.id}" type="button" aria-label="Ndaje artikullin">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 16V4m0 0 4 4M12 4 8 8"/></svg>
-        Ndaje artikullin
+        ${t('shareArticle')}
       </button>
     </div>
     <div id="shareBox"></div>
     <div id="articleBody">${html}</div>
-    ${n.url?`<p class="note" style="padding:16px 0 0">Burimi:<br><a href="${esc(n.url)}" target="_blank" rel="noopener" style="color:var(--red);word-break:break-all">${esc(n.url)}</a></p>`:""}
-    <button class="action" data-close="articleDialog" style="margin-top:16px">Kthehu te lista</button>`;
+    ${n.url?`<p class="note" style="padding:16px 0 0">${t('original')}:<br><a href="${esc(n.url)}" target="_blank" rel="noopener" style="color:var(--red);word-break:break-all">${esc(n.url)}</a></p>`:""}
+    <button class="action" data-close="articleDialog" style="margin-top:16px">${t('backToList')}</button>`;
   $("articleDialog").showModal();
+  if(lang==="en") translateReader(n,parts.length?parts:[n.summary||""]);
 }
 
 function itemImage(item, desc, content){
@@ -866,6 +1149,18 @@ async function fetchJsonRss(feed){
  const work=(async()=>{
    // Keep the publisher URL stable: changing it creates a new conversion job.
    const endpoint='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed);
+   // rss2json falas mund ta mbajë feed-in në cache deri në 1 orë; prandaj marrim paralelisht
+   // edhe kopjen e freskët përmes proxy-t (parametri "lm" ndryshon çdo minutë) dhe i bashkojmë.
+   const fresh=feed+(feed.includes("?")?"&":"?")+"lm="+Math.floor(Date.now()/60000);
+   const [a,b]=await Promise.all([
+     grab(endpoint,20000).then(t=>{try{const d=JSON.parse(t);return d?.status==='ok'&&Array.isArray(d.items)?d.items:[];}catch{return [];}}),
+     grab('https://api.allorigins.win/raw?url='+encodeURIComponent(fresh),15000).then(t=>t?xmlToItems(t):[]).catch(()=>[])
+   ]);
+   if(a.length||b.length){
+     const seen=new Set(), merged=[];
+     for(const it of [...b,...a]){ const k=it.link||it.guid||it.title; if(k&&!seen.has(k)){seen.add(k);merged.push(it);} }
+     return merged;
+   }
    for(let attempt=0;attempt<2;attempt++){
      const text=await grab(endpoint,20000);
      try{const data=JSON.parse(text);if(data?.status==='ok'&&Array.isArray(data.items)&&data.items.length)return data.items;}catch{}
@@ -920,8 +1215,37 @@ async function fetchWebsite(feed){
  await Promise.all(Array.from({length:3},async()=>{while(cursor<urls.length){const url=urls[cursor++];const page=await publicPage(url);if(page){const n=websiteArticle(feed,url,page);if(n)items.push(n);}}}));
  return items;
 }
+// WordPress REST API: lajme të freskëta (pa cache të rss2json) dhe me foto kryesore.
+// Përdoret për burimet me wp:true; nëse s'punon, kalohet te RSS.
+async function fetchWpJson(feed){
+ const origin=new URL(feed.url).origin;
+ const api=origin+'/wp-json/wp/v2/posts?per_page=20&_embed=wp:term,wp:featuredmedia&lm='+Math.floor(Date.now()/60000);
+ for(const endpoint of [api,'https://api.allorigins.win/raw?url='+encodeURIComponent(api)]){
+   const text=await grab(endpoint,15000);
+   if(!text) continue;
+   let posts; try{posts=JSON.parse(text);}catch{continue;}
+   if(!Array.isArray(posts)||!posts.length) continue;
+   return posts.flatMap(p=>{
+     const url=safeURL(p.link); const title=strip(p.title?.rendered||'');
+     if(!url||!title) return [];
+     const content=p.content?.rendered||''; const body=strip(content);
+     const summary=strip(p.excerpt?.rendered||content).slice(0,180);
+     const terms=(p._embedded?.['wp:term']||[]).flat().filter(x=>x&&x.name).map(x=>x.name);
+     const media=(p._embedded?.['wp:featuredmedia']||[])[0]||{};
+     const sizes=media.media_details?.sizes||{};
+     const image=(sizes.medium_large||sizes.large||sizes.full||{}).source_url||media.source_url||'';
+     const {cat,conf}=classifyItem({title,url,summary,rssCats:terms,hint:feed.hint});
+     return [{id:stableId(url),source:feed.src,title,url,cat,catConf:conf,rssCats:terms,summary,content,body,
+       image:/^https?:\/\//.test(image)?image.replace(/^http:/,'https:'):'',author:feed.src,
+       publishedAt:parseDate(p.date_gmt?p.date_gmt+'Z':p.date),previewOnly:body.length<400}];
+   });
+ }
+ return [];
+}
 async function fetchArticles(feed){
- const items=feed.kind==='website'?await fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
+ let items=[];
+ if(feed.wp && !/[?&]paged=/.test(feed.url)){ try{items=await fetchWpJson(feed);}catch{items=[];} }
+ if(!items.length) items=feed.kind==='website'?await fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
  if(feed.src==='KultPlus')await fillKultImages(items);
  return items;
 }
@@ -985,7 +1309,7 @@ async function refreshAll(opts={}){
   if(silent && document.hidden){ clearTimeout(refreshTimer); nextRefresh=0; return; }
   refreshing=true; refreshStarted=Date.now(); updateRefreshInfo();
   if(!silent && !news.length){ loading=true; render(); }
-  $("loadStatus").textContent=silent?"Duke kontrolluar lajme të reja…":"Duke ngarkuar lajmet e fundit nga të gjitha burimet…";
+  $("loadStatus").textContent=silent?t("stChecking"):t("stLoading");
   let fresh=0, ok=false, okFeeds=0;
   const before=new Set(news.map(n=>n.url));
   try{
@@ -1011,20 +1335,20 @@ async function refreshAll(opts={}){
   }
   const where=category==="all"?"":" ("+labels[category]+")";
   $("loadStatus").textContent=ok
-    ? (fresh?"U gjetën "+fresh+" lajme të reja nga "+okFeeds+" burime. Kontrolli i radhës pas 5 min.":"Nuk ka lajme të reja"+where+" ("+okFeeds+" furnizime). Kontrolli i radhës pas 5 min.")
-    : "Asnjë burim nuk u përgjigj. Riprovohet automatikisht pas 5 min.";
+    ? (fresh?t("stFound",{n:fresh,f:okFeeds}):t("stNone",{w:where}))
+    : t("stFail");
   if(sourceFilter!=="all" && !activeSources().includes(sourceFilter)) sourceFilter="all";
   const unavailable=Object.entries(sourceStatus).filter(([n,v])=>v.state!=='ok').map(([n])=>n);
-  if(unavailable.length)$("loadStatus").textContent+=" Pa lajme të reja nga: "+unavailable.join(", ")+".";
+  if(unavailable.length)$("loadStatus").textContent+=t("stMissing",{s:unavailable.join(", ")});
   chips();render();renderSaved();renderSourceList();updateRefreshInfo();
 }
 function updateRefreshInfo(){
   const el=$("refreshInfo"); if(!el) return;
-  if(refreshing){el.textContent="Duke kërkuar lajme të reja…";return;}
-  if(!lastRefresh){el.textContent="Artikuj nga të gjitha burimet";return;}
+  if(refreshing){el.textContent=t("searching");return;}
+  if(!lastRefresh){el.textContent=t("allSources");return;}
   const left=Math.max(0,Math.round((nextRefresh-Date.now())/1000));
-  const hhmm=new Date(lastRefresh).toLocaleTimeString("sq",{hour:"2-digit",minute:"2-digit"});
-  el.textContent="Kontrolluar "+hhmm+" · tjetri pas "+Math.floor(left/60)+":"+String(left%60).padStart(2,"0");
+  const hhmm=new Date(lastRefresh).toLocaleTimeString(lang==="en"?"en-GB":"sq",{hour:"2-digit",minute:"2-digit"});
+  el.textContent=t("checked")+" "+hhmm+" · "+t("next")+" "+Math.floor(left/60)+":"+String(left%60).padStart(2,"0");
 }
 function stableId(url){
   let hash=2166136261;
@@ -1091,27 +1415,14 @@ document.addEventListener("click",e=>{
   const featDir=e.target.closest("[data-feat-dir]");
   if(featDir){
     e.preventDefault();e.stopPropagation();
-    const dots=document.querySelectorAll(".feat-dots button");
-    const count=dots.length||1;
-    featIndex=(featIndex+Number(featDir.dataset.featDir)+count)%count;
-    startFeatRotate(count);
-    const track=$("featTrack");
-    if(track) track.style.transform="translateX(-"+featIndex*100+"%)";
-    const num=$("featNum");
-    if(num) num.textContent=String(featIndex+1).padStart(2,"0")+" / "+String(count).padStart(2,"0");
-    dots.forEach((b,i)=>b.classList.toggle("on",i===featIndex));
+    goFeat(featIndex+Number(featDir.dataset.featDir));
+    startFeatRotate(featCount);
   }
   const featGo=e.target.closest("[data-feat-go]");
   if(featGo){
     e.preventDefault();e.stopPropagation();
-    const dots=document.querySelectorAll(".feat-dots button");
-    featIndex=Number(featGo.dataset.featGo);
-    const track=$("featTrack");
-    if(track) track.style.transform="translateX(-"+featIndex*100+"%)";
-    const num=$("featNum");
-    if(num) num.textContent=String(featIndex+1).padStart(2,"0")+" / "+String(dots.length).padStart(2,"0");
-    dots.forEach((b,i)=>b.classList.toggle("on",i===featIndex));
-    startFeatRotate(dots.length);
+    goFeat(Number(featGo.dataset.featGo));
+    startFeatRotate(featCount);
   }
   const copy=e.target.closest("[data-copy-link]");
   if(copy){
@@ -1127,6 +1438,7 @@ document.querySelector(".tabbar").addEventListener("click",e=>{
   const b=e.target.closest("[data-tab]"); if(!b)return;
   document.querySelectorAll(".tabbar button").forEach(x=>x.classList.toggle("on",x===b));
   if(b.dataset.tab==="sources"){showSources();return;}
+  if(b.dataset.tab==="about"){showAbout();return;}
   if(b.dataset.tab==="saved"){
     $("homeView").hidden=true; $("savedView").hidden=false; renderSaved();
   }else{
@@ -1152,6 +1464,17 @@ document.addEventListener("visibilitychange",()=>{
 window.addEventListener('online',()=>refreshAll({silent:true}));
 window.addEventListener('pageshow',()=>{if(!refreshing && Date.now()-refreshStarted>=REFRESH_MS)refreshAll({silent:true});});
 setInterval(()=>{updateRefreshInfo();},1000);
+(()=>{ // rrëshqitja me gisht te lajmet kryesore
+  let x0=null,y0=null;
+  const el=$("featured");
+  el.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  el.addEventListener("touchend",e=>{
+    if(x0===null) return;
+    const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    x0=null;
+    if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ goFeat(featIndex+(dx<0?1:-1)); startFeatRotate(featCount); }
+  },{passive:true});
+})();
 $("searchBtn").onclick=showSources;
 $("sourceSearch").oninput=renderSourceList;
 const editionDate=document.getElementById('editionDate');
@@ -1164,6 +1487,12 @@ news=news.filter(n=>!isRemovedSource(n)).map(n=>{
 for(const [id,n] of Object.entries(savedArticles)){if(isRemovedSource(n)){saved.delete(Number(id));delete savedArticles[id];}}
 persistSaved();saveCache();
 Object.values(savedArticles).forEach(n=>{if(n&&n.id&&!news.some(x=>x.id===n.id))news.push(n);});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-lang]");if(b){setLang(b.dataset.lang);}});
+["sourcesDialog","aboutDialog"].forEach(id=>$(id).addEventListener("close",()=>{
+  const tab=$("savedView").hidden?"home":"saved";
+  document.querySelectorAll(".tabbar button").forEach(x=>x.classList.toggle("on",x.dataset.tab===tab));
+}));
+applyStaticText();
 chips();render();renderSaved();openSharedArticle();refreshAll();
 
 // Weather loads independently so an unavailable forecast never blocks news.
