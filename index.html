@@ -5,9 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#151715" id="themeColor">
 <title>Lajmet e mia</title>
-<meta property="og:title" content="Lajmet e mia">
-<meta property="og:description" content="Lajmet e fundit në një vend. Lexo artikullin në Lajmet e mia.">
+<meta name="description" content="Lajmet e fundit nga Kosova, Shqipëria dhe bota, nga portalet kryesore shqiptare, në një vend. Rifreskim automatik çdo 5 minuta.">
+<meta property="og:site_name" content="Lajmet e mia">
+<meta property="og:title" content="Lajmet e mia · Lajmet e fundit në një vend">
+<meta property="og:description" content="Lajmet më të reja nga Telegrafi, Gazeta Express, Indeksonline, Reporteri, Lajmi.net dhe të tjerë, të përditësuara çdo 5 minuta.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://lajme.fitimxharra.com/">
+<meta property="og:image" content="https://lajme.fitimxharra.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="sq_AL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lajmet e mia · Lajmet e fundit në një vend">
+<meta name="twitter:image" content="https://lajme.fitimxharra.com/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B0%3C/text%3E%3C/svg%3E">
 <script>
 try{document.documentElement.dataset.theme=localStorage.getItem('newsTheme')==='light'?'light':'dark';}catch{}
 </script>
@@ -195,7 +206,123 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 .nav-main button.on[data-cat]{color:var(--category-color)}
 .nav-main button.on::after{background:var(--category-color)!important}
 .nav-main button[data-cat]:hover{color:var(--category-color)}
+/* ===== Kombëtaret ===== */
+.teams{margin:0 0 10px}
+.tm-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0 8px}
+.tm-head h2{margin:0;font-size:11px;letter-spacing:1.7px;text-transform:uppercase}
+.sp-tabs{overflow-x:auto;scrollbar-width:none;max-width:100%;flex-wrap:nowrap}
+.tm-tabs{display:flex;gap:6px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tm-tabs button{display:flex;align-items:center;gap:7px;border:0;border-radius:9px;background:transparent;color:var(--muted);padding:7px 12px;font-size:12px;font-weight:650}
+.tm-tabs button img{width:18px;height:18px;border-radius:50%;object-fit:cover}
+.tm-tabs button.on{background:var(--soft);color:var(--ink);box-shadow:inset 0 -2px 0 var(--category-color,#e6bc72)}
+.tm-head{--category-color:#e6bc72}[data-theme="light"] .tm-head{--category-color:#865c17}
+.tm-src{grid-column:1/-1;font-size:10px;color:var(--muted);text-align:right;margin-top:-8px}
+.team-card{--category-color:#e6bc72;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--category-color);border-radius:16px;padding:14px 16px;margin-bottom:12px;display:grid;grid-template-columns:minmax(170px,.8fr) minmax(0,1.3fr) minmax(0,1.1fr);gap:14px 18px;align-items:start}
+[data-theme="light"] .team-card{--category-color:#865c17}
+.tm-id{display:flex;align-items:center;gap:12px;min-width:0}
+.tm-flag{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:0 0 auto;border:1px solid var(--line);background:var(--soft)}
+.tm-id h3{margin:0 0 3px;font:600 22px Georgia,serif;letter-spacing:-.4px}
+.tm-meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;font-size:12px;color:var(--ink)}
+.tm-meta small{display:none}
+.tm-fifa{font-size:12px;color:var(--muted);font-weight:650}.tm-fifa b{color:#326295;font-style:italic;margin-right:3px}
+[data-theme="dark"] .tm-fifa b{color:#84b9ee}
+.tm-link{display:inline-block;margin-top:4px;font-size:10px;color:var(--category-color);text-decoration:none}
+.tm-matches{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(120px,1fr);gap:10px;min-width:0;align-self:center;align-items:stretch}
+.tm-form{background:var(--soft);border-radius:10px;padding:7px 10px;display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
+.tm-form h5{margin:0;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tm-form-row{display:flex;gap:6px}
+.tm-form-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default}
+.tm-form-flag,.tm-form-item .tm-dot{width:18px;height:18px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.tm-form-row span{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;cursor:default}
+.f-W{background:#2e9e5b}.f-D{background:#8a8f8a}.f-L{background:#c7443f}
+.tm-form-item:last-child span{outline:2px solid var(--category-color);outline-offset:1px}
+.tm-form-sum{font-size:10px;color:var(--muted)}
+.tm-live{color:#ff4d4f!important;font-weight:800;display:inline-flex;align-items:center;gap:4px}
+.tm-live i{width:7px;height:7px;border-radius:50%;background:#ff4d4f;animation:tmPulse 1.2s infinite}
+@keyframes tmPulse{0%,100%{opacity:1}50%{opacity:.25}}
+.tm-teams.is-live b{color:#ff4d4f}
+.tm-nav{display:flex;align-items:center;gap:8px;min-width:0}
+.tm-nav .tm-match{flex:1}
+.tm-arrow{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:18px;line-height:1;display:grid;place-items:center;padding:0}
+.tm-arrow:hover:not(:disabled){border-color:var(--category-color);color:var(--category-color)}
+.tm-arrow:disabled{opacity:.3;cursor:default}
+.tm-match{min-width:0;background:var(--soft);border-radius:10px;padding:7px 10px}
+.tm-match h5{display:inline;margin:0;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tm-comp{display:block;font-size:10px;color:var(--muted);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm-game{display:flex;gap:10px;align-items:center;margin-top:4px}
+.tm-when{font-size:11px;color:var(--muted);text-align:left;min-width:46px;line-height:1.35}.tm-when small{display:block;font-size:10px}
+.tm-live{color:var(--red);font-weight:800}
+.tm-teams{flex:1;min-width:0;display:grid;gap:2px}
+.tm-teams div{display:flex;align-items:center;gap:6px;font-size:13px;min-width:0}
+.tm-teams span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm-teams img,.tm-dot{width:16px;height:16px;border-radius:50%;object-fit:cover;flex:0 0 auto;background:var(--line);border:1px solid var(--line)}
+.tm-empty{font-size:12px;color:var(--muted);margin:4px 0}
+.tm-table{min-width:0}
+.tm-table-title{font-size:10px;color:var(--muted);letter-spacing:.3px;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm-table table{width:100%;border-collapse:collapse;font-size:12px}
+.tm-table th{font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right;padding:2px 5px}
+.tm-table td{padding:3px 5px;text-align:right;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tm-table th:nth-child(2),.tm-table td:nth-child(2){text-align:left;width:100%;max-width:0;overflow:hidden;text-overflow:ellipsis}
+.tm-table th:first-child,.tm-table td:first-child{text-align:left;width:14px}
+.tm-row-team{display:flex;align-items:center;gap:7px;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.tm-row-flag,.tm-table .tm-dot{width:16px;height:16px;border-radius:50%;object-fit:cover;flex:0 0 auto;border:1px solid var(--line)}
+.tm-table tr.me td{background:color-mix(in srgb,var(--category-color) 16%,transparent);font-weight:700}
+.tm-src{grid-column:1/-1;font-size:9px;color:var(--muted);text-align:right;margin-top:-10px}
+@media(min-width:760px){
+ #homeView.has-teams #sportBox{grid-column:1/-1;grid-row:1}
+ #homeView.has-teams .feat-head{grid-row:2}#homeView.has-teams .sec{grid-row:2}
+ #homeView.has-teams #featured{grid-row:3}#homeView.has-teams #feed{grid-row:3}
+}
+@media(max-width:759px){
+ .team-card{grid-template-columns:1fr 1fr;padding:12px;gap:10px}
+ .tm-id{grid-column:1/-1}
+ .tm-flag{width:44px;height:44px}.tm-id h3{font-size:20px}
+ .tm-matches{grid-column:1/-1;grid-template-columns:1fr}
+ .tm-form{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
+ .tm-match{padding:6px 8px}.tm-comp{display:block;margin:0}.tm-comp::before{content:""}
+ .tm-game{flex-direction:column;align-items:stretch;gap:3px}
+ .tm-when{display:flex;gap:6px;min-width:0}.tm-when small{display:inline}
+ .tm-id>div{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px}.tm-id h3{width:100%}.tm-link{margin:0}
+ .tm-table{grid-column:1/-1}
+}
+/* ===== Ligat ===== */
+.leagues .tm-head{flex-wrap:wrap}
+.lg-tabs{overflow-x:auto;scrollbar-width:none;max-width:100%}
+.lg-tabs button{white-space:nowrap}
+.lg-box{--category-color:#e6bc72;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--category-color);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+[data-theme="light"] .lg-box{--category-color:#865c17}
+.lg-round{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:10px}.lg-round>div{display:flex;flex-direction:column}.lg-round b{color:var(--ink);font-size:14px}.lg-round .tm-link{margin:0 0 0 auto}.lg-round .tm-arrow{width:28px;height:28px;flex-shrink:0;font-size:16px}
+.lg-cards{display:flex;gap:8px;margin:0 -16px 14px;padding:0 16px 4px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin}
+.lg-card{flex:0 0 172px;scroll-snap-align:start}
+.lg-card{background:var(--soft);border-radius:10px;padding:8px 10px;min-width:0;border:1px solid transparent}
+.lg-card.is-live{border-color:#ff4d4f55}
+.lg-card-top{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:5px}
+.lg-row{display:flex;align-items:center;gap:6px;font-size:12px;min-width:0;padding:1px 0}
+.lg-row span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-row img,.lg-row .tm-dot{width:16px;height:16px;object-fit:contain;flex:0 0 auto}
+.lg-card.is-live .lg-row b{color:#ff4d4f}
+.lg-table{margin-top:4px}
+.lg-parts{display:grid;gap:14px}
+.lg-parts{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.lg-part{min-width:0}
+.lg-part h6{margin:0 0 4px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.lg-part table{width:100%;border-collapse:collapse;font-size:12px}
+.lg-part th{font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right;padding:2px 5px}
+.lg-part td{padding:4px 5px;text-align:right;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lg-part th:nth-child(2),.lg-part td:nth-child(2){text-align:left;width:100%;max-width:0;overflow:hidden;text-overflow:ellipsis}
+.lg-part th:first-child,.lg-part td:first-child{text-align:left;width:22px;position:relative;padding-left:9px}
+.lg-zone{position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:2px}
+.lg-part .tm-row-team img{width:16px;height:16px;object-fit:contain;flex:0 0 auto}
+.lg-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:10px;color:var(--muted)}
+.lg-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+@media(max-width:759px){
+ .lg-box{padding:12px}
+ .lg-cards{margin-inline:-12px;padding:0 12px 4px;scrollbar-width:none}
+ .lg-card{flex:0 0 150px}
+ .lg-parts{grid-template-columns:1fr}
+}
 /* ===== Header ngjitës ===== */
+html{overflow-anchor:none}
 .edition{position:sticky;top:0;z-index:30;background:var(--bg);transition:padding .2s ease,box-shadow .2s ease}
 .edition::before{content:"";position:absolute;left:-100vw;right:-100vw;top:0;bottom:0;background:var(--bg);z-index:-1}
 .edition.stuck{padding-top:calc(10px + env(safe-area-inset-top,0px));padding-bottom:10px;box-shadow:0 10px 18px -16px rgba(0,0,0,.55)}
@@ -287,6 +414,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 </section>
 
   <main id="homeView">
+    <section class="teams" id="sportBox" hidden aria-label="Futbolli Shqiptar"></section>
     <div class="feat-head"><h2 data-i18n="topStories">Lajmet kryesore</h2><b id="featNum">01</b></div>
     <div id="featured"></div>
     <div class="sec">
@@ -373,12 +501,11 @@ const FEEDS = [
  {src:'Indeksonline',url:'https://indeksonline.net/sport/feed/',hint:'sport'},
  {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
  {src:'Telegrafi',url:'https://telegrafi.com/kultura/feed/',hint:'culture'},
- {src:'Lajmi.net',url:'https://lajmi.net/kategoria/showbiz/arte/feed/',hint:'culture'},
  // federatat e futbollit
- {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',wp:true},
- {src:'FFK',url:'https://ffk-kosova.com/feed/',hint:'sport',wp:true},
+ {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',only:true,wp:true},
+ {src:'FFK',url:'https://ffk-kosova.com/feed/',hint:'sport',only:true,wp:true},
  // burime të tjera
- {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true},
+ {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',only:true,wp:true},
  {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
  {src:'Zëri',url:'https://zeri.info/',kind:'website'}
 ];
@@ -387,7 +514,7 @@ const sourceStatus={};
 const MAX_PER_CAT = 150;               // sa lajme mbahen për kategori
 const MAX_AGE_MS = 4*24*3600*1000;     // lajmet më të vjetra se 4 ditë hiqen
 const CACHE_KEY="readableNewsCacheV3", CACHE_AT_KEY="readableNewsCacheAtV3";
-function isRemovedSource(n){return /bota\s*sot/i.test(n?.source||'')||/(^|\.)botasot\.info$/i.test((()=>{try{return new URL(n.url).hostname}catch{return ''}})());}
+function isRemovedSource(n){return /bota\s*sot|kult\s*plus/i.test(n?.source||'')||/(^|\.)(botasot\.info|kultplus\.com)$/i.test((()=>{try{return new URL(n.url).hostname}catch{return ''}})());}
 let news = [];
 try {
   const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"[]");
@@ -470,9 +597,16 @@ function catFromKeywords(text){
   for(const c of order) if(score[c]>bestScore){best=c;bestScore=score[c];}
   return best;
 }
-function classifyItem({title,url,summary,rssCats,hint}){
-  if(hint) return {cat:hint,conf:4};
-  const r=catFromLabels(rssCats||[]); if(r) return {cat:r,conf:3};
+function classifyItem({title,url,summary,rssCats,hint,only}){
+  if(hint && only) return {cat:hint,conf:4}; // sajte vetëm për një temë (FSHF, FFK, TopSporti)
+  const r=catFromLabels(rssCats||[]);
+  if(hint){
+    const labs=(rssCats||[]).map(norm);
+    if(!labs.length || labs.some(l=>LABEL_RX[hint]&&LABEL_RX[hint].test(l))) return {cat:hint,conf:4};
+    if(r && r!=='national') return {cat:r,conf:3}; // p.sh. showbiz/lifestyle në feed-in e sportit
+    return {cat:hint,conf:4};
+  }
+  if(r) return {cat:r,conf:3};
   const u=catFromUrl(url); if(u) return {cat:u,conf:2};
   const text=norm((title||'')+' '+(summary||''));
   if(/\b(shendet|mjekesi|semundj|diabet|vaksin|kancer|spital|terapi|infarkt|ushqyerj|vitamin)/.test(text))return {cat:'health',conf:1};
@@ -507,7 +641,8 @@ const I18N={
   stFound:"U gjetën {n} lajme të reja nga {f} burime. Kontrolli i radhës pas 5 min.",stNone:"Nuk ka lajme të reja{w}. Kontrolli i radhës pas 5 min.",
   stFail:"Asnjë burim nuk u përgjigj. Riprovohet automatikisht pas 5 min.",stMissing:" Pa lajme të reja nga: {s}.",
   stMore:"Duke ngarkuar më shumë lajme: {c}…",stAdded:"U shtuan {n} lajme te {c}.",stNoMore:"Nuk u gjetën lajme shtesë.",
-  translating:"Duke përkthyer…"
+  translating:"Duke përkthyer…",
+  tmTitle:"Futbolli Shqiptar",lgTitle:"Ligat",lgRound:"Java",tmLiveNow:"Po luhet tani",tmForm:"Forma",tmW:"F",tmD:"B",tmL:"H",tmLater:"Ndeshja e ardhshme",tmEarlier:"Ndeshje e kaluar",tmPrevAria:"Ndeshja e mëparshme",tmNextAria:"Ndeshja tjetër",tmSource:"Të dhënat:",tmCoach:"Trajneri",tmPrev:"Ndeshja e fundit",tmNext:"Ndeshja e radhës",tmNoMatch:"Nuk ka ndeshje të caktuar.",tmLoading:"Duke ngarkuar të dhënat…",tmFail:"Të dhënat nuk u ngarkuan. Riprovohet së shpejti.",tmTeam:"Ekipi",tmP:"N",tmPts:"P"
  },
  en:{
   navHome:"Home",navNews:"News",navWorld:"World",navSport:"Sport",navCulture:"Culture",navHealth:"Health",
@@ -524,7 +659,8 @@ const I18N={
   stFound:"{n} new stories from {f} sources. Next check in 5 min.",stNone:"No new stories{w}. Next check in 5 min.",
   stFail:"No source responded. Retrying automatically in 5 min.",stMissing:" No new stories from: {s}.",
   stMore:"Loading more stories: {c}…",stAdded:"Added {n} stories to {c}.",stNoMore:"No more stories found.",
-  translating:"Translating…"
+  translating:"Translating…",
+  tmTitle:"Albanian Football",lgTitle:"Leagues",lgRound:"Round",tmLiveNow:"Live now",tmForm:"Form",tmW:"W",tmD:"D",tmL:"L",tmLater:"Upcoming match",tmEarlier:"Earlier match",tmPrevAria:"Previous match",tmNextAria:"Next match",tmSource:"Data:",tmCoach:"Coach",tmPrev:"Previous match",tmNext:"Next match",tmNoMatch:"No match scheduled.",tmLoading:"Loading data…",tmFail:"Data could not be loaded. Retrying soon.",tmTeam:"Team",tmP:"P",tmPts:"Pts"
  }
 };
 function t(k,vars){
@@ -751,38 +887,70 @@ function toast(msg){
   el.textContent=msg;el.classList.add("show");
   clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("show"),2200);
 }
+const SITE_URL="https://lajme.fitimxharra.com/";
+// Link i shkurtër dhe i lexueshëm: lajme.fitimxharra.com/#a=telegrafi.com/titulli-i-lajmit/
 function articleShareURL(n){
- const base=new URL(location.protocol==='https:'||location.protocol==='http:'?location.href:'https://lajme.fitimxharra.com/');
- base.hash='';base.search='';
- const params=new URLSearchParams({article:n.url,title:(n.title||'').slice(0,300),summary:(n.summary||'').slice(0,300),image:n.image||''});
- base.hash=params.toString();return base.href;
+ const base=/^https?:$/.test(location.protocol)?location.origin+location.pathname:SITE_URL;
+ const short=String(n.url||"").replace(/^https?:\/\//,"").replace(/%/g,"%25").replace(/#/g,"%23").replace(/&/g,"%26").replace(/\s/g,"%20");
+ return base+"#a="+short;
 }
 function sharedArticle(){
- const params=new URLSearchParams(location.hash.slice(1));const url=safeURL(params.get('article'));if(!url)return null;
+ const h=location.hash.slice(1);
+ let url=null, params=new URLSearchParams();
+ if(h.startsWith("a=")){
+   let raw=h.slice(2); try{raw=decodeURIComponent(raw);}catch{}
+   url=safeURL(/^https?:\/\//.test(raw)?raw:"https://"+raw);
+ }else{
+   params=new URLSearchParams(h); url=safeURL(params.get('article')); // linqet e vjetra
+ }
+ if(!url) return null;
+ // linku i vjetër e i gjatë shndërrohet menjëherë në formën e shkurtër në shiritin e adresës
+ if(!h.startsWith("a=")){ try{ history.replaceState(null,"","#a="+url.replace(/^https?:\/\//,"").replace(/%/g,"%25").replace(/#/g,"%23").replace(/&/g,"%26")); }catch{} }
  const host=new URL(url).hostname.replace(/^www\./,'');
- const feed=FEEDS.find(f=>new URL(f.url).hostname.replace(/^www\./,'')===host);if(!feed)return null;
+ const feed=FEEDS.find(f=>new URL(f.url).hostname.replace(/^www\./,'')===host);
+ if(!feed) return null;
  return {params,url,feed};
 }
-let sharedOpened=false;
-function openSharedArticle(){
- if(sharedOpened)return;const share=sharedArticle();if(!share)return;
- let n=news.find(n=>n.url===share.url);
- if(!n){const title=share.params.get('title');if(!title)return;n={id:stableId(share.url),url:share.url,title:title.slice(0,300),source:share.feed.src,summary:(share.params.get('summary')||'').slice(0,300),image:safeURL(share.params.get('image'))||'',cat:classifyItem({title,url:share.url,hint:share.feed.hint}).cat,previewOnly:true,publishedAt:''};news.push(n);}
- sharedOpened=true;openArticle(n.id);
+let sharedOpened=false, sharedFetching=false;
+async function openSharedArticle(afterRefresh){
+ if(sharedOpened) return;
+ const share=sharedArticle(); if(!share) return;
+ let n=news.find(x=>x.url===share.url);
+ if(!n){
+   const title=share.params.get('title');
+   if(title){
+     n={id:stableId(share.url),url:share.url,title:title.slice(0,300),source:share.feed.src,summary:(share.params.get('summary')||'').slice(0,300),image:safeURL(share.params.get('image'))||'',cat:share.feed.hint||'national',publishedAt:'',previewOnly:true};
+   }else if(afterRefresh && !sharedFetching){
+     // lajmi s'është më në listë: merr titullin, foton dhe tekstin nga faqja origjinale
+     sharedFetching=true;
+     const html=await publicPage(share.url);
+     sharedFetching=false;
+     if(html){
+       const doc=new DOMParser().parseFromString(html,'text/html');
+       const meta=k=>doc.querySelector(`meta[property="${k}"],meta[name="${k}"]`)?.getAttribute('content')||'';
+       const paras=[...doc.querySelectorAll('article p, .entry-content p, .post-content p, .content p')].map(p=>p.textContent.trim()).filter(x=>x.length>40).slice(0,30);
+       const title=(meta('og:title')||doc.querySelector('h1')?.textContent||'').trim();
+       if(title) n={id:stableId(share.url),url:share.url,title,source:share.feed.src,summary:meta('og:description'),content:paras.map(p=>'<p>'+esc(p)+'</p>').join(''),image:safeURL(meta('og:image'))||'',cat:share.feed.hint||'national',publishedAt:meta('article:published_time'),previewOnly:paras.join(' ').length<400};
+     }
+     if(!n){ sharedOpened=true; window.open(share.url,'_blank','noopener'); return; }
+   }else return;
+   if(!news.some(x=>x.id===n.id)) news.push(n);
+ }
+ sharedOpened=true; openArticle(n.id);
 }
-window.addEventListener('hashchange',()=>{sharedOpened=false;openSharedArticle();});
+window.addEventListener('hashchange',()=>{sharedOpened=false;openSharedArticle(true);});
 async function shareArticle(id){
   const n=news.find(x=>x.id===id)||savedArticles[id];
   if(!n) return;
   const title=(n.title||"").replace(/\s+—\s+.*$/,"");
-  const text=title+" — "+(n.source||"Lajmet e mia");
+  const text="📰 "+title+"\n"+(n.source||"")+" · Lajmet e mia";
   const url=articleShareURL(n);
   if(navigator.share){
-    try{await navigator.share({title,text,url});toast("Artikulli u nda.");return;}catch(e){if(e&&e.name==="AbortError")return;}
+    try{await navigator.share({title,text:text+"\n",url});toast("Artikulli u nda.");return;}catch(e){if(e&&e.name==="AbortError")return;}
   }
   const panel=`
     <div class="share-bar">
-      <a target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(text+" "+url)}">WhatsApp</a>
+      <a target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(text+"\n"+url)}">WhatsApp</a>
       <a target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}">Facebook</a>
       <a target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}">X</a>
       <a target="_blank" rel="noopener" href="https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}">Telegram</a>
@@ -829,11 +997,13 @@ function heroImageError(img){
   hideFailedArticleImage(img);
 }
 function hideFailedArticleImage(img){
-  // Fotoja që nuk hapet hiqet, por lajmi mbetet në listë
+  // Lajmi me foto që nuk hapet nuk publikohet: fshihet menjëherë dhe lista rimbushet
   const url=img.getAttribute("src");
   if(url) failedArticleImages.add(url);
-  const hero=img.closest(".hero");
-  if(hero) hero.remove(); else img.remove();
+  const orig=img.dataset&&img.dataset.orig; if(orig) failedArticleImages.add(orig);
+  const card=img.closest("article,.feat-slide");
+  if(card && !card.closest("#savedView")) card.hidden=true;
+  else { const hero=img.closest(".hero"); if(hero) hero.remove(); else img.remove(); }
   if(imageRenderPending) return;
   imageRenderPending=true;
   setTimeout(()=>{
@@ -841,8 +1011,14 @@ function hideFailedArticleImage(img){
     render();renderSaved();
   },0);
 }
+// Kamerat live, transmetimet dhe faqet që s'janë artikuj nuk publikohen
+const NOT_NEWS_RX=/(live[\s-]*kamer|kamer\w*[\s-]*live|webcam|web[\s-]cam|live[\s-]*stream|transmetim\w*[\s-]*live|live[\s-]*tv|ndiqni live|shiko live|\/live-?cam|\/kamera)/i;
+function isNotNews(n){ return NOT_NEWS_RX.test(norm(n.title||''))||NOT_NEWS_RX.test(String(n.url||'')); }
 function filtered(){
   return news.filter(n=>{
+    if(isNotNews(n)) return false;
+    // foto e dhënë nga burimi, por që nuk hapet → lajmi nuk shfaqet
+    if(n.image && failedArticleImages.has(n.image)) return false;
     if(sourceFilter!=="all" && n.source!==sourceFilter) return false;
     if(category==="all") return true;
     return n.cat===category;
@@ -991,6 +1167,8 @@ function render(){
   $('featured').hidden=false;
   document.querySelector('.feat-head').hidden=false;
   document.querySelector('#homeView .sec h3').textContent=isHome?t('latestHeadlines'):labels[category]||t('latestNews');
+  renderSportBox();
+  if(category==='sport'){ refreshTeams(); refreshLeague(leagueTab); scheduleLeagueLive(); }
   const top=leadSlides(items,isHome);
   const rest=items.filter(n=>!top.some(t=>t.id===n.id));
   const feat=top[featIndex%Math.max(top.length,1)]||null;
@@ -1173,7 +1351,7 @@ function mapRssItems(feed, items){
     const body=strip(content);
     const summary=strip(item.description||content).slice(0,180);
     const rssCats=(item.categories||[]).map(c=>typeof c==="string"?c:(c&&(c.name||c.term))||"").filter(Boolean);
-    const {cat,conf}=classifyItem({title,url,summary,rssCats,hint:feed.hint});
+    const {cat,conf}=classifyItem({title,url,summary,rssCats,hint:feed.hint,only:feed.only});
     const img=(content.match(/<img[^>]+src=["']([^"']+)["']/i)||[])[1];
     return [{id:stableId(url),source:feed.src,title,url,cat,catConf:conf,rssCats,
       summary,content,body,
@@ -1271,7 +1449,7 @@ function websiteArticle(feed,url,html){
  const previewOnly=!text;text=text||description;if(!text)return null;
  const published=parseDate(schema.datePublished||meta('article:published_time')||doc.querySelector('time[datetime]')?.getAttribute('datetime'));
  const summary=strip(description||text).slice(0,180);
- const {cat,conf}=classifyItem({title,url,summary,rssCats:[schema.articleSection||''],hint:feed.hint});
+ const {cat,conf}=classifyItem({title,url,summary,rssCats:[schema.articleSection||''],hint:feed.hint,only:feed.only});
  const author=typeof schema.author==='string'?schema.author:schema.author?.name||meta('author')||feed.src;
  return {id:stableId(url),source:feed.src,title,url,cat,catConf:conf,summary,content:text,body:text,image:meta('og:image'),author,publishedAt:published,previewOnly};
 }
@@ -1307,7 +1485,7 @@ async function fetchWpJson(feed){
      const media=(p._embedded?.['wp:featuredmedia']||[])[0]||{};
      const sizes=media.media_details?.sizes||{};
      const image=(sizes.medium_large||sizes.large||sizes.full||{}).source_url||media.source_url||'';
-     const {cat,conf}=classifyItem({title,url,summary,rssCats:terms,hint:feed.hint});
+     const {cat,conf}=classifyItem({title,url,summary,rssCats:terms,hint:feed.hint,only:feed.only});
      return [{id:stableId(url),source:feed.src,title,url,cat,catConf:conf,rssCats:terms,summary,content,body,
        image:/^https?:\/\//.test(image)?image.replace(/^http:/,'https:'):'',author:feed.src,
        publishedAt:parseDate(p.date_gmt?p.date_gmt+'Z':p.date),previewOnly:body.length<400}];
@@ -1413,6 +1591,7 @@ async function refreshAll(opts={}){
   const unavailable=Object.entries(sourceStatus).filter(([n,v])=>v.state!=='ok').map(([n])=>n);
   if(unavailable.length)$("loadStatus").textContent+=t("stMissing",{s:unavailable.join(", ")});
   chips();render();renderSaved();renderSourceList();updateRefreshInfo();
+  if(!sharedOpened) openSharedArticle(true);
 }
 function updateRefreshInfo(){
   const el=$("refreshInfo"); if(!el) return;
@@ -1553,7 +1732,10 @@ setInterval(()=>{updateRefreshInfo();},1000);
   let start=null;
   const onScroll=()=>{
     if(start===null) start=ed.getBoundingClientRect().top+window.scrollY;
-    ed.classList.toggle("stuck",window.scrollY>start+4);
+    const y=window.scrollY, on=ed.classList.contains("stuck");
+    // histerezë: pa dridhje kur header-i zvogëlohet/zmadhohet
+    if(!on && y>start+40) ed.classList.add("stuck");
+    else if(on && y<start+2) ed.classList.remove("stuck");
   };
   window.addEventListener("scroll",onScroll,{passive:true});
   window.addEventListener("resize",()=>{start=null;onScroll();});
@@ -1588,9 +1770,406 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-lang]");if
   document.querySelectorAll(".tabbar button").forEach(x=>x.classList.toggle("on",x.dataset.tab===tab));
 }));
 applyStaticText();
+// ===== KOMBËTARET (vetëm te Sporti) =====
+// Të dhënat: SofaScore (me proxy rezervë); nëse s'arrihet, ESPN (Liga e Kombeve).
+const NATIONAL_TEAMS=[
+ {key:'alb',sq:'Shqipëria',en:'Albania',sofa:4690,flag:'https://flagcdn.com/w160/al.png',espn:/albania/i,sofaUrl:'https://www.sofascore.com/football/team/albania/4690'},
+ {key:'kos',sq:'Kosova',en:'Kosovo',sofa:154426,flag:'https://flagcdn.com/w160/xk.png',espn:/kosovo/i,sofaUrl:'https://www.sofascore.com/football/team/kosovo/154426'}
+];
+const TEAM_NAMES_SQ={Albania:'Shqipëria',Kosovo:'Kosova',Belarus:'Bjellorusia',Ireland:'Irlanda','Republic of Ireland':'Irlanda',Luxembourg:'Luksemburgu',Andorra:'Andorra',Serbia:'Serbia',England:'Anglia',Czechia:'Çekia','Czech Republic':'Çekia',Switzerland:'Zvicra',Sweden:'Suedia',Slovenia:'Sllovenia',Israel:'Izraeli',Romania:'Rumania',Ukraine:'Ukraina',Poland:'Polonia',Italy:'Italia',Spain:'Spanja',Germany:'Gjermania',France:'Franca',Croatia:'Kroacia',Greece:'Greqia',Turkey:'Turqia','Türkiye':'Turqia','North Macedonia':'Maqedonia e Veriut',Montenegro:'Mali i Zi','Bosnia & Herzegovina':'Bosnja','Bosnia and Herzegovina':'Bosnja',Hungary:'Hungaria',Austria:'Austria',Norway:'Norvegjia',Denmark:'Danimarka',Finland:'Finlanda',Iceland:'Islanda',Estonia:'Estonia',Latvia:'Letonia',Lithuania:'Lituania',Cyprus:'Qiproja',Malta:'Malta',Georgia:'Gjeorgjia',Armenia:'Armenia',Azerbaijan:'Azerbajxhani',Moldova:'Moldavia',Gibraltar:'Gjibraltari','Faroe Islands':'Ishujt Faroe','San Marino':'San Marino',Liechtenstein:'Lihtenshtajni',Scotland:'Skocia',Wales:'Uellsi','Northern Ireland':'Irlanda e Veriut',Portugal:'Portugalia',Netherlands:'Holanda',Belgium:'Belgjika',Slovakia:'Sllovakia',Bulgaria:'Bullgaria',Russia:'Rusia',Kazakhstan:'Kazakistani'};
+const FLAG_ISO={Albania:'al',Kosovo:'xk',Belarus:'by',Ireland:'ie','Republic of Ireland':'ie',Luxembourg:'lu',Andorra:'ad',Serbia:'rs',England:'gb-eng',Czechia:'cz','Czech Republic':'cz',Switzerland:'ch',Sweden:'se',Slovenia:'si',Israel:'il',Romania:'ro',Ukraine:'ua',Poland:'pl',Italy:'it',Spain:'es',Germany:'de',France:'fr',Croatia:'hr',Greece:'gr',Turkey:'tr','Türkiye':'tr','North Macedonia':'mk',Montenegro:'me','Bosnia & Herzegovina':'ba','Bosnia and Herzegovina':'ba',Hungary:'hu',Austria:'at',Norway:'no',Denmark:'dk',Finland:'fi',Iceland:'is',Estonia:'ee',Latvia:'lv',Lithuania:'lt',Cyprus:'cy',Malta:'mt',Georgia:'ge',Armenia:'am',Azerbaijan:'az',Moldova:'md',Gibraltar:'gi','Faroe Islands':'fo','San Marino':'sm',Liechtenstein:'li',Scotland:'gb-sct',Wales:'gb-wls','Northern Ireland':'gb-nir',Portugal:'pt',Netherlands:'nl',Belgium:'be',Slovakia:'sk',Bulgaria:'bg',Russia:'ru',Kazakhstan:'kz',USA:'us','United States':'us',Brazil:'br',Argentina:'ar',Mexico:'mx',Canada:'ca',Japan:'jp','South Korea':'kr',Morocco:'ma',Tunisia:'tn',Algeria:'dz',Egypt:'eg',Qatar:'qa','Saudi Arabia':'sa',Australia:'au'};
+function flagImg(name,id,cls){
+  const code=FLAG_ISO[name];
+  const src=code?'https://flagcdn.com/w40/'+code+'.png':(id?'https://img.sofascore.com/api/v1/team/'+id+'/image':'');
+  if(!src) return '<span class="tm-dot"></span>';
+  const fb=id&&code?` onerror="this.onerror=null;this.src='https://img.sofascore.com/api/v1/team/${id}/image'"`:` onerror="this.style.visibility='hidden'"`;
+  return `<img class="${cls||''}" src="${src}" alt="" loading="lazy"${fb}>`;
+}
+function teamName(n){ return lang==='sq'?(TEAM_NAMES_SQ[n]||n):n; }
+const TEAMS_CACHE_KEY='nationalTeamsV1';
+let teamsData={}; try{teamsData=JSON.parse(localStorage.getItem(TEAMS_CACHE_KEY)||'{}')||{};}catch{teamsData={};}
+let teamsBusy=false, teamsChecked=0;
+let teamsTab='alb'; try{ if(localStorage.getItem('teamsTab')==='kos') teamsTab='kos'; }catch{}
+async function jsonFrom(urls){
+  for(const u of urls){
+    const txt=await grab(u,12000);
+    if(!txt) continue;
+    try{ return JSON.parse(txt); }catch{}
+  }
+  return null;
+}
+function sofa(path){
+  const a='https://api.sofascore.com/api/v1/'+path, b='https://www.sofascore.com/api/v1/'+path;
+  return jsonFrom([a,b,'https://api.allorigins.win/raw?url='+encodeURIComponent(a),'https://corsproxy.io/?url='+encodeURIComponent(a),'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(a)]);
+}
+function sofaEvent(e){
+  if(!e) return null;
+  return {home:e.homeTeam?.name||'',away:e.awayTeam?.name||'',homeId:e.homeTeam?.id,awayId:e.awayTeam?.id,
+    hs:e.homeScore?.current??e.homeScore?.display??null, as:e.awayScore?.current??e.awayScore?.display??null,
+    ts:(e.startTimestamp||0)*1000, comp:e.tournament?.uniqueTournament?.name||e.tournament?.name||'',
+    state:e.status?.type||'', ut:e.tournament?.uniqueTournament?.id, season:e.season?.id,
+    id:e.id, code:e.status?.code, desc:e.status?.description||'', periodStart:(e.time?.currentPeriodStartTimestamp||0)*1000,
+    hasTable:!!(e.tournament?.uniqueTournament?.hasStandingsGroups||e.tournament?.uniqueTournament?.hasGroups||e.tournament?.isGroup)};
+}
+async function loadTeamSofa(t){
+  const [info,last,next,rk]=await Promise.all([sofa('team/'+t.sofa),sofa('team/'+t.sofa+'/events/last/0'),sofa('team/'+t.sofa+'/events/next/0'),sofa('team/'+t.sofa+'/rankings')]);
+  if(!last && !next && !info) return null;
+  const lastEvs=(last?.events||[]).filter(e=>e.status?.type==='finished').sort((a,b)=>b.startTimestamp-a.startTimestamp);
+  const nextEvs=(next?.events||[]).sort((a,b)=>a.startTimestamp-b.startTimestamp);
+  const live=[...(last?.events||[]),...(next?.events||[])].find(e=>e.status?.type==='inprogress');
+  const out={src:'SofaScore',coach:info?.team?.manager?.name||'',
+    rank:(rk?.rankings||[]).find(r=>/fifa/i.test(JSON.stringify(r.rankingClass||r.type||r.name||'')))?.ranking||(rk?.rankings||[])[0]?.ranking||info?.team?.ranking||null,
+    last:sofaEvent(lastEvs[0]), next:sofaEvent(live||nextEvs[0]), table:null,
+    past:lastEvs.slice(0,8).map(sofaEvent), upcoming:(live?[live,...nextEvs.filter(e=>e!==live)]:nextEvs).slice(0,8).map(sofaEvent)};
+  // tabela: turneu i ndeshjes së radhës (ose të fundit) që ka grupe
+  const cands=[...nextEvs,...lastEvs].map(sofaEvent).filter(e=>e&&e.ut&&e.season&&!/friendly|miqësor/i.test(e.comp));
+  const seen=new Set();
+  for(const ev of cands){
+    const k=ev.ut+'/'+ev.season; if(seen.has(k)) continue; seen.add(k); if(seen.size>2) break;
+    const st=await sofa('unique-tournament/'+ev.ut+'/season/'+ev.season+'/standings/total');
+    const group=(st?.standings||[]).find(g=>(g.rows||[]).some(r=>r.team?.id===t.sofa));
+    if(group){
+      out.table={name:(group.name||ev.comp),comp:ev.comp,rows:group.rows.map(r=>({pos:r.position,name:r.team?.name||'',id:r.team?.id,p:r.matches,gd:(r.scoresFor??0)-(r.scoresAgainst??0),pts:r.points,me:r.team?.id===t.sofa}))};
+      break;
+    }
+  }
+  return out;
+}
+async function loadTeamEspn(t){
+  const base='https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.nations';
+  const list=await jsonFrom([base+'/teams']);
+  const team=(list?.sports?.[0]?.leagues?.[0]?.teams||[]).map(x=>x.team).find(x=>t.espn.test(x.displayName||''));
+  if(!team) return null;
+  const [past,fut,st]=await Promise.all([jsonFrom([base+'/teams/'+team.id+'/schedule']),jsonFrom([base+'/teams/'+team.id+'/schedule?fixture=true']),jsonFrom(['https://site.api.espn.com/apis/v2/sports/soccer/uefa.nations/standings'])]);
+  const ev=e=>{ if(!e) return null; const c=e.competitions?.[0]||{}; const h=(c.competitors||[]).find(x=>x.homeAway==='home')||{}, a=(c.competitors||[]).find(x=>x.homeAway==='away')||{};
+    const sc=x=>{const v=x.score; if(v==null) return null; const n=Number(typeof v==='object'?(v.displayValue??v.value):v); return isNaN(n)?null:n;};
+    return {home:h.team?.displayName||'',away:a.team?.displayName||'',hs:sc(h),as:sc(a),ts:Date.parse(e.date)||0,comp:'UEFA Nations League',state:c.status?.type?.completed?'finished':(c.status?.type?.state==='in'?'inprogress':'notstarted')}; };
+  const pastEvs=(past?.events||[]).map(ev).filter(e=>e&&e.state==='finished').sort((a,b)=>b.ts-a.ts);
+  const futEvs=(fut?.events||past?.events||[]).map(ev).filter(e=>e&&e.state!=='finished').sort((a,b)=>a.ts-b.ts);
+  let table=null;
+  const groups=[...(st?.children||[])]; groups.forEach(g=>(g.children||[]).forEach(c=>groups.push(c)));
+  const g=groups.find(g=>(g.standings?.entries||[]).some(e=>String(e.team?.id)===String(team.id)));
+  if(g){ const stat=(e,n)=>(e.stats||[]).find(s=>s.name===n)?.value;
+    table={name:g.name||g.abbreviation||'',comp:'UEFA Nations League',rows:g.standings.entries.map((e,i)=>({pos:stat(e,'rank')||i+1,name:e.team?.displayName||'',p:stat(e,'gamesPlayed'),gd:stat(e,'pointDifferential'),pts:stat(e,'points'),me:String(e.team?.id)===String(team.id)})).sort((a,b)=>a.pos-b.pos)}; }
+  if(!pastEvs.length && !futEvs.length && !table) return null;
+  return {src:'ESPN',coach:'',rank:null,last:pastEvs[0]||null,next:futEvs[0]||null,table,past:pastEvs.slice(0,8),upcoming:futEvs.slice(0,8)};
+}
+function teamsLiveWindow(){
+  // ka ndeshje live, ose ndeshja e radhës duhet të ketë filluar (deri 3 orë pas fillimit)
+  const now=Date.now();
+  return NATIONAL_TEAMS.some(tm=>{ const d=teamsData[tm.key]; if(!d) return false;
+    return [...(d.upcoming||[]),d.next].filter(Boolean).some(m=>m.state==='inprogress'||(m.state!=='finished'&&m.ts&&now>=m.ts-5*60000&&now<=m.ts+3*3600000)); });
+}
+let liveTimer=null;
+function scheduleLive(){
+  clearTimeout(liveTimer);
+  if(teamsLiveWindow()) liveTimer=setTimeout(async()=>{ if(category==='sport'&&!document.hidden){ await refreshLive(); } scheduleLive(); },30000);
+}
+// rifreskim i shpejtë: vetëm ndeshja live (event/{id}), pa ringarkuar gjithçka
+async function refreshLive(){
+  let ended=false;
+  for(const tm of NATIONAL_TEAMS){
+    const d=teamsData[tm.key]; if(!d||d.src!=='SofaScore') continue;
+    const m=(d.upcoming||[]).find(x=>x&&x.id&&(x.state==='inprogress'||(x.state!=='finished'&&Date.now()>=x.ts-5*60000)));
+    if(!m) continue;
+    const r=await sofa('event/'+m.id);
+    if(!r?.event) continue;
+    const fresh=sofaEvent(r.event);
+    Object.assign(m,fresh);
+    if(fresh.state==='finished') ended=true;
+  }
+  if(ended) teamsChecked=0, await refreshTeams(true); // ndeshja mbaroi: tabela dhe forma përditësohen
+  else if(category==='sport') renderTeams();
+}
+function liveMinute(m){
+  if(m.code===31) return 'HT';
+  if(!m.periodStart) return m.desc||'LIVE';
+  const base=m.code===7?45:m.code===41?90:m.code===42?105:0;
+  const cap=m.code===6?45:m.code===7?90:m.code===41?105:120;
+  const min=base+Math.floor((Date.now()-m.periodStart)/60000)+1;
+  return min>cap?cap+"+'":min+"'";
+}
+async function refreshTeams(force){
+  if(teamsBusy || document.hidden) return;
+  if(!force && Date.now()-teamsChecked<10*60*1000){ scheduleLive(); return; }
+  teamsBusy=true; teamsChecked=Date.now();
+  try{
+    for(const t of NATIONAL_TEAMS){
+      let d=null;
+      try{ d=await loadTeamSofa(t); }catch{}
+      if(!d || (!d.last && !d.next)){ try{ const e=await loadTeamEspn(t); if(e) d={...e,coach:d?.coach||'',rank:d?.rank||null}; }catch{} }
+      if(d){ d.at=Date.now(); teamsData[t.key]=d; }
+      if(category==='sport') renderTeams();
+    }
+    try{localStorage.setItem(TEAMS_CACHE_KEY,JSON.stringify(teamsData));}catch{}
+  }finally{ teamsBusy=false; }
+  if(category==='sport') renderTeams();
+  scheduleLive();
+}
+function fmtMatchDate(ts){
+  if(!ts) return ['',''];
+  const d=new Date(ts), p=n=>String(n).padStart(2,'0');
+  return [p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(2), p(d.getHours())+':'+p(d.getMinutes())];
+}
+function matchBox(title,m,isNext){
+  if(!m) return `<div class="tm-match"><h5>${title}</h5><p class="tm-empty">${t('tmNoMatch')}</p></div>`;
+  const [d,h]=fmtMatchDate(m.ts);
+  const live=m.state==='inprogress';
+  const st=live?`<b class="tm-live"><i></i>${esc(liveMinute(m))}</b>`:(isNext?h:'FT');
+  const sc=v=>v==null?'':`<b>${v}</b>`;
+  const img=id=>id?`<img src="https://img.sofascore.com/api/v1/team/${id}/image" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:'<span class="tm-dot"></span>';
+  return `<div class="tm-match"><h5>${title}</h5>
+    <div class="tm-comp">${esc(/nations league/i.test(m.comp)?(lang==='en'?'Nations League':'Liga e Kombeve'):/friendly/i.test(m.comp)?(lang==='en'?'Friendly':'Miqësore'):(m.comp||''))}</div>
+    <div class="tm-game"><div class="tm-when">${esc(d)}<small>${st}</small></div>
+      <div class="tm-teams ${live?'is-live':''}"><div>${flagImg(m.home,m.homeId)}<span>${esc(teamName(m.home))}</span>${isNext&&!live?'':sc(m.hs??0)}</div>
+      <div>${flagImg(m.away,m.awayId)}<span>${esc(teamName(m.away))}</span>${isNext&&!live?'':sc(m.as??0)}</div></div></div></div>`;
+}
+// Ndeshjet: 0 = e radhës; › më tej në të ardhmen, ‹ te ndeshjet e kaluara
+const teamMatchIdx={};
+function matchLists(d){
+  const past=(d.past&&d.past.length?d.past:(d.last?[d.last]:[])).filter(Boolean);
+  const up=(d.upcoming&&d.upcoming.length?d.upcoming:(d.next?[d.next]:[])).filter(Boolean);
+  return {past,up};
+}
+function matchNav(key,d){
+  const {past,up}=matchLists(d);
+  let i=teamMatchIdx[key]??(up.length?0:-1);
+  i=Math.max(-past.length,Math.min(up.length-1,i));
+  if(!up.length && i>=0) i=past.length?-1:0;
+  teamMatchIdx[key]=i;
+  const m=i>=0?up[i]:past[-i-1];
+  const title=(i>=0&&m&&m.state==='inprogress')?t('tmLiveNow'):i>=0?(i===0?t('tmNext'):t('tmLater')+' '+(i+1)+'/'+up.length):(i===-1?t('tmPrev'):t('tmEarlier')+' '+(-i)+'/'+past.length);
+  const canPrev=i>-past.length, canNext=i<up.length-1;
+  return `<div class="tm-nav">
+    <button type="button" class="tm-arrow" data-tm-go="${key}" data-dir="-1" ${canPrev?'':'disabled'} aria-label="${t('tmPrevAria')}">‹</button>
+    ${matchBox(title,m,i>=0)}
+    <button type="button" class="tm-arrow" data-tm-go="${key}" data-dir="1" ${canNext?'':'disabled'} aria-label="${t('tmNextAria')}">›</button>
+  </div>`;
+}
+// Forma: 5 ndeshjet e fundit (e vjetra majtas, e fundit djathtas)
+function formCard(tm,d){
+  const {past}=matchLists(d);
+  const res=past.slice(0,5).map(m=>{
+    const home=m.homeId?m.homeId===tm.sofa:new RegExp(tm.en,'i').test(m.home);
+    const gf=home?m.hs:m.as, ga=home?m.as:m.hs;
+    if(gf==null||ga==null) return null;
+    const r=gf>ga?'W':gf<ga?'L':'D';
+    return {r,opp:teamName(home?m.away:m.home),oppRaw:home?m.away:m.home,oppId:home?m.awayId:m.homeId,score:gf+'–'+ga,ts:m.ts};
+  }).filter(Boolean).reverse();
+  if(!res.length) return `<div class="tm-form"><h5>${t('tmForm')}</h5><p class="tm-empty">—</p></div>`;
+  const L={W:t('tmW'),D:t('tmD'),L:t('tmL')};
+  const cnt=k=>res.filter(x=>x.r===k).length;
+  return `<div class="tm-form"><h5>${t('tmForm')}</h5>
+    <div class="tm-form-row">${res.map(x=>`<div class="tm-form-item" title="${esc(x.opp+' '+x.score+' · '+fmtMatchDate(x.ts)[0])}">${flagImg(x.oppRaw,x.oppId,'tm-form-flag')}<span class="f-${x.r}">${L[x.r]}</span></div>`).join('')}</div>
+    <div class="tm-form-sum">${cnt('W')}${L.W} · ${cnt('D')}${L.D} · ${cnt('L')}${L.L}</div></div>`;
+}
+function tableTitle(tb){
+  const comp=tb.comp||'', name=String(tb.name||'');
+  // "UEFA Nations League 26/27, League B, Group 3" -> "Liga e Kombeve · League B, Group 3"
+  const rest=name.replace(/^.*?\d{2}\/\d{2},\s*/,'').replace(comp,'').replace(/^[\s,·-]+/,'');
+  const short=/nations league/i.test(comp)?(lang==='en'?'Nations League':'Liga e Kombeve'):comp;
+  return rest?short+' · '+rest:short;
+}
+
+// Tab i unifikuar: kombëtaret + ligat
+let sportTab=teamsTab; // default = 'alb'
+try{ const v=localStorage.getItem('sportTab'); if(v) sportTab=v; }catch{}
+const isTeamTab=k=>NATIONAL_TEAMS.some(t=>t.key===k);
+const isLeagueTab=k=>LEAGUES.some(l=>l.key===k);
+function renderSportBox(){
+  const box=$('sportBox'); if(!box) return;
+  const show=category==='sport'&&sourceFilter==='all';
+  box.hidden=!show; $('homeView').classList.toggle('has-teams',show);
+  if(!show) return;
+  // tabs: kombëtaret + ligat
+  const allTabs=[...NATIONAL_TEAMS.map(x=>({key:x.key,label:lang==='en'?x.en:x.sq,flag:x.flag})),...LEAGUES.map(l=>({key:l.key,label:lang==='en'?l.en:l.sq,flag:'https://flagcdn.com/w40/'+l.flag+'.png',league:true}))];
+  const tabs=`<div class="tm-tabs sp-tabs" role="tablist">${allTabs.map(x=>`<button type="button" role="tab" data-sp-tab="${x.key}" class="${x.key===sportTab?'on':''}" aria-selected="${x.key===sportTab}"><img src="${x.flag&&x.flag.startsWith('http')?x.flag:'https://flagcdn.com/w40/'+x.flag+'.png'}" alt="">${esc(x.label)}</button>`).join('')}</div>`;
+  if(isTeamTab(sportTab)){
+    const tm=NATIONAL_TEAMS.find(x=>x.key===sportTab); const d=teamsData[tm.key]; const rows=d?.table?.rows||[];
+    box.innerHTML=`<div class="tm-head"><h2>${t('tmTitle')}</h2>${tabs}</div>`+
+      `<article class="team-card">
+        <div class="tm-id"><img class="tm-flag" src="${tm.flag}" alt="" loading="lazy">
+          <div><h3>${lang==='en'?tm.en:tm.sq}</h3>
+            <div class="tm-meta">${d?.coach?`<span><small>${t('tmCoach')}</small>${esc(d.coach)}</span>`:''}${d?.rank?`<span class="tm-fifa"><b>FIFA</b> #${esc(String(d.rank))}</span>`:''}</div>
+            <a class="tm-link" href="${tm.sofaUrl}" target="_blank" rel="noopener">SofaScore ↗</a></div></div>
+        <div class="tm-matches">${d?matchNav(tm.key,d)+formCard(tm,d):`<p class="tm-empty">${teamsBusy||!teamsChecked?t('tmLoading'):t('tmFail')}</p>`}</div>
+        ${rows.length?`<div class="tm-table"><div class="tm-table-title">${esc(tableTitle(d.table))}</div>
+          <table><thead><tr><th>#</th><th>${t('tmTeam')}</th><th>${t('tmP')}</th><th>+/-</th><th>${t('tmPts')}</th></tr></thead>
+          <tbody>${rows.map(r=>`<tr class="${r.me?'me':''}"><td>${r.pos??''}</td><td><span class="tm-row-team">${flagImg(r.name,r.id,'tm-row-flag')}${esc(teamName(r.name))}</span></td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`:''}
+        <div class="tm-src">${t('tmSource')} ${esc(d?.src||'SofaScore')}</div></article>`;
+  } else {
+    const L=LEAGUES.find(l=>l.key===sportTab); const d=leaguesData[sportTab]; const groups=d?.groups||[];
+    const rnd=leagueRound[sportTab]??d?.round??null;
+    const cards=d?.events?.filter(m=>rnd==null||leagueRound[sportTab]==null||true)||d?.events||[];
+    const canPrev=rnd!=null&&rnd>1, canNext=true; // s'dimë maksimumin
+    box.innerHTML=`<div class="tm-head"><h2>${t('tmTitle')}</h2>${tabs}</div>`+
+      `<article class="lg-box">
+        ${d?`<div class="lg-round">
+          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="-1" ${canPrev?'':'disabled'} aria-label="Java e mëparshme">‹</button>
+          <div><b>${esc(lang==='en'?L.en:L.sq)}</b>${rnd!=null?` · ${t('lgRound')} ${rnd}`:''}</div>
+          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="1" ${canNext?'':'disabled'} aria-label="Java tjetër">›</button>
+          <a class="tm-link" href="${L.url}" target="_blank" rel="noopener">SofaScore ↗</a></div>
+        ${cards.length?`<div class="lg-cards">${cards.map(leagueCard).join('')}</div>`:'<p class="tm-empty">—</p>'}
+        ${groups.map(g=>leagueTable(L,g,groups.length>1)).join('')}`:`<p class="tm-empty">${leagueBusy[sportTab]||!leagueChecked[sportTab]?t('tmLoading'):t('tmFail')}</p>`}
+      </article>`;
+  }
+}
+const leagueRound={}; // ndryshimet manuale të java: +1/-1 nga java aktuale
+async function goLeagueRound(key,dir){
+  const L=LEAGUES.find(l=>l.key===key); const d=leaguesData[key]; if(!L||!d) return;
+  const base=d.round??1; const cur=leagueRound[key]??base;
+  const next=Math.max(1,cur+dir);
+  leagueRound[key]=next;
+  // ngarko javën e re
+  const ev=await sofa('unique-tournament/'+L.ut+'/season/'+d.sid+'/events/round/'+next);
+  if(ev?.events) leaguesData[key]={...d,events:ev.events.map(leagueEvent).sort((a,b)=>a.ts-b.ts),round:next};
+  if(category==='sport') renderSportBox();
+}
+function renderTeams(){
+  renderSportBox();
+}
+
+document.addEventListener('click',e=>{
+  const go=e.target.closest('[data-tm-go]');
+  if(go){ const k=go.dataset.tmGo; teamMatchIdx[k]=(teamMatchIdx[k]??0)+Number(go.dataset.dir); renderSportBox(); return; }
+  const lg=e.target.closest('[data-lg-go]');
+  if(lg){ goLeagueRound(lg.dataset.lgGo,Number(lg.dataset.dir)); return; }
+  const sp=e.target.closest('[data-sp-tab]'); if(!sp) return;
+  sportTab=sp.dataset.spTab;
+  try{localStorage.setItem('sportTab',sportTab);}catch{}
+  if(isLeagueTab(sportTab)){ leagueTab=sportTab; refreshLeague(sportTab,false); scheduleLeagueLive(); }
+  if(isTeamTab(sportTab)){ teamsTab=sportTab; }
+  renderSportBox();
+});
+
+// ===== LIGAT (vetëm te Sporti): Abissnet Superiore, Kategoria e Parë, Superliga, Liga e Parë =====
+const LEAGUES=[
+ {key:'abissnet',sq:'Abissnet Superiore',en:'Abissnet Superiore',ut:720,flag:'al',split:[5,5],splitLabels:{sq:['Grupi i kampionatit','Grupi i rënies'],en:['Championship group','Relegation group']},url:'https://www.sofascore.com/tournament/football/albania/abissnet-superiore/720'},
+ {key:'katpare',sq:'Kategoria e Parë',en:'Kategoria e Parë',ut:722,flag:'al',chunk:6,url:'https://www.sofascore.com/football/tournament/albania/kategoria-e-pare/722'},
+ {key:'superliga',sq:'Superliga e Kosovës',en:'Kosovo Superliga',ut:9413,flag:'xk',chunk:5,url:'https://www.sofascore.com/tournament/football/kosovo/albimall-superliga/9413'},
+ {key:'ligapare',sq:'Liga e Parë (KS)',en:'Kosovo First League',ut:9426,flag:'xk',chunk:6,url:'https://sofascore.com/tournament/football/kosovo/liga-e-pare/9426'}
+];
+const ZONE_SQ=[[/champions league/i,'Kualifikimet e Ligës së Kampionëve'],[/europa league/i,'Kualifikimet e Ligës së Evropës'],[/conference league/i,'Kualifikimet e Ligës së Konferencës'],[/championship round|championship group|title/i,'Grupi i kampionatit'],[/relegation round|relegation group/i,'Grupi i rënies'],[/promotion play-?offs?/i,'Play-off për ngritje'],[/relegation play-?offs?/i,'Play-off për mbijetesë'],[/promotion/i,'Ngritje'],[/relegation/i,'Rënie'],[/play-?offs?/i,'Play-off']];
+function zoneLabel(txt){ if(!txt) return ''; if(lang==='en') return txt; const z=ZONE_SQ.find(([rx])=>rx.test(txt)); return z?z[1]:txt; }
+function zoneColor(txt){
+  const s=String(txt||'').toLowerCase();
+  if(!s) return '';
+  if(/relegation play/.test(s)) return '#e38b3c';
+  if(/relegation/.test(s)) return '#d8453f';
+  if(/play-?off/.test(s)) return '#e3a13c';
+  if(/champions league|promotion|championship|title/.test(s)) return '#2e9e5b';
+  if(/europa/.test(s)) return '#3d7fd1';
+  if(/conference/.test(s)) return '#2fa3a0';
+  return '#8a8f8a';
+}
+const LEAGUES_CACHE_KEY='leaguesDataV1';
+let leaguesData={}; try{leaguesData=JSON.parse(localStorage.getItem(LEAGUES_CACHE_KEY)||'{}')||{};}catch{leaguesData={};}
+let leagueTab='abissnet'; try{ const v=localStorage.getItem('leagueTab'); if(LEAGUES.some(l=>l.key===v)) leagueTab=v; }catch{}
+const leagueChecked={}, leagueBusy={}; let leagueLiveTimer=null;
+function leagueEvent(e){
+  return {id:e.id,home:e.homeTeam?.shortName||e.homeTeam?.name||'',away:e.awayTeam?.shortName||e.awayTeam?.name||'',homeId:e.homeTeam?.id,awayId:e.awayTeam?.id,
+    hs:e.homeScore?.current??null,as:e.awayScore?.current??null,ts:(e.startTimestamp||0)*1000,state:e.status?.type||'',code:e.status?.code,desc:e.status?.description||'',
+    periodStart:(e.time?.currentPeriodStartTimestamp||0)*1000};
+}
+async function loadLeague(L){
+  const seasons=await sofa('unique-tournament/'+L.ut+'/seasons');
+  const sid=seasons?.seasons?.[0]?.id; if(!sid) return null;
+  const [rounds,st]=await Promise.all([sofa('unique-tournament/'+L.ut+'/season/'+sid+'/rounds'),sofa('unique-tournament/'+L.ut+'/season/'+sid+'/standings/total')]);
+  const cur=rounds?.currentRound;
+  let events=[];
+  if(cur?.round!=null){
+    const path='unique-tournament/'+L.ut+'/season/'+sid+'/events/round/'+cur.round+(cur.slug?'/slug/'+cur.slug:'');
+    const ev=await sofa(path);
+    events=(ev?.events||[]).map(leagueEvent).sort((a,b)=>a.ts-b.ts);
+  }
+  const groups=(st?.standings||[]).filter(g=>(g.rows||[]).length>1).map(g=>({name:g.name||'',rows:g.rows.map(r=>({pos:r.position,name:r.team?.shortName||r.team?.name||'',id:r.team?.id,p:r.matches,gd:(r.scoresFor??0)-(r.scoresAgainst??0),pts:r.points,zone:r.promotion?.text||''}))}));
+  if(!events.length && !groups.length) return null;
+  return {sid,round:cur?.round??null,roundName:cur?.name||'',events,groups,at:Date.now()};
+}
+async function refreshLeague(key,force){
+  const L=LEAGUES.find(l=>l.key===key); if(!L||leagueBusy[key]||document.hidden) return;
+  if(!force && Date.now()-(leagueChecked[key]||0)<10*60*1000) return;
+  leagueBusy[key]=true; leagueChecked[key]=Date.now();
+  try{ const d=await loadLeague(L); if(d){ leaguesData[key]=d; try{localStorage.setItem(LEAGUES_CACHE_KEY,JSON.stringify(leaguesData));}catch{} } }
+  catch{} finally{ leagueBusy[key]=false; }
+  if(category==='sport') renderLeagues();
+  scheduleLeagueLive();
+}
+function leagueHasLive(key){
+  const d=leaguesData[key]; if(!d) return false; const now=Date.now();
+  return d.events.some(m=>m.state==='inprogress'||(m.state!=='finished'&&m.ts&&now>=m.ts-5*60000&&now<=m.ts+3*3600000));
+}
+function scheduleLeagueLive(){
+  clearTimeout(leagueLiveTimer);
+  if(category==='sport' && leagueHasLive(leagueTab)) leagueLiveTimer=setTimeout(async()=>{
+    if(category==='sport'&&!document.hidden){
+      const d=leaguesData[leagueTab], L=LEAGUES.find(l=>l.key===leagueTab);
+      if(d&&d.round!=null){
+        const ev=await sofa('unique-tournament/'+L.ut+'/season/'+d.sid+'/events/round/'+d.round);
+        if(ev?.events){
+          const wasLive=d.events.some(m=>m.state==='inprogress');
+          d.events=ev.events.map(leagueEvent).sort((a,b)=>a.ts-b.ts);
+          const nowLive=d.events.some(m=>m.state==='inprogress');
+          if(wasLive&&!nowLive) leagueChecked[leagueTab]=0, await refreshLeague(leagueTab,true); // mbaroi raundi: përditëso tabelën
+          else renderLeagues();
+        }
+      }
+    }
+    scheduleLeagueLive();
+  },30000);
+}
+function logo(id){ return id?`<img src="https://img.sofascore.com/api/v1/team/${id}/image" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:'<span class="tm-dot"></span>'; }
+function leagueCard(m){
+  const live=m.state==='inprogress', done=m.state==='finished';
+  const [d,h]=fmtMatchDate(m.ts);
+  const top=live?`<b class="tm-live"><i></i>${esc(liveMinute(m))}</b>`:done?`<span>${esc(d)}</span><span>FT</span>`:`<span>${esc(d)}</span><span>${esc(h)}</span>`;
+  const sc=v=>(live||done)?`<b>${v??0}</b>`:'';
+  return `<div class="lg-card ${live?'is-live':''}"><div class="lg-card-top">${top}</div>
+    <div class="lg-row">${logo(m.homeId)}<span>${esc(m.home)}</span>${sc(m.hs)}</div>
+    <div class="lg-row">${logo(m.awayId)}<span>${esc(m.away)}</span>${sc(m.as)}</div></div>`;
+}
+function splitRows(L,rows){
+  if(L.split){ const out=[]; let i=0; L.split.forEach((n,k)=>{ out.push({label:(L.splitLabels?.[lang]||[])[k]||'',rows:rows.slice(i,i+n)}); i+=n; }); if(i<rows.length) out[out.length-1].rows.push(...rows.slice(i)); return out; }
+  if(L.chunk){ const out=[]; for(let i=0;i<rows.length;i+=L.chunk) out.push({label:'',rows:rows.slice(i,i+L.chunk)}); return out; }
+  if(L.zones3){
+    const isRel=r=>/relegation/i.test(r.zone);
+    const top=rows.filter(r=>r.zone&&!isRel(r)), bottom=rows.filter(isRel), mid=rows.filter(r=>!top.includes(r)&&!bottom.includes(r));
+    if(top.length||bottom.length) return [{label:lang==='en'?'Top':'Kreu',rows:top},{label:lang==='en'?'Mid-table':'Mesi i tabelës',rows:mid},{label:lang==='en'?'Bottom':'Fundi',rows:bottom}].filter(x=>x.rows.length);
+    const n=Math.ceil(rows.length/3); return [0,1,2].map(k=>({label:'',rows:rows.slice(k*n,(k+1)*n)})).filter(x=>x.rows.length);
+  }
+  return [{label:'',rows}];
+}
+function leagueTable(L,g,multi){
+  const parts=splitRows(L,g.rows);
+  const zones=[...new Set(g.rows.map(r=>r.zone).filter(Boolean))];
+  return `<div class="lg-table">${multi&&g.name?`<div class="tm-table-title">${esc(g.name)}</div>`:''}
+    <div class="lg-parts parts-${parts.length}">${parts.map(p=>`<div class="lg-part">${p.label?`<h6>${esc(p.label)}</h6>`:''}
+      <table><thead><tr><th>#</th><th>${t('tmTeam')}</th><th>${t('tmP')}</th><th>+/-</th><th>${t('tmPts')}</th></tr></thead>
+      <tbody>${p.rows.map(r=>`<tr><td><i class="lg-zone" style="background:${zoneColor(r.zone)||'transparent'}" title="${esc(zoneLabel(r.zone))}"></i>${r.pos??''}</td><td><span class="tm-row-team">${logo(r.id)}${esc(r.name)}</span></td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`).join('')}</div>
+    ${zones.length?`<div class="lg-legend">${zones.map(z=>`<span><i style="background:${zoneColor(z)}"></i>${esc(zoneLabel(z))}</span>`).join('')}</div>`:''}
+  </div>`;
+}
+function renderLeagues(){ renderSportBox();
+  const box2=$('sportBox'); const box=box2; if(!box) return;
+  const show=category==='sport'&&sourceFilter==='all';
+  return;
+  const L=LEAGUES.find(l=>l.key===leagueTab), d=leaguesData[leagueTab];
+  const groups=(d?.groups||[]).slice(0,2);
+  const cards=d?.events||[]; // të gjitha ndeshjet e javës, në një rresht
+  box.innerHTML=`<div class="tm-head"><h2>${t('lgTitle')}</h2>
+    <div class="tm-tabs lg-tabs" role="tablist">${LEAGUES.map(l=>`<button type="button" data-league-tab="${l.key}" class="${l.key===leagueTab?'on':''}" aria-selected="${l.key===leagueTab}"><img src="https://flagcdn.com/w40/${l.flag}.png" alt="">${lang==='en'?l.en:l.sq}</button>`).join('')}</div></div>
+    <article class="lg-box">
+      ${d?`<div class="lg-round"><b>${esc(lang==='en'?L.en:L.sq)}</b>${d.round!=null?` · ${t('lgRound')} ${d.round}`:''}<a class="tm-link" href="${L.url}" target="_blank" rel="noopener">SofaScore ↗</a></div>
+      ${cards.length?`<div class="lg-cards">${cards.map(leagueCard).join('')}</div>`:''}
+      ${groups.map(g=>leagueTable(L,g,groups.length>1)).join('')}`:`<p class="tm-empty">${leagueBusy[leagueTab]||!leagueChecked[leagueTab]?t('tmLoading'):t('tmFail')}</p>`}
+    </article>`;
+}
+
+
 chips();render();renderSaved();openSharedArticle();refreshAll();
 
 // Weather loads independently so an unavailable forecast never blocks news.
+
 const weatherCities=[
  {name:'Prishtinë',lat:42.6629,lon:21.1655},
  {name:'Prizren',lat:42.2139,lon:20.7397},
