@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#151715" id="themeColor">
 <title>Lajmet e mia</title>
+<meta property="og:title" content="Lajmet e mia">
+<meta property="og:description" content="Lajmet e fundit në një vend. Lexo artikullin në Lajmet e mia.">
+<meta property="og:type" content="website">
 <script>
 try{document.documentElement.dataset.theme=localStorage.getItem('newsTheme')==='light'?'light':'dark';}catch{}
 </script>
@@ -145,6 +148,18 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 #feed .news-category .src{color:var(--category-color)}
 @media(min-width:760px) and (max-width:1000px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:759px){.news-category{padding:16px 14px;margin-bottom:22px;border-radius:10px}.category-grid{grid-template-columns:1fr;gap:0}.news-category .news-section-heading,.news-category .news-section-heading:first-child{margin-bottom:6px}.news-category .news-section-heading h3{font-size:23px}.news-category .news-section-heading button{font-size:10px;padding:9px 8px}.category-eyebrow{font-size:9px}#feed .news-category article{background:transparent}#feed .news-category article:last-child{border-bottom:0;padding-bottom:4px}}
+
+/* Categories share the edition row on desktop. */
+.edition{flex-wrap:wrap}
+.edition>.nav-main{flex:0 0 100%;padding:4px 0 0}
+@media(min-width:1000px){
+ .edition{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center}
+ .edition>div:first-child{grid-column:1;grid-row:1}
+ .edition h2{white-space:nowrap;font-size:clamp(36px,3.6vw,48px)}
+ .edition>.nav-main{grid-column:2;grid-row:1;min-width:0;justify-content:center;gap:6px;padding:4px}
+ .edition>.nav-main button{padding-inline:12px;font-size:12px}
+ .edition>.edition-tools{grid-column:3;grid-row:1}
+}
 </style>
 </head>
 <body>
@@ -183,7 +198,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
     <button class="header-btn search" id="searchBtn" aria-label="Kërko">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     </button>
-  </div></div></section>
+  </div></div>
   <nav class="nav-main" id="mainNav" aria-label="Kategoritë e lajmeve">
     <button class="on" data-page="home">Ballina</button>
     <button data-page="news" data-cat="national">Lajme</button>
@@ -192,6 +207,8 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
     <button data-page="culture" data-cat="culture">Kulturë</button>
     <button data-page="health" data-cat="health">Shëndet</button>
   </nav>
+</section>
+
   <main id="homeView">
     <div class="feat-head"><h2>Lajmi kryesor</h2><b id="featNum">01</b></div>
     <div id="featured"></div>
@@ -394,12 +411,32 @@ function toast(msg){
   el.textContent=msg;el.classList.add("show");
   clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("show"),2200);
 }
+function articleShareURL(n){
+ const base=new URL(location.protocol==='https:'||location.protocol==='http:'?location.href:'https://lajme.fitimxharra.com/');
+ base.hash='';base.search='';
+ const params=new URLSearchParams({article:n.url,title:(n.title||'').slice(0,300),summary:(n.summary||'').slice(0,300),image:n.image||''});
+ base.hash=params.toString();return base.href;
+}
+function sharedArticle(){
+ const params=new URLSearchParams(location.hash.slice(1));const url=safeURL(params.get('article'));if(!url)return null;
+ const host=new URL(url).hostname.replace(/^www\./,'');
+ const feed=FEEDS.find(f=>new URL(f.url).hostname.replace(/^www\./,'')===host);if(!feed)return null;
+ return {params,url,feed};
+}
+let sharedOpened=false;
+function openSharedArticle(){
+ if(sharedOpened)return;const share=sharedArticle();if(!share)return;
+ let n=news.find(n=>n.url===share.url);
+ if(!n){const title=share.params.get('title');if(!title)return;n={id:stableId(share.url),url:share.url,title:title.slice(0,300),source:share.feed.src,summary:(share.params.get('summary')||'').slice(0,300),image:safeURL(share.params.get('image'))||'',cat:classifyItem({title,url:share.url,hint:share.feed.hint}).cat,previewOnly:true,publishedAt:''};news.push(n);}
+ sharedOpened=true;openArticle(n.id);
+}
+window.addEventListener('hashchange',()=>{sharedOpened=false;openSharedArticle();});
 async function shareArticle(id){
   const n=news.find(x=>x.id===id)||savedArticles[id];
   if(!n) return;
   const title=(n.title||"").replace(/\s+—\s+.*$/,"");
   const text=title+" — "+(n.source||"Lajmet e mia");
-  const url=n.url||location.href;
+  const url=articleShareURL(n);
   if(navigator.share){
     try{await navigator.share({title,text,url});toast("Artikulli u nda.");return;}catch(e){if(e&&e.name==="AbortError")return;}
   }
@@ -435,8 +472,28 @@ function chips(){
   });
 }
 function classify(n){ return (n&&n.cat)||"national"; }
+// Do not retain photo-free cards after an image fails in this browser.
+const failedArticleImages=new Set();
+let imageRenderPending=false;
+function hasArticleImage(n){
+  if(typeof n?.image!=="string" || failedArticleImages.has(n.image)) return false;
+  try{return ["https:","http:"].includes(new URL(n.image).protocol);}catch{return false;}
+}
+function hideFailedArticleImage(img){
+  const url=img.getAttribute("src");
+  if(url) failedArticleImages.add(url);
+  const card=img.closest("article,.feat-slide");
+  if(card) card.hidden=true;
+  if(imageRenderPending) return;
+  imageRenderPending=true;
+  setTimeout(()=>{
+    imageRenderPending=false;
+    render();renderSaved();
+  },0);
+}
 function filtered(){
   return news.filter(n=>{
+    if(!hasArticleImage(n)) return false;
     if(sourceFilter!=="all" && n.source!==sourceFilter) return false;
     if(category==="all") return true;
     return n.cat===category;
@@ -544,7 +601,7 @@ async function loadCategory(cat,more=false){
   }
   renderSaved();
 }
-const HOME_SECTIONS=[['national','Lajme lokale',6],['world','Ndërkombëtare',6],['culture','Kulturë',3],['health','Shëndet',3],['sport','Sport',6]];
+const HOME_SECTIONS=[['national','Lajme lokale',3],['world','Ndërkombëtare',2],['sport','Sport',3],['culture','Kulturë',1],['health','Shëndet',1]];
 function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,title,items:items.filter(n=>n.cat===cat).slice(0,limit)}));}
 function render(){
   const state=categoryState[category];
@@ -553,11 +610,12 @@ function render(){
   $("loadMore").textContent=state?.busy?"Duke ngarkuar…":"Shfaq më shumë lajme";
   let items=arranged(filtered());
   const isHome=sourceFilter==='all'&&category==='all';
-  $('featured').hidden=isHome;
-  document.querySelector('.feat-head').hidden=isHome;
-  document.querySelector('#homeView .sec h3').textContent=isHome?'Sot në ballinë':labels[category]||'Lajmet e fundit';
+  if(isHome)items=arranged(homeGroups(items).flatMap(g=>g.items));
+  $('featured').hidden=false;
+  document.querySelector('.feat-head').hidden=false;
+  document.querySelector('#homeView .sec h3').textContent=isHome?'Titujt e fundit':labels[category]||'Lajmet e fundit';
   const top=items.slice(0,1);
-  const rest=isHome?items:items.slice(1);
+  const rest=items.slice(1);
   const feat=top[featIndex%Math.max(top.length,1)]||null;
   $("featNum").textContent=top.length?String((featIndex%top.length)+1).padStart(2,"0")+" / "+String(top.length).padStart(2,"0"):"—";
   $("featured").innerHTML=top.length?`
@@ -566,7 +624,7 @@ function render(){
     <div class="feat-track" id="featTrack" style="transform:translateX(-${(featIndex%top.length)*100}%)">
       ${top.map(n=>`
       <div class="feat-slide">
-        ${n.image?`<div class="hero" data-open="${n.id}"><img src="${esc(n.image)}" alt="" onerror="this.parentNode.style.display='none'"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
+        ${n.image?`<div class="hero" data-open="${n.id}"><img src="${esc(n.image)}" alt="" onerror="hideFailedArticleImage(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
         <div class="feature-body">
           <div class="kicker">${esc(n.source)} · ${labels[n.cat]||'Lajme'}</div>
           <h3 class="headline"><button data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</button></h3>
@@ -590,12 +648,12 @@ function render(){
         <h4 data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</h4>
         <div class="article-meta">${isNew(n)?'<b class="new-badge">E re</b> · ':''}${labels[n.cat]||"Lajme"} · ${esc(relTime(n.publishedAt))} · Lexo artikullin ↗</div>
       </div>
-      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="this.remove()">`:""}
+      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
     </article>`;
-  $('feed').innerHTML=isHome?homeGroups(items).map(group=>`<section class="news-category" data-category="${group.cat}" aria-labelledby="heading-${group.cat}"><header class="news-section-heading"><div><span class="category-eyebrow">${group.items.length} lajme të fundit</span><h3 id="heading-${group.cat}">${group.title}</h3></div><button type="button" data-home-category="${group.cat}">Shiko të gjitha <span aria-hidden="true">→</span></button></header><div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):`<p class="section-empty">${loading?'Duke ngarkuar lajmet…':'Nuk ka lajme të disponueshme për këtë kategori.'}</p>`}</div></section>`).join(''):rest.map(articleCard).join('');
+  $('feed').innerHTML=rest.map(articleCard).join('');
 }
 function renderSaved(){
-  const items=news.filter(n=>saved.has(n.id));
+  const items=news.filter(n=>saved.has(n.id)&&hasArticleImage(n));
   $("savedView").innerHTML=items.length?'<h2 class="saved-title">Për më vonë.</h2>'+items.map(n=>`
     <article data-open="${n.id}" tabindex="0" role="button">
       <div>
@@ -603,7 +661,7 @@ function renderSaved(){
         <h4 data-open="${n.id}">${esc((n.title||'').replace(/\s+—\s+.*$/,''))}</h4>
         <div class="article-meta">${labels[n.cat]||"Lajme"} · ${esc(relTime(n.publishedAt))} · Lexo artikullin ↗</div>
       </div>
-      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="this.remove()">`:""}
+      ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
     </article>`).join(""):`<p class="empty">Nuk ke lajme të ruajtura.</p>`;
 }
 function strip(html){
@@ -703,6 +761,18 @@ function parseDate(v){
   if(t>Date.now()+5*60000) t=Date.now();
   return new Date(t).toISOString();
 }
+function rssImage(item,base){
+ const doc=new DOMParser().parseFromString(item.content||item.description||'','text/html');
+ const img=doc.querySelector('img');
+ const candidates=[item.thumbnail,item.enclosure?.link,item.enclosure?.url,typeof item.image==='string'?item.image:item.image?.url,img?.getAttribute('data-src'),img?.getAttribute('data-lazy-src'),img?.getAttribute('src'),img?.getAttribute('srcset')?.split(',').pop()?.trim().split(/\s+/)[0]];
+ for(const value of candidates){try{if(!value||/^(data:|blob:)/i.test(value))continue;const u=new URL(value,base);if(!/^https?:$/.test(u.protocol))continue;u.protocol='https:';return u.href;}catch{}}
+ return '';
+}
+async function fillKultImages(items){
+ const missing=items.filter(n=>!n.image);let index=0;
+ await Promise.all(Array.from({length:3},async()=>{while(index<missing.length){const n=missing[index++];const html=await publicPage(n.url);if(!html)continue;const doc=new DOMParser().parseFromString(html,'text/html');const value=doc.querySelector('meta[property="og:image"],meta[name="twitter:image"]')?.getAttribute('content');try{const u=new URL(value||'',n.url);if(value&&/^https?:$/.test(u.protocol)){u.protocol='https:';n.image=u.href;}}catch{}}}));
+ return items;
+}
 function mapRssItems(feed, items){
   return (items||[]).flatMap(item=>{
     const link=item.link||item.url||item.guid||"";
@@ -718,7 +788,7 @@ function mapRssItems(feed, items){
     const img=(content.match(/<img[^>]+src=["']([^"']+)["']/i)||[])[1];
     return [{id:stableId(url),source:feed.src,title,url,cat,catConf:conf,rssCats,
       summary,content,body,
-      image:item.thumbnail||(item.enclosure&&item.enclosure.link)||item.image||img||"",author:item.author||feed.src,
+      image:rssImage(item,url),author:item.author||feed.src,
       publishedAt:parseDate(item.pubDate||item.published||item.date),
       previewOnly:body.length<400}];
   });
@@ -818,7 +888,9 @@ async function fetchWebsite(feed){
  return items;
 }
 async function fetchArticles(feed){
- return feed.kind==='website'?fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
+ const items=feed.kind==='website'?await fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
+ if(feed.src==='KultPlus')await fillKultImages(items);
+ return items;
 }
 function readableContent(content, description){
   if(!content) return false;
@@ -1059,7 +1131,7 @@ news=news.filter(n=>!isRemovedSource(n)).map(n=>{
 for(const [id,n] of Object.entries(savedArticles)){if(isRemovedSource(n)){saved.delete(Number(id));delete savedArticles[id];}}
 persistSaved();saveCache();
 Object.values(savedArticles).forEach(n=>{if(n&&n.id&&!news.some(x=>x.id===n.id))news.push(n);});
-chips();render();renderSaved();refreshAll();
+chips();render();renderSaved();openSharedArticle();refreshAll();
 
 // Weather loads independently so an unavailable forecast never blocks news.
 const weatherCities=[
