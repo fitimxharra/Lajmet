@@ -23,7 +23,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('newsTheme')==='
 .feat-slide{min-width:100%;flex:0 0 100%}
 .feat-nav{position:absolute;top:110px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;z-index:2;padding:0}
 .feat-nav.prev{left:10px}.feat-nav.next{right:10px}
-.feat-dots{display:flex;gap:6px;justify-content:center;padding:0 16px 16px}
+.feat-dots{display:flex;gap:6px;justify-content:center;padding:4px 16px 16px}
 .feat-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--strong)}
 .feat-dots button.on{background:var(--red);width:18px;border-radius:8px}.hero{position:relative;cursor:pointer;background:var(--soft)}.hero img{width:100%;height:250px;object-fit:cover}.hero-label{position:absolute;bottom:16px;left:18px;color:#fff;background:#171a17d9;padding:8px 11px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.feature-body{padding:22px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--red);font-weight:750;margin:0 0 10px}.headline{font-family:Georgia,serif;font-size:30px;line-height:1.14;letter-spacing:-.8px;margin:0 0 12px;font-weight:500}.headline button{font:inherit;letter-spacing:inherit;line-height:inherit;background:none;border:0;padding:0;text-align:left;color:inherit}.feat-excerpt{font-size:14px;line-height:1.6;color:var(--secondary);margin:0 0 20px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.row-act{display:flex;align-items:center;justify-content:space-between;padding-top:15px;border-top:1px solid var(--line)}.row-act .link{background:none;border:0;padding:8px 0;font-size:12px;font-weight:700}.row-act .link span{margin-left:14px;color:var(--red);font-size:19px}.bm{display:inline-grid;place-items:center;min-width:42px;min-height:42px;padding:10px;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent}.bm.on{color:var(--red);background:var(--soft)}.bm svg{width:19px;height:19px}
 .sec{display:flex;align-items:center;justify-content:space-between;padding:25px 0 14px}.sec h3{font-size:21px;letter-spacing:-.6px;font-weight:650;margin:0}.sec p{font-size:11px;color:var(--muted);margin:5px 0 0}.list{display:grid;gap:10px}.list article{display:grid;grid-template-columns:minmax(0,1fr) 96px;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px;cursor:pointer}.list .src{font-size:10px;color:var(--red);font-weight:700;letter-spacing:.3px;margin-bottom:8px}.list h4{font-family:Georgia,serif;font-size:18px;line-height:1.3;font-weight:500;letter-spacing:-.25px;margin:0}.excerpt{display:none}.thumb{width:96px;height:100px;object-fit:cover;border-radius:9px;background:var(--soft)}.article-meta{font-size:10px;color:var(--muted);margin-top:10px}.note{font-size:11px;color:var(--muted);line-height:1.6;padding:15px 2px}.empty{font-size:14px;line-height:1.6;padding:30px 22px;color:var(--muted)}#savedView{padding-top:22px}.saved-title{font-family:Georgia,serif;font-size:30px;font-weight:400;margin:0 0 12px}
@@ -184,7 +184,10 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 .hero img,#feed .thumb{object-position:center 25%}
 @media(min-width:760px){
  #featured .feat-slide{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
- #featured .hero{min-height:0;aspect-ratio:16/10;align-self:start;overflow:hidden;background:var(--soft)}
+ #featured .hero{min-height:0;aspect-ratio:16/10;align-self:start;overflow:hidden;background:var(--soft);margin:16px 0 0 16px;border-radius:14px}
+ #featured .hero-label{bottom:12px;left:12px}
+ #featured .feat-dots{padding:18px 16px 18px}
+ #featured .feat-nav.prev{left:26px}
  #featured .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
  #featured .feature-body{padding:30px 32px}
  #featured .headline{font-size:clamp(26px,2.4vw,36px)}
@@ -341,7 +344,10 @@ const FEEDS = [
  {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture',wp:true},
  {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
  {src:'Zëri',url:'https://zeri.info/',kind:'website'},
- {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true}
+ {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',wp:true},
+ {src:'Indeksonline',url:'https://indeksonline.net/feed/',wp:true},
+ {src:'Lajmi.net',url:'https://lajmi.net/feed/',wp:true},
+ {src:'Lajmi.net',url:'https://lajmi.net/kategoria/sport/feed/',hint:'sport'}
 ];
 const REFRESH_MS=5*60*1000;
 const sourceStatus={};
