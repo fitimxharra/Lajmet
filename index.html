@@ -121,6 +121,30 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 @media(max-width:759px){.site-header{grid-template-columns:minmax(0,1fr) 170px;gap:8px;padding-top:16px}.sponsor{padding:12px;min-height:125px}.sponsor b{font-size:18px}.sponsor small{font-size:11px}.weather-card{padding:9px;min-height:125px}.weather-now{gap:4px}.weather-now strong{font-size:15px}.weather-temp{font-size:19px}.weather-temp span{font-size:16px;margin-right:3px}.weather-heading a{font-size:7px}.edition{align-items:center}.edition-tools time{font-size:10px}.edition-tools{gap:8px}.edition h2{font-size:36px}.header-actions .header-btn{width:34px;height:34px;min-width:34px;min-height:34px;padding:7px}}
 @media(max-width:380px){.site-header{grid-template-columns:minmax(0,1fr) 155px}.sponsor b{font-size:16px}.edition h2{font-size:30px}.edition-tools time{max-width:92px}.weather-temp{font-size:17px}}
 .weather-location{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px}.weather-location strong{font:16px Georgia,serif}.weather-location button{display:grid;place-items:center;width:32px;height:32px;padding:0;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font-size:24px;line-height:1}.weather-location button:hover{background:var(--soft)}.weather-now{justify-content:center}
+.news-section-heading{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:22px 0 0;margin-top:12px}.news-section-heading:first-child{margin-top:0;border-top:0;padding-top:0}.news-section-heading h3{margin:0;font:500 27px Georgia,serif;letter-spacing:-.4px}.news-section-heading button{border:0;background:transparent;color:var(--red);padding:10px 0;font-size:12px}.section-empty{grid-column:1/-1;color:var(--muted);font-size:13px;padding:12px 0}@media(max-width:759px){.news-section-heading{padding-top:24px;margin-top:10px}.news-section-heading h3{font-size:25px}}
+
+/* Distinct category blocks on the homepage. */
+.news-category{--category-color:var(--red);grid-column:1/-1;min-width:0;border:1px solid var(--line);border-top:3px solid var(--category-color);border-radius:14px;padding:24px;background:var(--surface);margin-bottom:18px;scroll-margin-top:20px}
+.news-category[data-category="national"]{--category-color:#ff8a83}
+.news-category[data-category="world"]{--category-color:#84b9ee}
+.news-category[data-category="culture"]{--category-color:#c6a2ed}
+.news-category[data-category="health"]{--category-color:#80cbb7}
+.news-category[data-category="sport"]{--category-color:#e6bc72}
+[data-theme="light"] .news-category[data-category="national"]{--category-color:#a62e38}
+[data-theme="light"] .news-category[data-category="world"]{--category-color:#24649f}
+[data-theme="light"] .news-category[data-category="culture"]{--category-color:#77429e}
+[data-theme="light"] .news-category[data-category="health"]{--category-color:#23705a}
+[data-theme="light"] .news-category[data-category="sport"]{--category-color:#865c17}
+.news-category .news-section-heading,.news-category .news-section-heading:first-child{border:0;margin:0 0 22px;padding:0;align-items:center}
+.category-eyebrow{display:block;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.news-category .news-section-heading h3{font:650 29px system-ui,sans-serif;letter-spacing:-.8px;color:var(--category-color)}
+.news-category .news-section-heading button{border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--category-color);white-space:nowrap}
+.news-category .news-section-heading button:hover{background:var(--soft)}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+#feed .news-category article{background:var(--bg)}
+#feed .news-category .src{color:var(--category-color)}
+@media(min-width:760px) and (max-width:1000px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:759px){.news-category{padding:16px 14px;margin-bottom:22px;border-radius:10px}.category-grid{grid-template-columns:1fr;gap:0}.news-category .news-section-heading,.news-category .news-section-heading:first-child{margin-bottom:6px}.news-category .news-section-heading h3{font-size:23px}.news-category .news-section-heading button{font-size:10px;padding:9px 8px}.category-eyebrow{font-size:9px}#feed .news-category article{background:transparent}#feed .news-category article:last-child{border-bottom:0;padding-bottom:4px}}
 </style>
 </head>
 <body>
@@ -166,6 +190,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
     <button data-page="world" data-cat="world">Botë</button>
     <button data-page="sport" data-cat="sport">Sport</button>
     <button data-page="culture" data-cat="culture">Kulturë</button>
+    <button data-page="health" data-cat="health">Shëndet</button>
   </nav>
   <main id="homeView">
     <div class="feat-head"><h2>Lajmi kryesor</h2><b id="featNum">01</b></div>
@@ -259,8 +284,9 @@ let loading = true;
 function norm(s){
   return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim();
 }
-const CAT_PRIORITY=["sport","culture","other","world","national"];
+const CAT_PRIORITY=["sport","culture","health","other","world","national"];
 const LABEL_RX={
+  health:/\b(shendet|shendeti|shendetesi|shendetesia|health|mjekesi|mjekesia)\b/,
   sport:/\b(sport|sporti|sportet|sportive|futboll|futbolli|football|basketboll|basketbolli|basket|volejboll|hendboll|handboll|tenis|superliga|superliga e kosoves|premier league|champions league|liga e kampioneve|la liga|serie a|bundesliga|ligue 1|formula 1|boks|mma|ufc|atletike|olimpiada|lojerat olimpike|kombetarja|nba|euroliga|transferime|arena)\b/,
   culture:/\b(kulture|kultura|kulturore|art|arte|arti|muzike|muzika|film|filma|kinema|teater|teatri|letersi|libra|libri|poezi|trashegimi|ekspozite|festival|festivale)\b/,
   other:/\b(showbiz|magazina|magazine|lifestyle|stil jetese|tech|teknologji|teknologjia|auto|horoskop|horoskopi|receta|kuzhina|bukuri|moda|mode|argetim|kuriozitete|curiozitete|fun)\b/,
@@ -268,6 +294,7 @@ const LABEL_RX={
   national:/\b(lajme|lajmet|kosove|kosova|shqiperi|shqiperia|politike|politika|aktuale|aktualitet|ekonomi|ekonomia|biznes|sociale|kronike|kronika|nacionale|maqedoni|lugina|diaspora|siguri|drejtesi|shendetesi|arsim)\b/
 };
 const URL_SEG={
+  shendet:"health",shendeti:"health",shendetesi:"health",shendetesia:"health",health:"health",mjekesi:"health",
   "futboll-sporti":"sport","basketboll-sporti":"sport",sport:"sport",sporti:"sport",sportet:"sport",sportive:"sport",futboll:"sport",
   bote:"world",bota:"world",world:"world",globale:"world",rajoni:"world",rajon:"world",
   kulture:"culture",kultura:"culture",kulturore:"culture",art:"culture",
@@ -327,13 +354,15 @@ function classifyItem({title,url,summary,rssCats,hint}){
   if(hint) return {cat:hint,conf:4};
   const r=catFromLabels(rssCats||[]); if(r) return {cat:r,conf:3};
   const u=catFromUrl(url); if(u) return {cat:u,conf:2};
-  return {cat:catFromKeywords((title||"")+" "+(summary||"")),conf:1};
+  const text=norm((title||'')+' '+(summary||''));
+  if(/\b(shendet|mjekesi|semundj|diabet|vaksin|kancer|spital|terapi|infarkt|ushqyerj|vitamin)/.test(text))return {cat:'health',conf:1};
+  return {cat:catFromKeywords(text),conf:1};
 }
 function activeSources(){
   const pool=category==="all"?news:news.filter(n=>n.cat===category);
   return [...new Set(pool.map(n=>n.source))];
 }
-const labels={national:"Lajme",world:"Botë",sport:"Sport",culture:"Kulturë",other:"Magazinë"};
+const labels={national:"Lajme",world:"Botë",sport:"Sport",culture:"Kulturë",other:"Magazinë",health:"Shëndet"};
 let category="all", sourceFilter="all";
 let saved; let savedArticles={};
 try{
@@ -515,15 +544,20 @@ async function loadCategory(cat,more=false){
   }
   renderSaved();
 }
+const HOME_SECTIONS=[['national','Lajme lokale',6],['world','Ndërkombëtare',6],['culture','Kulturë',3],['health','Shëndet',3],['sport','Sport',6]];
+function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,title,items:items.filter(n=>n.cat===cat).slice(0,limit)}));}
 function render(){
   const state=categoryState[category];
   $("loadMore").hidden=category==="all";
   $("loadMore").disabled=Boolean(state?.busy);
   $("loadMore").textContent=state?.busy?"Duke ngarkuar…":"Shfaq më shumë lajme";
   let items=arranged(filtered());
-  if(sourceFilter==="all"&&category==="all") items=items.slice(0,40);
+  const isHome=sourceFilter==='all'&&category==='all';
+  $('featured').hidden=isHome;
+  document.querySelector('.feat-head').hidden=isHome;
+  document.querySelector('#homeView .sec h3').textContent=isHome?'Sot në ballinë':labels[category]||'Lajmet e fundit';
   const top=items.slice(0,1);
-  const rest=items.slice(1); // The lead story is shown once.
+  const rest=isHome?items:items.slice(1);
   const feat=top[featIndex%Math.max(top.length,1)]||null;
   $("featNum").textContent=top.length?String((featIndex%top.length)+1).padStart(2,"0")+" / "+String(top.length).padStart(2,"0"):"—";
   $("featured").innerHTML=top.length?`
@@ -549,7 +583,7 @@ function render(){
     ${top.length>1?`<div class="feat-dots">${top.map((_,i)=>`<button type="button" data-feat-go="${i}" class="${i===(featIndex%top.length)?'on':''}" aria-label="Artikulli ${i+1}"></button>`).join('')}</div>`:''}
   `:`<p class="empty">${loading?'Duke ngarkuar artikujt…':'Nuk ka artikuj në këtë filtër.'}</p>`;
   startFeatRotate(top.length);
-  $("feed").innerHTML=rest.map((n,i)=>`
+  const articleCard=n=>`
     <article data-open="${n.id}" tabindex="0" role="button">
       <div>
         <div class="src">${esc(n.source)}</div>
@@ -557,7 +591,8 @@ function render(){
         <div class="article-meta">${isNew(n)?'<b class="new-badge">E re</b> · ':''}${labels[n.cat]||"Lajme"} · ${esc(relTime(n.publishedAt))} · Lexo artikullin ↗</div>
       </div>
       ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="this.remove()">`:""}
-    </article>`).join("");
+    </article>`;
+  $('feed').innerHTML=isHome?homeGroups(items).map(group=>`<section class="news-category" data-category="${group.cat}" aria-labelledby="heading-${group.cat}"><header class="news-section-heading"><div><span class="category-eyebrow">${group.items.length} lajme të fundit</span><h3 id="heading-${group.cat}">${group.title}</h3></div><button type="button" data-home-category="${group.cat}">Shiko të gjitha <span aria-hidden="true">→</span></button></header><div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):`<p class="section-empty">${loading?'Duke ngarkuar lajmet…':'Nuk ka lajme të disponueshme për këtë kategori.'}</p>`}</div></section>`).join(''):rest.map(articleCard).join('');
 }
 function renderSaved(){
   const items=news.filter(n=>saved.has(n.id));
@@ -923,6 +958,11 @@ document.getElementById("mainNav").addEventListener("click",e=>{
   if(Date.now()-lastRefresh>30000) refreshAll({silent:true});
 });
 document.addEventListener("click",e=>{
+  const sectionButton=e.target.closest('[data-home-category]');
+  if(sectionButton){
+    category=sectionButton.dataset.homeCategory;sourceFilter='all';featIndex=0;
+    chips();render();window.scrollTo({top:0,behavior:'smooth'});return;
+  }
   const open=e.target.closest("[data-open]");
   const save=e.target.closest("[data-save]");
   const close=e.target.closest("[data-close]");
@@ -1012,7 +1052,10 @@ $("sourceSearch").oninput=renderSourceList;
 const editionDate=document.getElementById('editionDate');
 editionDate.textContent=new Intl.DateTimeFormat('sq',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
 editionDate.dateTime=new Date().toISOString();
-news=news.filter(n=>!isRemovedSource(n));
+news=news.filter(n=>!isRemovedSource(n)).map(n=>{
+ const classified=classifyItem({title:n.title,url:n.url,summary:n.summary,rssCats:n.rssCats||[]});
+ return classified.cat==='health'?{...n,cat:'health',catConf:classified.conf}:n;
+});
 for(const [id,n] of Object.entries(savedArticles)){if(isRemovedSource(n)){saved.delete(Number(id));delete savedArticles[id];}}
 persistSaved();saveCache();
 Object.values(savedArticles).forEach(n=>{if(n&&n.id&&!news.some(x=>x.id===n.id))news.push(n);});
