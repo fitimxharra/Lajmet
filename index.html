@@ -160,6 +160,26 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
  .edition>.nav-main button{padding-inline:12px;font-size:12px}
  .edition>.edition-tools{grid-column:3;grid-row:1}
 }
+
+/* Refined edition masthead: compact title, editorial tabs and aligned tools. */
+@media(min-width:1000px){
+ .edition{grid-template-columns:auto minmax(0,1fr) auto;column-gap:32px;row-gap:0;padding:28px 0 22px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+ .edition .eyebrow{font-size:9px;letter-spacing:2px;margin-bottom:8px}
+ .edition h2{font-size:clamp(32px,3vw,40px);letter-spacing:-1.4px}
+ .edition>.nav-main{justify-content:flex-start;align-self:end;gap:2px;padding:0 0 2px;scroll-padding-inline:4px}
+ .edition>.nav-main button{position:relative;min-height:42px;padding:10px 13px;border:0;border-radius:6px;background:transparent;font-size:13px;font-weight:550;color:var(--muted)}
+ .edition>.nav-main button:hover{background:var(--soft);color:var(--ink)}
+ .edition>.nav-main button.on{background:transparent;color:var(--ink);font-weight:750}
+ .edition>.nav-main button.on::after{content:"";position:absolute;bottom:0;left:13px;right:13px;height:3px;border-radius:3px;background:var(--red)}
+ .edition>.edition-tools{align-self:center;gap:10px}
+ .edition-tools time{font-size:10px;white-space:nowrap;padding:0}
+ .edition-tools .header-actions{gap:7px}
+ .edition-tools .header-btn{width:34px;height:34px;min-width:34px;min-height:34px;padding:7px;background:transparent}
+}
+@media(min-width:1000px) and (max-width:1100px){
+ .edition{column-gap:20px}
+ .edition>.nav-main button{padding-inline:10px;font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -603,6 +623,15 @@ async function loadCategory(cat,more=false){
 }
 const HOME_SECTIONS=[['national','Lajme lokale',3],['world','Ndërkombëtare',2],['sport','Sport',3],['culture','Kulturë',1],['health','Shëndet',1]];
 function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,title,items:items.filter(n=>n.cat===cat).slice(0,limit)}));}
+function homepageCardGroups(items){
+ const take=(cat,count)=>items.filter(n=>n.cat===cat).slice(0,count);
+ return [
+  {cat:'national',title:'Lajme lokale',items:take('national',6)},
+  {cat:'world',title:'Ndërkombëtare',items:take('world',3)},
+  {cat:'culture',title:'Kulturë & Shëndet',items:[...take('culture',2),...take('health',1)]},
+  {cat:'sport',title:'Sport',items:take('sport',6)}
+ ];
+}
 function render(){
   const state=categoryState[category];
   $("loadMore").hidden=category==="all";
@@ -610,12 +639,12 @@ function render(){
   $("loadMore").textContent=state?.busy?"Duke ngarkuar…":"Shfaq më shumë lajme";
   let items=arranged(filtered());
   const isHome=sourceFilter==='all'&&category==='all';
-  if(isHome)items=arranged(homeGroups(items).flatMap(g=>g.items));
+  const leadItems=isHome?arranged(homeGroups(items).flatMap(g=>g.items)):items;
   $('featured').hidden=false;
   document.querySelector('.feat-head').hidden=false;
   document.querySelector('#homeView .sec h3').textContent=isHome?'Titujt e fundit':labels[category]||'Lajmet e fundit';
-  const top=items.slice(0,1);
-  const rest=items.slice(1);
+  const top=leadItems.slice(0,1);
+  const rest=items.filter(n=>!top.some(t=>t.id===n.id));
   const feat=top[featIndex%Math.max(top.length,1)]||null;
   $("featNum").textContent=top.length?String((featIndex%top.length)+1).padStart(2,"0")+" / "+String(top.length).padStart(2,"0"):"—";
   $("featured").innerHTML=top.length?`
@@ -650,7 +679,11 @@ function render(){
       </div>
       ${n.image?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
     </article>`;
-  $('feed').innerHTML=rest.map(articleCard).join('');
+  $('feed').innerHTML=isHome?homepageCardGroups(rest).map(group=>`
+    <section class="news-category" data-category="${group.cat}" aria-labelledby="section-${group.cat}">
+      <div class="news-section-heading"><h3 id="section-${group.cat}">${group.title}</h3></div>
+      <div class="category-grid">${group.items.length?group.items.map(articleCard).join(''):'<p class="section-empty">'+(loading?'Duke ngarkuar lajmet…':'Nuk ka lajme me fotografi të disponueshme.')+'</p>'}</div>
+    </section>`).join(''):rest.map(articleCard).join('');
 }
 function renderSaved(){
   const items=news.filter(n=>saved.has(n.id)&&hasArticleImage(n));
