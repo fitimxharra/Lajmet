@@ -180,6 +180,16 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
  .edition{column-gap:20px}
  .edition>.nav-main button{padding-inline:10px;font-size:12px}
 }
+/* ===== Fotot në desktop ===== */
+.hero img,#feed .thumb{object-position:center 25%}
+@media(min-width:760px){
+ #featured .feat-slide{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+ #featured .hero{min-height:0;aspect-ratio:16/10;align-self:start;overflow:hidden;background:var(--soft)}
+ #featured .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
+ #featured .feature-body{padding:30px 32px}
+ #featured .headline{font-size:clamp(26px,2.4vw,36px)}
+}
+@media(min-width:1100px){#featured .hero{aspect-ratio:3/2}}
 /* ===== Rreth nesh / About ===== */
 .about{padding:28px 24px 120px;max-width:620px;margin:0 auto}
 .about .eyebrow{margin:0 0 8px}
@@ -509,10 +519,16 @@ function dispTitle(n){
   const c=trCache[n.url]; if(c&&c.t) return c.t;
   queueTr(n); return b;
 }
+function cutWords(s,max=170){
+  s=String(s||"").trim();
+  if(s.length<max) return s;
+  const cut=s.slice(0,max); const sp=cut.lastIndexOf(" ");
+  return (sp>80?cut.slice(0,sp):cut).replace(/[,;:\-–—\s]+$/,"")+"…";
+}
 function dispSummary(n){
-  const b=n.summary||"";
+  const b=cutWords(n.summary||"");
   if(lang!=="en") return b;
-  const c=trCache[n.url]; if(c&&c.t) return c.s||"";
+  const c=trCache[n.url]; if(c&&c.t) return cutWords(c.s||"");
   queueTr(n); return b;
 }
 function queueTr(n){
@@ -635,7 +651,7 @@ function renderAbout(){
     </div>
     <p class="note" style="padding-top:6px">In English, headlines and articles are machine-translated automatically, so minor inaccuracies are possible. The original Albanian text is always one click away.</p>
     ${contact}
-    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Created by Fitim Xharra. Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
+    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
   `:`
     <p class="eyebrow">Rreth nesh</p>
     <h2>Lajmet që kanë rëndësi, në një vend.</h2>
@@ -658,7 +674,7 @@ function renderAbout(){
     </div>
     <p class="note" style="padding-top:6px">Në English, titujt dhe artikujt përkthehen automatikisht me makinë, prandaj mund të ketë pasaktësi të vogla.</p>
     ${contact}
-    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Krijuar nga Fitim Xharra. Të dhënat e motit: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
+    <div class="about-foot">© ${year} Lajmet e mia · lajme.fitimxharra.com<br>Të dhënat e motit: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</div>
   `;
 }
 function showAbout(){ renderAbout(); $("aboutDialog").showModal(); }
@@ -763,6 +779,13 @@ let imageRenderPending=false;
 function hasArticleImage(n){
   if(typeof n?.image!=="string" || failedArticleImages.has(n.image)) return false;
   try{return ["https:","http:"].includes(new URL(n.image).protocol);}catch{return false;}
+}
+// WordPress i ruan fotot edhe në madhësi të plotë: "foto-300x200.jpg" -> "foto.jpg"
+function fullImage(u){ return String(u||"").replace(/-\d{2,4}x\d{2,4}(?=\.(jpe?g|png|webp)(\?|$))/i,""); }
+function heroImageError(img){
+  const orig=img.dataset.orig;
+  if(orig && img.getAttribute("src")!==orig){ img.src=orig; return; }
+  hideFailedArticleImage(img);
 }
 function hideFailedArticleImage(img){
   // Fotoja që nuk hapet hiqet, por lajmi mbetet në listë
@@ -935,7 +958,7 @@ function render(){
     <div class="feat-track" id="featTrack" style="transform:translateX(-${(featIndex%top.length)*100}%)">
       ${top.map(n=>`
       <div class="feat-slide">
-        ${hasArticleImage(n)?`<div class="hero" data-open="${n.id}"><img src="${esc(n.image)}" alt="" onerror="hideFailedArticleImage(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
+        ${hasArticleImage(n)?`<div class="hero" data-open="${n.id}"><img src="${esc(fullImage(n.image))}" data-orig="${esc(n.image)}" alt="" onerror="heroImageError(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
         <div class="feature-body">
           <div class="kicker">${esc(n.source)} · ${labels[n.cat]||'Lajme'}</div>
           <h3 class="headline"><button data-open="${n.id}">${esc(dispTitle(n))}</button></h3>
