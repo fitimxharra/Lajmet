@@ -412,13 +412,51 @@ html{overflow-anchor:none}
 
 .sport-launch{display:none;width:100%;margin:0 0 14px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);font-size:16px;font-weight:650;text-align:left}
 .sport-launch span{float:right;color:var(--red)}
-@media(max-width:759px){
-  #sportBox{display:none!important}
-  .sport-launch:not([hidden]){display:block}
-}
+#sportBox{display:none!important}
+.sport-launch:not([hidden]){display:block}
 @media(min-width:760px){
-  .sport-launch{display:none!important}
+  .sport-launch{font-size:18px;padding:18px 22px}
 }
+
+.tm-abbr{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 4px;border-radius:7px;background:var(--soft);font-size:10px;font-weight:700;letter-spacing:.3px;color:var(--ink)}
+
+#sportDialog{width:min(720px,100%);height:100dvh;max-height:100dvh}
+#sportDialog .reader{padding:16px 18px 40px}
+#sportDialog .team-card,
+#sportDialog .lg-box{display:flex;flex-direction:column;gap:16px;grid-template-columns:none;padding:16px}
+#sportDialog .tm-id{display:flex;gap:12px;align-items:center}
+#sportDialog .tm-matches{display:flex;flex-direction:column;gap:10px}
+#sportDialog .tm-table, #sportDialog .lg-table{width:100%;overflow:auto}
+#sportDialog .lg-cards{margin:0;padding:0 0 8px}
+#sportDialog .tm-head{flex-wrap:wrap}
+#sportDialog .sp-tabs{width:100%;overflow-x:auto}
+
+
+.sf-panel{display:flex;flex-direction:column;gap:14px}
+.sf-id{display:flex;align-items:center;gap:12px}
+.sf-id img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.sf-id h3{margin:0;font-size:22px}
+.sf-feat{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:center}
+.sf-feat small{color:var(--muted);font-size:11px;letter-spacing:.4px;text-transform:uppercase}
+.sf-feat-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.sf-feat-row>span{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:650;flex:1}
+.sf-feat-date b{display:block;font-size:15px}.sf-feat-date em{color:var(--muted);font-style:normal;font-size:12px}
+.sf-list,.sf-form,.sf-table{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.sf-seg{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px}
+.sf-row{display:grid;grid-template-columns:64px 1fr 28px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.sf-row:last-child{border-bottom:0}
+.sf-when{font-size:11px;color:var(--muted)}.sf-when b{display:block;color:var(--ink)}
+.sf-teams div{display:flex;align-items:center;gap:8px;font-size:14px;padding:2px 0}
+.sf-teams b{margin-left:auto}
+.sf-flag,.sf-flag-lg{width:18px;height:14px;object-fit:cover;border-radius:2px}
+.sf-flag-lg{width:36px;height:24px}
+.sf-badge{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;color:#fff}
+.sf-W{background:#2e9e5b}.sf-D{background:#888}.sf-L{background:#d8453f}
+.sf-form-row{display:flex;gap:6px}
+.sf-table table{width:100%;border-collapse:collapse;font-size:13px}
+.sf-table th{font-size:10px;color:var(--muted);text-align:center}
+.sf-table td{padding:7px 4px;border-top:1px solid var(--line)}
+.sf-table tr.me{background:var(--soft)}
 
 </style>
 </head>
@@ -488,8 +526,8 @@ html{overflow-anchor:none}
 </section>
 
   <main id="homeView">
-    <button type="button" class="sport-launch" id="sportLaunch" hidden>Futbolli shqiptar <span aria-hidden="true">↗</span></button>
-    <section class="teams" id="sportBox" hidden aria-label="Futbolli Shqiptar"></section>
+    <section class="teams" id="sportBox" hidden></section>
+
     <div class="feat-head"><h2 data-i18n="topStories">Lajmet kryesore</h2><b id="featNum">01</b></div>
     <div id="featured"></div>
     <div class="sec">
@@ -586,8 +624,12 @@ const FEEDS = [
  {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
  {src:'Telegrafi',url:'https://telegrafi.com/kultura/feed/',hint:'culture'},
  {src:'Telegrafi',url:'https://telegrafi.com/kultura/',kind:'website',hint:'culture'},
- {src:'Telegrafi',url:'https://telegrafi.com/shendetesi/',kind:'website',hint:'health'},
- {src:'Gazeta Express',url:'https://www.gazetaexpress.com/roze/',kind:'website',hint:'health'},
+ {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture'},
+ {src:'KultPlus',url:'https://www.kultplus.com/',kind:'website',hint:'culture'},
+ {src:'Indeksonline',url:'https://indeksonline.net/feed/',wp:true,hint:'culture',wpCat:20},
+ {src:'Gazeta Express',url:'https://www.gazetaexpress.com/roze/',kind:'website',hint:'culture'},
+ {src:'Reporteri',url:'https://reporteri.net/feed/',wp:true,hint:'culture'},
+
  // federatat e futbollit
  {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',only:true,wp:true},
  {src:'FFK',url:'https://ffk-kosova.com/feed/',hint:'sport',only:true,wp:true},
@@ -604,7 +646,7 @@ const sourceStatus={};
 const MAX_PER_CAT = 150;               // sa lajme mbahen për kategori
 const MAX_AGE_MS = 4*24*3600*1000;     // lajmet më të vjetra se 4 ditë hiqen
 const CACHE_KEY="readableNewsCacheV3", CACHE_AT_KEY="readableNewsCacheAtV3";
-function isRemovedSource(n){return /bota\s*sot|kult\s*plus/i.test(n?.source||'')||/(^|\.)(botasot\.info|kultplus\.com)$/i.test((()=>{try{return new URL(n.url).hostname}catch{return ''}})());}
+function isRemovedSource(n){return /bota\s*sot/i.test(n?.source||'')||/(^|\.)(botasot\.info)$/i.test((()=>{try{return new URL(n.url).hostname}catch{return ''}})());}
 let news = [];
 try {
   const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"[]");
@@ -723,7 +765,7 @@ const I18N={
   latestHeadlines:"Titujt e fundit",latestNews:"Lajmet e fundit",readArticle:"Lexo artikullin",newBadge:"E re",
   loading:"Duke ngarkuar lajmet…",loadingShort:"Duke ngarkuar…",loadMore:"Shfaq më shumë lajme",
   noArticles:"Nuk ka artikuj në këtë filtër.",noNews:"Nuk ka lajme për momentin.",noSaved:"Nuk ke lajme të ruajtura.",savedTitle:"Për më vonë.",
-  grpLocal:"Lajme lokale",grpWorld:"Ndërkombëtare",grpCulture:"Kulturë & Shëndet",grpSport:"Sport",
+  grpLocal:"Lajme lokale",grpWorld:"Ndërkombëtare",grpCulture:"Kulturë",grpSport:"Sport",
   previewOnly:"Përmbledhje · Nuk është artikulli i plotë.",fromRss:"Teksti i marrë nga burimi.",published:"Publikuar:",
   source:"Burimi",author:"Autori",original:"Artikulli origjinal",saveArticle:"Ruaje artikullin",shareArticle:"Ndaje artikullin",backToList:"Kthehu te lista",
   searching:"Duke kërkuar lajme të reja…",checked:"Kontrolluar",next:"tjetri pas",allSources:"Artikuj nga të gjitha burimet",
@@ -1198,14 +1240,17 @@ function startFeatRotate(count){
 }
 // Lajmet kryesore në Ballinë: 3 kombëtare, 2 ndërkombëtare, 1 kulturë, 3 sport,
 // të përziera që slide-t të ndërrojnë kategori (L, S, B, K, L, S, B, L, S)
-const LEAD_MIX=[['national',3],['sport',3],['world',2],['culture',1]];
+const LEAD_MIX=[['national',3],['world',2],['culture',1],['sport',3]];
 function leadSlides(items,isHome){
-  if(!isHome) return items.slice(0,5); // kategoria: rendi strikt sipas kohës, më i fundit i pari
-  // përparësi lajmeve me foto; nëse s'mjaftojnë, plotësohet me të tjerat
-  const pick=(cat,n)=>{const all=items.filter(x=>x.cat===cat);const withImg=all.filter(hasArticleImage);return [...withImg,...all.filter(x=>!hasArticleImage(x))].slice(0,n);};
-  const buckets=LEAD_MIX.map(([cat,n])=>pick(cat,n));
+  if(!isHome) return items.slice(0,5);
+  const pool=(news&&news.length?news:items).filter(n=>n&&n.title&&!isNotNews(n));
+  const used=new Set();
   const out=[];
-  for(let round=0;buckets.some(b=>b.length);round++) buckets.forEach(b=>{ if(b.length) out.push(b.shift()); });
+  for(const [cat,need] of LEAD_MIX){
+    const list=pool.filter(x=>x.cat===cat && !used.has(x.id||x.url))
+      .sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0));
+    list.slice(0,need).forEach(x=>{ out.push(x); used.add(x.id||x.url); });
+  }
   return out;
 }
 function feedPage(){ return 1; }
@@ -1274,24 +1319,30 @@ async function loadCategory(cat,more=false){
 const HOME_SECTIONS=[['national','Lajme lokale',3],['world','Ndërkombëtare',2],['sport','Sport',3],['culture','Kulturë',1],['health','Shëndet',1]];
 function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,title,items:items.filter(n=>n.cat===cat).slice(0,limit)}));}
 function homepageCardGroups(items){
- const pool=(news||[]).filter(n=>n&&n.title&&!isNotNews(n));
- const take=(cat,count)=>pool.filter(n=>n.cat===cat)
-   .sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0))
-   .slice(0,count);
+ const pool=(news||[]).filter(n=>n&&n.title&&!isNotNews(n))
+   .sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0));
+ const used=new Set();
+ const take=(pred,count)=>{
+   const out=[];
+   for(const n of pool){
+     if(out.length>=count) break;
+     if(used.has(n.id||n.url)) continue;
+     if(pred(n)){ out.push(n); used.add(n.id||n.url); }
+   }
+   return out;
+ };
+ const CULTURE_RX=/kultur|muzik|film|teater|teatro|artist|netflix|serial|festival|koncert|aktor|aktre|libra|poezi|galeri|showbiz|kinema/;
+ const CULTURE_SRC=/indeksonline|reporteri|kult\s*plus|kultplus|gazeta express/i;
+ let culture=take(n=>CULTURE_SRC.test(n.source||'') && (n.cat==='culture' || CULTURE_RX.test(norm(n.title+' '+(n.summary||'')))),3);
+ if(culture.length<3) culture=culture.concat(take(n=>n.cat==='culture',3-culture.length));
+ if(culture.length<3) culture=culture.concat(take(n=>CULTURE_RX.test(norm(n.title+' '+(n.summary||''))),3-culture.length));
+ if(culture.length<3) culture=culture.concat(take(n=>CULTURE_SRC.test(n.source||''),3-culture.length));
  return [
-  {cat:'national',title:t('grpLocal'),items:take('national',6)},
-  {cat:'world',title:t('grpWorld'),items:take('world',3)},
-  {cat:'culture',title:t('grpCulture'),items:take('culture',3)},
-  {cat:'health',title:t('grpHealth')||'Shëndet',items:take('health',3)},
-  {cat:'sport',title:t('grpSport'),items:take('sport',6)}
- ].map(g=>{
-   if(g.items.length) return g;
-   // nëse kategoria s’ka lajme të reja, merr më të fundit që i ngjajnë nga titulli
-   const rx=g.cat==='health'?/shendet|mjek|spital|vaksin|semund/:g.cat==='culture'?/kultur|muzik|film|teater|art/:null;
-   if(!rx) return g;
-   g.items=pool.filter(n=>rx.test(norm(n.title||''))).slice(0,3);
-   return g;
- });
+  {cat:'national',title:t('grpLocal'),items:take(n=>n.cat==='national',6)},
+  {cat:'world',title:t('grpWorld'),items:take(n=>n.cat==='world',3)},
+  {cat:'culture',title:t('grpCulture'),items:culture},
+  {cat:'sport',title:t('grpSport'),items:take(n=>n.cat==='sport',6)}
+ ];
 }
 function render(){
   const state=categoryState[category];
@@ -1305,7 +1356,6 @@ function render(){
   document.querySelector('.feat-head').hidden=false;
   document.querySelector('#homeView .sec h3').textContent=isHome?t('latestHeadlines'):labels[category]||t('latestNews');
   renderSportBox();
-  if(category==='sport'){ refreshTeams(); refreshLeague(leagueTab); scheduleLeagueLive(); }
   const top=leadSlides(items,isHome);
   const rest=items.filter(n=>!top.some(t=>t.id===n.id));
   const feat=top[featIndex%Math.max(top.length,1)]||null;
@@ -1909,11 +1959,8 @@ const brandHome=document.querySelector('.brand-logo');brandHome&&brandHome.addEv
 });
 $("refresh").onclick=()=>refreshAll();
 const sportLaunch=$("sportLaunch");
-if(sportLaunch) sportLaunch.onclick=()=>{
-  renderSportBox();
-  const dlg=$("sportDialog");
-  if(dlg && !dlg.open) dlg.showModal();
-};
+if(sportLaunch) sportLaunch.hidden=true;
+
 window.addEventListener('resize',()=>{ if(category==='sport') renderSportBox(); });
 
 document.addEventListener("visibilitychange",()=>{
@@ -2115,15 +2162,15 @@ async function loadTeamTSDB(tm){
   return {src:'TheSportsDB',coach:'',rank:null,last:past[0]||null,next:upcoming[0]||null,table:null,past,upcoming};
 }
 async function refreshTeams(force){
-  if(teamsBusy || document.hidden) return;
+  if(teamsBusy) return;
   if(!force && Date.now()-teamsChecked<10*60*1000){ scheduleLive(); return; }
   teamsBusy=true; teamsChecked=Date.now();
   try{
     for(const t of NATIONAL_TEAMS){
       let d=null;
-      try{ d=await loadTeamSofa(t); }catch{}
-      if(!d || (!d.last && !d.next)){ try{ const e=await loadTeamEspn(t); if(e) d={...e,coach:d?.coach||'',rank:d?.rank||null}; }catch{} }
-      if(!d || (!d.last && !d.next)){ try{ const s=await loadTeamTSDB(t); if(s) d=d?{...s,...d,last:d.last||s.last,next:d.next||s.next,past:d.past||s.past,upcoming:d.upcoming||s.upcoming,src:d.src||s.src}:s; }catch{} }
+      try{ d=await loadTeamTSDB(t); }catch{}
+      if(!d || (!d.last && !d.next)){ try{ const e=await loadTeamEspn(t); if(e) d=d?{...e,...d,last:d.last||e.last,next:d.next||e.next}:e; }catch{} }
+      if(!d || (!d.last && !d.next)){ try{ const s=await loadTeamSofa(t); if(s) d=d?{...d,...s,last:d.last||s.last,next:d.next||s.next}:s; }catch{} }
       if(d){ d.at=Date.now(); teamsData[t.key]=d; }
       if(category==='sport') renderTeams();
     }
@@ -2133,9 +2180,26 @@ async function refreshTeams(force){
   scheduleLive();
 }
 function fmtMatchDate(ts){
-  if(!ts) return ['',''];
-  const d=new Date(ts), p=n=>String(n).padStart(2,'0');
+  const n=Number(ts);
+  if(!n || !isFinite(n)) return ['—',''];
+  const d=new Date(n);
+  if(isNaN(d.getTime())) return ['—',''];
+  const p=x=>String(x).padStart(2,'0');
   return [p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(2), p(d.getHours())+':'+p(d.getMinutes())];
+}
+function isOurSide(tm,m){
+  if(!tm||!m) return false;
+  if(m.homeId && tm.sofa && String(m.homeId)===String(tm.sofa)) return true;
+  if(m.awayId && tm.sofa && String(m.awayId)===String(tm.sofa)) return false;
+  const names=[tm.en,tm.sq,'Albania','Shqipëria','Kosovo','Kosova'].map(norm);
+  const h=norm(m.home||'');
+  if(names.some(n=>n && (h===n || h.includes(n) || n.includes(h)))) return true;
+  return false;
+}
+function teamMark(name,id,src){
+  if(id && src==='SofaScore') return logo(id);
+  const a=esc(String(name||'?').replace(/[^A-Za-zëË]/g,'').slice(0,3).toUpperCase()||'?');
+  return `<span class="tm-abbr">${a}</span>`;
 }
 function matchBox(title,m,isNext){
   if(!m) return `<div class="tm-match"><h5>${title}</h5><p class="tm-empty">${t('tmNoMatch')}</p></div>`;
@@ -2176,7 +2240,7 @@ function matchNav(key,d){
 function formCard(tm,d){
   const {past}=matchLists(d);
   const res=past.slice(0,5).map(m=>{
-    const home=m.homeId?m.homeId===tm.sofa:new RegExp(tm.en,'i').test(m.home);
+    const home=isOurSide(tm,m);
     const gf=home?m.hs:m.as, ga=home?m.as:m.hs;
     if(gf==null||ga==null) return null;
     const r=gf>ga?'W':gf<ga?'L':'D';
@@ -2202,37 +2266,74 @@ let sportTab=teamsTab; // default = 'alb'
 try{ const v=localStorage.getItem('sportTab'); if(v) sportTab=v; }catch{}
 const isTeamTab=k=>NATIONAL_TEAMS.some(t=>t.key===k);
 const isLeagueTab=k=>LEAGUES.some(l=>l.key===k);
-function isMobileSport(){ return window.matchMedia('(max-width:759px)').matches; }
+
+function sofaTeamView(tm,d){
+  const {past,up}=matchLists(d);
+  const rows=d.table&&d.table.rows||[];
+  const line=(m,kind)=>{
+    const home=isOurSide(tm,m);
+    const us=home?m.home:m.away, them=home?m.away:m.home;
+    const gf=home?m.hs:m.as, ga=home?m.as:m.hs;
+    const badge=gf==null||ga==null?'':(gf>ga?'W':gf<ga?'L':'D');
+    const [day,hour]=fmtMatchDate(m.ts);
+    return `<div class="sf-row">
+      <div class="sf-when"><small>${esc(day)}</small><b>${kind==='up'?esc(hour):'FT'}</b></div>
+      <div class="sf-teams">
+        <div>${flagImg(us,null,'sf-flag')}<span>${esc(teamName(us))}</span>${gf!=null?`<b>${gf}</b>`:''}</div>
+        <div>${flagImg(them,null,'sf-flag')}<span>${esc(teamName(them))}</span>${ga!=null?`<b>${ga}</b>`:''}</div>
+      </div>
+      ${badge?`<i class="sf-badge sf-${badge}">${badge}</i>`:''}
+    </div>`;
+  };
+  const next=up[0];
+  const form=past.slice(0,6).map(m=>{
+    const home=isOurSide(tm,m); const gf=home?m.hs:m.as, ga=home?m.as:m.hs;
+    if(gf==null||ga==null) return null;
+    return gf>ga?'W':gf<ga?'L':'D';
+  }).filter(Boolean);
+  const feat=next?`<div class="sf-feat">
+      <small>${esc(next.comp|| (lang==='en'?'Next match':'Ndeshja e radhës'))}</small>
+      <div class="sf-feat-row">
+        <span>${flagImg(next.home,null,'sf-flag-lg')}${esc(teamName(next.home))}</span>
+        <div class="sf-feat-date"><b>${esc(fmtMatchDate(next.ts)[0])}</b><em>${esc(fmtMatchDate(next.ts)[1])}</em></div>
+        <span>${flagImg(next.away,null,'sf-flag-lg')}${esc(teamName(next.away))}</span>
+      </div>
+    </div>`:'';
+  const table=rows.length?`<div class="sf-table"><h5>${esc(tableTitle(d.table)|| (lang==='en'?'Table':'Tabela'))}</h5>
+    <table><thead><tr><th>#</th><th>${t('tmTeam')}</th><th>P</th><th>+/-</th><th>PTS</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr class="${r.me?'me':''}"><td>${r.pos??''}</td><td>${flagImg(r.name,r.id,'sf-flag')}${esc(teamName(r.name))}</td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`:'';
+  return `<article class="sf-panel">
+    <header class="sf-id"><img src="${tm.flag}" alt=""><div><h3>${lang==='en'?tm.en:tm.sq}</h3></div></header>
+    ${feat}
+    <section class="sf-list"><div class="sf-seg"><b>${lang==='en'?'Finished':'Përfunduar'}</b></div>
+      ${past.slice(0,8).map(m=>line(m,'done')).join('')||'<p class="tm-empty">—</p>'}</section>
+    <section class="sf-list"><div class="sf-seg"><b>${lang==='en'?'Upcoming':'Të ardhshme'}</b></div>
+      ${up.slice(0,6).map(m=>line(m,'up')).join('')||'<p class="tm-empty">—</p>'}</section>
+    <section class="sf-form"><div class="sf-seg"><b>${t('tmForm')}</b></div>
+      <div class="sf-form-row">${form.map(r=>`<i class="sf-badge sf-${r}">${r}</i>`).join('')||'—'}</div></section>
+    ${table}
+  </article>`;
+}
 function renderSportBox(){
-  const show=category==='sport'&&sourceFilter==='all';
+  const show=false;
   const launch=$('sportLaunch');
-  if(launch) launch.hidden=!show;
+  if(launch) launch.hidden=true;
   const inline=$('sportBox');
-  if(inline) inline.hidden=!(show && !isMobileSport());
-  $('homeView').classList.toggle('has-teams',show && !isMobileSport());
+  if(inline) inline.hidden=true;
+  $('homeView').classList.toggle('has-teams',false);
   if(!show){
     const dlg=$('sportDialog');
     if(dlg && dlg.open) dlg.close();
     return;
   }
-  const box=isMobileSport()?$('sportDialogBody'):$('sportBox');
+  const box=$('sportDialogBody')||$('sportBox');
   if(!box) return;
   // tabs: kombëtaret + ligat
   const allTabs=[...NATIONAL_TEAMS.map(x=>({key:x.key,label:lang==='en'?x.en:x.sq,flag:x.flag})),...LEAGUES.map(l=>({key:l.key,label:lang==='en'?l.en:l.sq,flag:'https://flagcdn.com/w40/'+l.flag+'.png',league:true}))];
   const tabs=`<div class="tm-tabs sp-tabs" role="tablist">${allTabs.map(x=>`<button type="button" role="tab" data-sp-tab="${x.key}" class="${x.key===sportTab?'on':''}" aria-selected="${x.key===sportTab}"><img src="${x.flag&&x.flag.startsWith('http')?x.flag:'https://flagcdn.com/w40/'+x.flag+'.png'}" alt="">${esc(x.label)}</button>`).join('')}</div>`;
   if(isTeamTab(sportTab)){
-    const tm=NATIONAL_TEAMS.find(x=>x.key===sportTab); const d=teamsData[tm.key]; const rows=d?.table?.rows||[];
-    box.innerHTML=`<div class="tm-head"><h2>${t('tmTitle')}</h2>${tabs}</div>`+
-      `<article class="team-card">
-        <div class="tm-id"><img class="tm-flag" src="${tm.flag}" alt="" loading="lazy">
-          <div><h3>${lang==='en'?tm.en:tm.sq}</h3>
-            <div class="tm-meta">${d?.coach?`<span><small>${t('tmCoach')}</small>${esc(d.coach)}</span>`:''}${d?.rank?`<span class="tm-fifa"><b>FIFA</b> #${esc(String(d.rank))}</span>`:''}</div>
-            <a class="tm-link" href="${tm.sofaUrl}" target="_blank" rel="noopener">SofaScore ↗</a></div></div>
-        <div class="tm-matches">${d?matchNav(tm.key,d)+formCard(tm,d):`<p class="tm-empty">${teamsBusy||!teamsChecked?t('tmLoading'):t('tmFail')}</p>`}</div>
-        ${rows.length?`<div class="tm-table"><div class="tm-table-title">${esc(tableTitle(d.table))}</div>
-          <table><thead><tr><th>#</th><th>${t('tmTeam')}</th><th>${t('tmP')}</th><th>+/-</th><th>${t('tmPts')}</th></tr></thead>
-          <tbody>${rows.map(r=>`<tr class="${r.me?'me':''}"><td>${r.pos??''}</td><td><span class="tm-row-team">${flagImg(r.name,r.id,'tm-row-flag')}${esc(teamName(r.name))}</span></td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`:''}
-        <div class="tm-src">${t('tmSource')} ${esc(d?.src||'SofaScore')}</div></article>`;
+    const tm=NATIONAL_TEAMS.find(x=>x.key===sportTab); const d=teamsData[tm.key];
+    box.innerHTML=`<div class="tm-head">${tabs}</div>`+(d?sofaTeamView(tm,d):`<p class="tm-empty">${teamsBusy||!teamsChecked?t('tmLoading'):t('tmFail')}</p>`);
   } else {
     const L=LEAGUES.find(l=>l.key===sportTab); const d=leaguesData[sportTab]; const groups=d?.groups||[];
     const rnd=leagueRound[sportTab]??d?.round??null;
@@ -2241,12 +2342,12 @@ function renderSportBox(){
     box.innerHTML=`<div class="tm-head"><h2>${t('tmTitle')}</h2>${tabs}</div>`+
       `<article class="lg-box">
         ${d?`<div class="lg-round">
-          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="-1" ${canPrev?'':'disabled'} aria-label="Java e mëparshme">‹</button>
-          <div><b>${esc(lang==='en'?L.en:L.sq)}</b>${rnd!=null?` · ${t('lgRound')} ${rnd}`:''}</div>
-          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="1" ${canNext?'':'disabled'} aria-label="Java tjetër">›</button>
-          <a class="tm-link" href="${L.url}" target="_blank" rel="noopener">SofaScore ↗</a></div>
-        ${cards.length?`<div class="lg-cards">${cards.map(leagueCard).join('')}</div>`:'<p class="tm-empty">—</p>'}
-        ${groups.map(g=>leagueTable(L,g,groups.length>1)).join('')}`:`<p class="tm-empty">${leagueBusy[sportTab]||!leagueChecked[sportTab]?t('tmLoading'):t('tmFail')}</p>`}
+          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="-1" ${canPrev&&d.src!=='TheSportsDB'?'':'disabled'} aria-label="Java e mëparshme">‹</button>
+          <div><b>${esc(lang==='en'?L.en:L.sq)}</b>${rnd!=null&&d.src!=='TheSportsDB'?` · ${t('lgRound')} ${rnd}`:''}</div>
+          <button class="tm-arrow" data-lg-go="${sportTab}" data-dir="1" ${canNext&&d.src!=='TheSportsDB'?'':'disabled'} aria-label="Java tjetër">›</button>
+          <a class="tm-link" href="${L.url}" target="_blank" rel="noopener">${d.src==='TheSportsDB'?'TheSportsDB':'SofaScore'} ↗</a></div>
+        ${cards.length?`<div class="lg-cards">${cards.map(m=>leagueCard(m,d.src)).join('')}</div>`:'<p class="tm-empty">—</p>'}
+        ${groups.map(g=>leagueTable(d.src==='TheSportsDB'?{...L,split:null,chunk:6}:L,g,false,d.src)).join('')}`:`<p class="tm-empty">${leagueBusy[sportTab]||!leagueChecked[sportTab]?t('tmLoading'):t('tmFail')}</p>`}
       </article>`;
   }
 }
@@ -2280,9 +2381,9 @@ document.addEventListener('click',e=>{
 
 // ===== LIGAT (vetëm te Sporti): Abissnet Superiore, Kategoria e Parë, Superliga, Liga e Parë =====
 const LEAGUES=[
- {key:'abissnet',sq:'Abissnet Superiore',en:'Abissnet Superiore',ut:720,flag:'al',split:[5,5],splitLabels:{sq:['Grupi i kampionatit','Grupi i rënies'],en:['Championship group','Relegation group']},url:'https://www.sofascore.com/tournament/football/albania/abissnet-superiore/720'},
- {key:'katpare',sq:'Kategoria e Parë',en:'Kategoria e Parë',ut:722,flag:'al',chunk:6,url:'https://www.sofascore.com/football/tournament/albania/kategoria-e-pare/722'},
- {key:'superliga',sq:'Superliga e Kosovës',en:'Kosovo Superliga',ut:9413,flag:'xk',chunk:5,url:'https://www.sofascore.com/tournament/football/kosovo/albimall-superliga/9413'},
+ {key:'abissnet',sq:'Abissnet Superiore',en:'Abissnet Superiore',ut:720,tsdb:4617,flag:'al',split:[5,5],splitLabels:{sq:['Grupi i kampionatit','Grupi i rënies'],en:['Championship group','Relegation group']},url:'https://www.sofascore.com/tournament/football/albania/abissnet-superiore/720'},
+ {key:'katpare',sq:'Kategoria e Parë',en:'Kategoria e Parë',ut:722,tsdb:4907,flag:'al',chunk:6,url:'https://www.sofascore.com/football/tournament/albania/kategoria-e-pare/722'},
+ {key:'superliga',sq:'Superliga e Kosovës',en:'Kosovo Superliga',ut:9413,tsdb:4968,flag:'xk',chunk:5,url:'https://www.sofascore.com/tournament/football/kosovo/albimall-superliga/9413'},
  {key:'ligapare',sq:'Liga e Parë (KS)',en:'Kosovo First League',ut:9426,flag:'xk',chunk:6,url:'https://sofascore.com/tournament/football/kosovo/liga-e-pare/9426'}
 ];
 const ZONE_SQ=[[/champions league/i,'Kualifikimet e Ligës së Kampionëve'],[/europa league/i,'Kualifikimet e Ligës së Evropës'],[/conference league/i,'Kualifikimet e Ligës së Konferencës'],[/championship round|championship group|title/i,'Grupi i kampionatit'],[/relegation round|relegation group/i,'Grupi i rënies'],[/promotion play-?offs?/i,'Play-off për ngritje'],[/relegation play-?offs?/i,'Play-off për mbijetesë'],[/promotion/i,'Ngritje'],[/relegation/i,'Rënie'],[/play-?offs?/i,'Play-off']];
@@ -2322,11 +2423,38 @@ async function loadLeague(L){
   if(!events.length && !groups.length) return null;
   return {sid,round:cur?.round??null,roundName:cur?.name||'',events,groups,at:Date.now()};
 }
+function tsdbEvent(e){
+  if(!e||!e.strHomeTeam) return null;
+  const ts=Date.parse(e.strTimestamp||'')||Date.parse((e.dateEvent||'')+'T'+(e.strTime||'00:00:00')+'Z')||0;
+  const hs=e.intHomeScore===''||e.intHomeScore==null?null:Number(e.intHomeScore);
+  const as=e.intAwayScore===''||e.intAwayScore==null?null:Number(e.intAwayScore);
+  return {id:e.idEvent,home:e.strHomeTeam,away:e.strAwayTeam,homeId:null,awayId:null,hs,as,ts,
+    state:hs!=null?'finished':'notstarted',code:'',desc:'',periodStart:0};
+}
+async function loadLeagueTSDB(L){
+  if(!L.tsdb) return null;
+  const [table,next,last]=await Promise.all([
+    jsonFrom(['https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l='+L.tsdb]),
+    jsonFrom(['https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id='+L.tsdb]),
+    jsonFrom(['https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?id='+L.tsdb])
+  ]);
+  const rows=(table&&table.table||[]).map((r,i)=>({pos:Number(r.intRank||i+1),name:r.strTeam||'',id:null,p:Number(r.intPlayed||0),gd:Number(r.intGoalDifference||0),pts:Number(r.intPoints||0),zone:''}));
+  const past=(last&&last.events||[]).map(tsdbEvent).filter(Boolean);
+  const upcoming=(next&&next.events||[]).map(tsdbEvent).filter(Boolean);
+  const events=[...past.slice(0,4).reverse(),...upcoming.slice(0,6)];
+  if(!rows.length && !events.length) return null;
+  return {sid:L.tsdb,round:null,roundName:'',events,groups:[{name:'',rows}],at:Date.now(),src:'TheSportsDB'};
+}
 async function refreshLeague(key,force){
   const L=LEAGUES.find(l=>l.key===key); if(!L||leagueBusy[key]||document.hidden) return;
   if(!force && Date.now()-(leagueChecked[key]||0)<10*60*1000) return;
   leagueBusy[key]=true; leagueChecked[key]=Date.now();
-  try{ const d=await loadLeague(L); if(d){ leaguesData[key]=d; try{localStorage.setItem(LEAGUES_CACHE_KEY,JSON.stringify(leaguesData));}catch{} } }
+  try{
+    let d=null;
+    try{ d=await loadLeagueTSDB(L); }catch{}
+    if(!d) try{ d=await loadLeague(L); }catch{}
+    if(d){ leaguesData[key]=d; try{localStorage.setItem(LEAGUES_CACHE_KEY,JSON.stringify(leaguesData));}catch{} }
+  }
   catch{} finally{ leagueBusy[key]=false; }
   if(category==='sport') renderLeagues();
   scheduleLeagueLive();
@@ -2355,14 +2483,15 @@ function scheduleLeagueLive(){
   },30000);
 }
 function logo(id){ return id?`<img src="https://img.sofascore.com/api/v1/team/${id}/image" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:'<span class="tm-dot"></span>'; }
-function leagueCard(m){
+function leagueCard(m,src){
   const live=m.state==='inprogress', done=m.state==='finished';
   const [d,h]=fmtMatchDate(m.ts);
   const top=live?`<b class="tm-live"><i></i>${esc(liveMinute(m))}</b>`:done?`<span>${esc(d)}</span><span>FT</span>`:`<span>${esc(d)}</span><span>${esc(h)}</span>`;
   const sc=v=>(live||done)?`<b>${v??0}</b>`:'';
+  const mark=name=>src==='SofaScore'?logo(null):teamMark(name);
   return `<div class="lg-card ${live?'is-live':''}"><div class="lg-card-top">${top}</div>
-    <div class="lg-row">${logo(m.homeId)}<span>${esc(m.home)}</span>${sc(m.hs)}</div>
-    <div class="lg-row">${logo(m.awayId)}<span>${esc(m.away)}</span>${sc(m.as)}</div></div>`;
+    <div class="lg-row">${mark(m.home)}<span>${esc(m.home)}</span>${sc(m.hs)}</div>
+    <div class="lg-row">${mark(m.away)}<span>${esc(m.away)}</span>${sc(m.as)}</div></div>`;
 }
 function splitRows(L,rows){
   if(L.split){ const out=[]; let i=0; L.split.forEach((n,k)=>{ out.push({label:(L.splitLabels?.[lang]||[])[k]||'',rows:rows.slice(i,i+n)}); i+=n; }); if(i<rows.length) out[out.length-1].rows.push(...rows.slice(i)); return out; }
@@ -2375,13 +2504,13 @@ function splitRows(L,rows){
   }
   return [{label:'',rows}];
 }
-function leagueTable(L,g,multi){
+function leagueTable(L,g,multi,src){
   const parts=splitRows(L,g.rows);
   const zones=[...new Set(g.rows.map(r=>r.zone).filter(Boolean))];
   return `<div class="lg-table">${multi&&g.name?`<div class="tm-table-title">${esc(g.name)}</div>`:''}
     <div class="lg-parts parts-${parts.length}">${parts.map(p=>`<div class="lg-part">${p.label?`<h6>${esc(p.label)}</h6>`:''}
       <table><thead><tr><th>#</th><th>${t('tmTeam')}</th><th>${t('tmP')}</th><th>+/-</th><th>${t('tmPts')}</th></tr></thead>
-      <tbody>${p.rows.map(r=>`<tr><td><i class="lg-zone" style="background:${zoneColor(r.zone)||'transparent'}" title="${esc(zoneLabel(r.zone))}"></i>${r.pos??''}</td><td><span class="tm-row-team">${logo(r.id)}${esc(r.name)}</span></td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`).join('')}</div>
+      <tbody>${p.rows.map(r=>`<tr><td><i class="lg-zone" style="background:${zoneColor(r.zone)||'transparent'}" title="${esc(zoneLabel(r.zone))}"></i>${r.pos??''}</td><td><span class="tm-row-team">${src==='TheSportsDB'?teamMark(r.name):logo(r.id)}${esc(r.name)}</span></td><td>${r.p??''}</td><td>${r.gd>0?'+':''}${r.gd??''}</td><td><b>${r.pts??''}</b></td></tr>`).join('')}</tbody></table></div>`).join('')}</div>
     ${zones.length?`<div class="lg-legend">${zones.map(z=>`<span><i style="background:${zoneColor(z)}"></i>${esc(zoneLabel(z))}</span>`).join('')}</div>`:''}
   </div>`;
 }
