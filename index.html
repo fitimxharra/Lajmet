@@ -501,8 +501,6 @@ html{overflow-anchor:none}
     <button data-page="news" data-cat="national" data-i18n="navNews">Lajme</button>
     <button data-page="world" data-cat="world" data-i18n="navWorld">Botë</button>
     <button data-page="sport" data-cat="sport" data-i18n="navSport">Sport</button>
-    <button data-page="culture" data-cat="culture" data-i18n="navCulture">Kulturë</button>
-    <button data-page="health" data-cat="health" data-i18n="navHealth">Shëndet</button>
   </nav>
   <div class="edition-end">
     <nav class="nav-util" id="utilNav" aria-label="Faqet e aplikacionit">
@@ -622,13 +620,6 @@ const FEEDS = [
  {src:'Gazeta Express',url:'https://www.gazetaexpress.com/sport/feed/',hint:'sport'},
  {src:'Indeksonline',url:'https://indeksonline.net/sport/feed/',hint:'sport'},
  {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
- {src:'Telegrafi',url:'https://telegrafi.com/kultura/feed/',hint:'culture'},
- {src:'Telegrafi',url:'https://telegrafi.com/kultura/',kind:'website',hint:'culture'},
- {src:'KultPlus',url:'https://www.kultplus.com/feed/',hint:'culture'},
- {src:'KultPlus',url:'https://www.kultplus.com/',kind:'website',hint:'culture'},
- {src:'Indeksonline',url:'https://indeksonline.net/feed/',wp:true,hint:'culture',wpCat:20},
- {src:'Gazeta Express',url:'https://www.gazetaexpress.com/roze/',kind:'website',hint:'culture'},
- {src:'Reporteri',url:'https://reporteri.net/feed/',wp:true,hint:'culture'},
 
  // federatat e futbollit
  {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',only:true,wp:true},
@@ -647,11 +638,18 @@ const MAX_PER_CAT = 150;               // sa lajme mbahen për kategori
 const MAX_AGE_MS = 4*24*3600*1000;     // lajmet më të vjetra se 4 ditë hiqen
 const CACHE_KEY="readableNewsCacheV3", CACHE_AT_KEY="readableNewsCacheAtV3";
 function isRemovedSource(n){return /bota\s*sot/i.test(n?.source||'')||/(^|\.)(botasot\.info)$/i.test((()=>{try{return new URL(n.url).hostname}catch{return ''}})());}
+function isCulturePortal(n){
+  if(!n) return false;
+  if(/telegrafi\.com\/(kultura|cult)/i.test(n.url||'')) return true;
+  return (n.fromCulture||n.cat==='culture') && /telegrafi/i.test(n.source||'');
+}
 let news = [];
 try {
   const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"[]");
   const cachedAt=Number(localStorage.getItem(CACHE_AT_KEY)||"0");
-  if(Date.now()-cachedAt < 30*60*1000 && Array.isArray(cached)) news=cached.filter(n=>n&&n.title&&n.cat&&safeURL(n.url)&&!isRemovedSource(n));
+  if(Date.now()-cachedAt < 30*60*1000 && Array.isArray(cached)) news=cached.filter(n=>n&&n.title&&n.cat&&safeURL(n.url)&&!isRemovedSource(n))
+    .map(n=> n.cat==='culture' && !isCulturePortal(n) ? {...n,cat:'national'} : n)
+    .filter(n=> n.cat!=='culture' || isCulturePortal(n));
 } catch {}
 let loading = true;
 
@@ -1240,7 +1238,7 @@ function startFeatRotate(count){
 }
 // Lajmet kryesore në Ballinë: 3 kombëtare, 2 ndërkombëtare, 1 kulturë, 3 sport,
 // të përziera që slide-t të ndërrojnë kategori (L, S, B, K, L, S, B, L, S)
-const LEAD_MIX=[['national',3],['world',2],['culture',1],['sport',3]];
+const LEAD_MIX=[['national',3],['world',2],['sport',3]];
 function leadSlides(items,isHome){
   if(!isHome) return items.slice(0,5);
   const pool=(news&&news.length?news:items).filter(n=>n&&n.title&&!isNotNews(n));
@@ -1331,16 +1329,12 @@ function homepageCardGroups(items){
    }
    return out;
  };
- const CULTURE_RX=/kultur|muzik|film|teater|teatro|artist|netflix|serial|festival|koncert|aktor|aktre|libra|poezi|galeri|showbiz|kinema/;
- const CULTURE_SRC=/indeksonline|reporteri|kult\s*plus|kultplus|gazeta express/i;
- let culture=take(n=>CULTURE_SRC.test(n.source||'') && (n.cat==='culture' || CULTURE_RX.test(norm(n.title+' '+(n.summary||'')))),3);
- if(culture.length<3) culture=culture.concat(take(n=>n.cat==='culture',3-culture.length));
- if(culture.length<3) culture=culture.concat(take(n=>CULTURE_RX.test(norm(n.title+' '+(n.summary||''))),3-culture.length));
- if(culture.length<3) culture=culture.concat(take(n=>CULTURE_SRC.test(n.source||''),3-culture.length));
+ const CULTURE_URL=/indeksonline\.net\/showbiz|telegrafi\.com\/magazina|reporteri\.net\/showtime|kultplus\.com/i;
+ let culture=take(n=>isCulturePortal(n),3);
+  if(culture.length<3) culture=culture.concat(take(n=>n.cat==='culture' && !/lajme|politike|kosove|qeveri/i.test(n.url||''),3-culture.length));
  return [
   {cat:'national',title:t('grpLocal'),items:take(n=>n.cat==='national',6)},
   {cat:'world',title:t('grpWorld'),items:take(n=>n.cat==='world',3)},
-  {cat:'culture',title:t('grpCulture'),items:culture},
   {cat:'sport',title:t('grpSport'),items:take(n=>n.cat==='sport',6)}
  ];
 }
@@ -1351,13 +1345,15 @@ function render(){
   $("loadMore").textContent=state?.busy?t('loadingShort'):t('loadMore');
   let items=arranged(filtered());
   const isHome=sourceFilter==='all'&&category==='all';
+  const isCulture=category==='culture'&&sourceFilter==='all';
+  if(isCulture) items=arranged((news||[]).filter(n=>n&& (isCulturePortal(n)||n.cat==='culture')));
 
   $('featured').hidden=false;
   document.querySelector('.feat-head').hidden=false;
   document.querySelector('#homeView .sec h3').textContent=isHome?t('latestHeadlines'):labels[category]||t('latestNews');
   renderSportBox();
-  const top=leadSlides(items,isHome);
-  const rest=items.filter(n=>!top.some(t=>t.id===n.id));
+  const top=isCulture?(items.slice(0,1)):leadSlides(items,isHome);
+  const rest=isCulture?items.filter(n=>!top.some(x=>x.id===n.id)).slice(0,6):items.filter(n=>!top.some(t=>t.id===n.id));
   const feat=top[featIndex%Math.max(top.length,1)]||null;
   $("featNum").textContent=top.length?String((featIndex%top.length)+1).padStart(2,"0")+" / "+String(top.length).padStart(2,"0"):"—";
   $("featured").innerHTML=top.length?`
@@ -1658,10 +1654,44 @@ function websiteArticle(feed,url,html){
  const summary=strip(description||text).slice(0,180);
  const {cat,conf}=classifyItem({title,url,summary,rssCats:[schema.articleSection||''],hint:feed.hint,only:feed.only});
  const author=typeof schema.author==='string'?schema.author:schema.author?.name||meta('author')||feed.src;
- return {id:stableId(url),source:feed.src,title,url,cat,catConf:conf,summary,content:text,body:text,image:meta('og:image'),author,publishedAt:published,previewOnly};
+ return {id:stableId(url),source:feed.src,title,url,cat:feed.hint==='culture'?'culture':cat,catConf:conf,fromCulture:feed.hint==='culture',summary,content:text,body:text,image:meta('og:image'),author,publishedAt:published,previewOnly};
+}
+
+function listingFromHtml(feed,html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  let home; try{home=new URL(feed.url);}catch{return [];}
+  const seen=new Set(); const items=[];
+  for(const a of doc.querySelectorAll('a[href]')){
+    let url=null, path='';
+    try{
+      const u=new URL(a.getAttribute('href'),home);
+      if(u.hostname.replace(/^www\./,'')!==home.hostname.replace(/^www\./,'')) continue;
+      path=(u.pathname||'/').replace(/\/+$/,'');
+      const parts=path.split('/').filter(Boolean);
+      if(!parts.length) continue;
+      if(/\.(jpg|jpeg|png|pdf|webp)$|\/page\/|\/author\/|\/tag\/|\/category\/|\/showbiz\/?$|\/magazina\/?$|\/showtime\/?$/i.test(path)) continue;
+      if(parts.length===1 && (parts[0].length<18 || !/[-_]/.test(parts[0]))) continue;
+      u.hash=''; u.search=''; url=safeURL(u.href);
+    }catch{continue;}
+    if(!url||seen.has(url)) continue;
+    const title=strip(a.getAttribute('title')||a.textContent||'');
+    if(title.length<22) continue;
+    seen.add(url);
+    const box=a.closest('article,li,.post,.item,.card,div');
+    const img=a.querySelector('img')||box&&box.querySelector('img');
+    const src=img&&(img.getAttribute('data-src')||img.getAttribute('data-lazy-src')||img.getAttribute('src')||'');
+    items.push({id:stableId(url),source:feed.src,title,url,cat:'culture',fromCulture:true,summary:title.slice(0,180),content:title,body:title,image:src&&src.startsWith('http')?src:'',author:feed.src,publishedAt:Date.now()-items.length*60000,previewOnly:true});
+    if(items.length>=6) break;
+  }
+  return items;
 }
 async function fetchWebsite(feed){
  const html=await publicPage(feed.url);if(!html)throw new Error('Portali nuk u përgjigj');
+ if(feed.hint==='culture'){
+   const listed=listingFromHtml(feed,html);
+   if(listed.length>=3) return listed;
+   if(listed.length) return listed;
+ }
  const doc=new DOMParser().parseFromString(html,'text/html');const home=new URL(feed.url);
  const urls=[...new Set([...doc.querySelectorAll('a[href]')].map(a=>{
    try{const u=new URL(a.getAttribute('href'),home);if(u.hostname.replace(/^www\./,'')!==home.hostname.replace(/^www\./,''))return null;
@@ -1671,16 +1701,17 @@ async function fetchWebsite(feed){
      if(!looksArticle||/\.(jpg|jpeg|png|pdf|webp)|\/page\/|\/author\/|\/tag\/|\/category\//i.test(path))return null;
      u.hash='';u.search='';return safeURL(u.href);
    }catch{return null;}
- }).filter(Boolean))].slice(0,10);
+ }).filter(Boolean))].slice(0,feed.hint==='culture'?12:10);
  const items=[];let cursor=0;
- await Promise.all(Array.from({length:3},async()=>{while(cursor<urls.length){const url=urls[cursor++];const page=await publicPage(url);if(page){const n=websiteArticle(feed,url,page);if(n)items.push(n);}}}));
+ const workers=feed.hint==='culture'?6:3;
+ await Promise.all(Array.from({length:workers},async()=>{while(cursor<urls.length){const url=urls[cursor++];const page=await publicPage(url);if(page){const n=websiteArticle(feed,url,page);if(n)items.push(n);}}}));
  return items;
 }
 // WordPress REST API: lajme të freskëta (pa cache të rss2json) dhe me foto kryesore.
 // Përdoret për burimet me wp:true; nëse s'punon, kalohet te RSS.
 async function fetchWpJson(feed){
  const origin=new URL(feed.url).origin;
- const api=origin+'/wp-json/wp/v2/posts?per_page=20&_embed=1';
+ const api=origin+'/wp-json/wp/v2/posts?per_page=20&_embed=1'+(feed.wpCat?('&categories='+feed.wpCat):'');
  for(const endpoint of [api,'https://api.allorigins.win/raw?url='+encodeURIComponent(api)]){
    const text=await grab(endpoint,15000);
    if(!text) continue;
@@ -1696,7 +1727,7 @@ async function fetchWpJson(feed){
      const sizes=media.media_details?.sizes||{};
      const image=(sizes.medium_large||sizes.large||sizes.full||{}).source_url||media.source_url||'';
      const {cat,conf}=classifyItem({title,url,summary,rssCats:terms,hint:feed.hint,only:feed.only});
-     return [{id:stableId(url),source:feed.src,title,url,cat,catConf:conf,rssCats:terms,summary,content,body,
+     return [{id:stableId(url),source:feed.src,title,url,cat:feed.hint==='culture'?'culture':cat,fromCulture:feed.hint==='culture',catConf:conf,rssCats:terms,summary,content,body,
        image:/^https?:\/\//.test(image)?image.replace(/^http:/,'https:'):'',author:feed.src,
        publishedAt:parseDate(p.date_gmt?p.date_gmt+'Z':p.date),previewOnly:body.length<400}];
    });
@@ -1770,6 +1801,8 @@ function scheduleNext(){
 }
 setInterval(()=>{ if(!refreshing && Date.now()-(refreshStarted||0)>=REFRESH_MS-2000) refreshAll({silent:true}); }, 60*1000);
 
+
+async function fetchCultureNow(){ return []; }
 async function refreshAll(opts={}){
   const silent=!!opts.silent;
   if(refreshing) return;
@@ -1781,7 +1814,12 @@ async function refreshAll(opts={}){
   let fresh=0, ok=false, okFeeds=0;
   const before=new Set(news.map(n=>n.url));
   try{
-    const incoming=[];let cursor=0;
+    const incoming=[];
+    try{
+      const cult=await fetchCultureNow();
+      if(cult.length){ incoming.push(...cult); sourceStatus['Telegrafi']={state:'ok',count:cult.length}; }
+    }catch{}
+    let cursor=0;
     const names=[...new Set(FEEDS.map(f=>f.src))];
     names.forEach(name=>sourceStatus[name]={state:'loading',count:0});renderSourceList();
     await Promise.all(Array.from({length:5},async()=>{
