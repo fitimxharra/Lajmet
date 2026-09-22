@@ -25,8 +25,8 @@ try{document.documentElement.dataset.theme=localStorage.getItem('newsTheme')==='
 <style>
 :root{color-scheme:light;--red:#b92d38;--button:#b92d38;--ink:#20201f;--muted:#716f6a;--line:#e4e0d9;--bg:#f5f3ee;--surface:#fffefa;--soft:#ebe8e1;--secondary:#5c5b56;--subtle:#716f6a;--border:#dedad2;--strong:#aaa69e}
 :root[data-theme="dark"]{color-scheme:dark;--red:#ff8a83;--button:#ae333b;--ink:#f2efe8;--muted:#a7a59f;--line:#323430;--bg:#151715;--surface:#20231f;--soft:#2a2e28;--secondary:#b9bcb3;--subtle:#a7a59f;--border:#393d35;--strong:#747b6d}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,a{font:inherit}button{cursor:pointer}button,a,input{-webkit-tap-highlight-color:transparent}button{color:inherit}img{display:block;max-width:100%}[hidden]{display:none!important}
-.app{max-width:1080px;margin:auto;min-height:100dvh;padding:0 22px 124px}.top{display:flex;align-items:center;gap:10px;padding:24px 0 20px;border-bottom:1px solid var(--line)}.logo{width:34px;height:34px;border-radius:10px;background:var(--button);color:white;display:grid;place-items:center;flex-shrink:0}.brand h1{font-size:21px;letter-spacing:-.8px;margin:0;font-weight:800}.brand p{font-size:10px;text-transform:uppercase;letter-spacing:1.6px;margin:3px 0 0;color:var(--muted)}.theme-toggle,.search{width:42px;height:42px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);padding:10px}.theme-toggle{margin-left:auto}.theme-toggle svg{width:20px;height:20px}.theme-toggle .sun{display:none}[data-theme="dark"] .theme-toggle .sun{display:block}[data-theme="dark"] .theme-toggle .moon{display:none}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden;max-width:100%}button,input,a{font:inherit}button{cursor:pointer}button,a,input{-webkit-tap-highlight-color:transparent}button{color:inherit}img{display:block;max-width:100%}[hidden]{display:none!important}
+.app{max-width:1080px;margin:auto;min-height:100dvh;padding:0 22px 124px;max-width:min(1080px,100%);overflow-x:hidden}.top{display:flex;align-items:center;gap:10px;padding:24px 0 20px;border-bottom:1px solid var(--line)}.logo{width:34px;height:34px;border-radius:10px;background:var(--button);color:white;display:grid;place-items:center;flex-shrink:0}.brand h1{font-size:21px;letter-spacing:-.8px;margin:0;font-weight:800}.brand p{font-size:10px;text-transform:uppercase;letter-spacing:1.6px;margin:3px 0 0;color:var(--muted)}.theme-toggle,.search{width:42px;height:42px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);padding:10px}.theme-toggle{margin-left:auto}.theme-toggle svg{width:20px;height:20px}.theme-toggle .sun{display:none}[data-theme="dark"] .theme-toggle .sun{display:block}[data-theme="dark"] .theme-toggle .moon{display:none}
 .edition{display:flex;align-items:end;justify-content:space-between;gap:12px;padding:25px 0 22px}.eyebrow{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 8px}.edition h2{font-family:Georgia,serif;font-size:clamp(34px,7vw,52px);font-weight:400;letter-spacing:-1.8px;margin:0;line-height:1.1}.edition h2 em{color:var(--red);font-weight:400}.edition time{color:var(--muted);font-size:12px;text-align:right;max-width:110px;line-height:1.5;padding-bottom:3px}
 .nav-main{display:flex;align-items:center;gap:8px;overflow:auto;padding:0 0 16px;scrollbar-width:none}.nav-main button{flex-shrink:0;white-space:nowrap;font-size:11px;font-weight:600;color:var(--muted);padding:8px 12px;background:transparent;border:1px solid var(--line);border-radius:8px;min-height:40px}.nav-main button.on{background:var(--soft);color:var(--ink);border-color:var(--strong)}.nav-main button:hover{background:var(--soft);color:var(--ink)}.nav-main button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .feat-head{display:flex;align-items:center;justify-content:space-between;padding:18px 0 14px}.feat-head h2{margin:0;font-size:11px;letter-spacing:1.7px;text-transform:uppercase}.feat-head b{font-size:11px;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}#featured{border-radius:20px;background:var(--surface);border:1px solid var(--line);overflow:hidden;position:relative}
@@ -105,7 +105,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
  #featured .feat-excerpt{-webkit-line-clamp:3;margin-bottom:24px}
  #feed{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
  #feed article{display:flex;flex-direction:column;padding:0;gap:0}
- #feed article>.thumb{order:-1;width:100%;height:auto;aspect-ratio:16/10;border-radius:0;object-fit:cover}
+ #feed article>.thumb{order:-1;width:100%;height:auto;aspect-ratio:16/10;border-radius:0;object-fit:cover;background:var(--soft)}
  #feed article>div{padding:20px;flex:1;display:flex;flex-direction:column}
  #feed .article-meta{margin-top:auto;padding-top:16px}
  #feed .src{margin-bottom:12px}
@@ -210,7 +210,7 @@ dialog{background:var(--bg);color:var(--ink);border:1px solid var(--line);paddin
 .teams{margin:0 0 10px}
 .tm-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0 8px}
 .tm-head h2{margin:0;font-size:11px;letter-spacing:1.7px;text-transform:uppercase}
-.sp-tabs{overflow-x:auto;scrollbar-width:none;max-width:100%;flex-wrap:nowrap}
+.sp-tabs{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;max-width:100%;flex-wrap:nowrap;overscroll-behavior:contain}
 .tm-tabs{display:flex;gap:6px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .tm-tabs button{display:flex;align-items:center;gap:7px;border:0;border-radius:9px;background:transparent;color:var(--muted);padding:7px 12px;font-size:12px;font-weight:650}
 .tm-tabs button img{width:18px;height:18px;border-radius:50%;object-fit:cover}
@@ -364,6 +364,62 @@ html{overflow-anchor:none}
 .about-foot a{color:var(--red)}
 .translating{font-size:11px;color:var(--muted);font-style:italic}
 @media(max-width:420px){.about h2{font-size:29px}.about-stats b{font-size:22px}}
+
+.nav-util{display:none}
+.edition-end{display:none}
+@media(min-width:900px){
+  .tabbar{display:none}
+  .app{padding-bottom:48px}
+  .edition{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-areas:"title cats end";
+    align-items:end;
+    column-gap:18px;
+    padding:16px 0 8px
+  }
+  .edition>div:first-child{grid-area:title}
+  .edition .eyebrow{display:none}
+  .edition h2{font-size:26px;letter-spacing:-.8px;white-space:nowrap;margin:0}
+  .edition-tools{display:none}
+  .edition-end{grid-area:end;display:flex;align-items:center;gap:8px;justify-self:end;padding-bottom:4px}
+  .nav-main{
+    display:flex;align-items:flex-end;gap:2px;padding:0;border:0;
+    overflow:visible;flex-wrap:nowrap;grid-area:cats;min-width:0
+  }
+  .nav-util{display:flex;align-items:center;gap:8px;padding:0;margin:0;border:0}
+  .nav-main button{
+    border:0;background:transparent;border-radius:0;min-height:0;
+    padding:8px 11px 9px;margin:0;
+    font-size:15px;font-weight:650;letter-spacing:0;text-transform:none;
+    color:var(--muted);box-shadow:none;
+    border-bottom:2px solid transparent
+  }
+  .nav-main button:hover{background:transparent;color:var(--ink)}
+  .nav-main button.on{background:transparent;color:var(--ink);border-bottom-color:var(--red)}
+  .nav-util .header-btn,.edition-end .header-btn{
+    width:40px;height:40px;min-width:40px;min-height:40px;padding:9px;
+    border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink)
+  }
+  .nav-util .header-btn svg{width:18px;height:18px}
+  .nav-util .header-btn.on{border-color:var(--red);color:var(--red);background:var(--soft)}
+  .edition-end .header-actions{display:flex;align-items:center;gap:8px}
+}
+@media(max-width:899px){
+  .edition-end{display:none}
+}
+
+
+.sport-launch{display:none;width:100%;margin:0 0 14px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);font-size:16px;font-weight:650;text-align:left}
+.sport-launch span{float:right;color:var(--red)}
+@media(max-width:759px){
+  #sportBox{display:none!important}
+  .sport-launch:not([hidden]){display:block}
+}
+@media(min-width:760px){
+  .sport-launch{display:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -394,15 +450,14 @@ html{overflow-anchor:none}
     <div class="weather-location"><button id="weatherPrev" type="button" aria-label="Qyteti paraprak">‹</button><strong id="weatherCity" aria-live="polite">Prishtinë</strong><button id="weatherNext" type="button" aria-label="Qyteti tjetër">›</button></div><div id="weatherContent" aria-live="polite"><p class="weather-status">Duke ngarkuar motin…</p></div>
   </aside>
 </header>
-<section class="edition" aria-label="Edicioni i ditës"><div><p class="eyebrow">lajmetemia.com</p><h2 data-i18n-html="todayFocus">Sot, <em>në fokus.</em></h2></div><div class="edition-tools"><time id="editionDate"></time>  <div class="header-actions">
-    <button class="header-btn theme-toggle" id="themeToggle" type="button" aria-label="Aktivizo pamjen e bardhë" aria-pressed="true" title="Ndrysho pamjen">
+<section class="edition" aria-label="Edicioni i ditës"><div><p class="eyebrow">lajmetemia.com</p><h2 data-i18n-html="todayFocus">Sot, <em>në fokus.</em></h2></div><div class="edition-tools"><time id="editionDate"></time>
+  <div class="header-actions">
+    <button class="header-btn theme-toggle" id="themeToggleMobile" type="button" aria-label="Aktivizo pamjen e bardhë" aria-pressed="true" title="Ndrysho pamjen">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14a8.5 8.5 0 0 1-10-10A8.5 8.5 0 1 0 20 14Z"/></svg>
     </button>
-    <button class="header-btn search" id="searchBtn" aria-label="Kërko">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    </button>
-  </div></div>
+  </div>
+</div>
   <nav class="nav-main" id="mainNav" aria-label="Kategoritë e lajmeve">
     <button class="on" data-page="home" data-i18n="navHome">Ballina</button>
     <button data-page="news" data-cat="national" data-i18n="navNews">Lajme</button>
@@ -411,9 +466,29 @@ html{overflow-anchor:none}
     <button data-page="culture" data-cat="culture" data-i18n="navCulture">Kulturë</button>
     <button data-page="health" data-cat="health" data-i18n="navHealth">Shëndet</button>
   </nav>
+  <div class="edition-end">
+    <nav class="nav-util" id="utilNav" aria-label="Faqet e aplikacionit">
+      <button type="button" class="header-btn" data-tab="sources" title="Burimet" aria-label="Burimet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h10"/></svg>
+      </button>
+      <button type="button" class="header-btn" data-tab="saved" title="Të ruajtura" aria-label="Të ruajtura">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/></svg>
+      </button>
+      <button type="button" class="header-btn" data-tab="about" title="Rreth nesh" aria-label="Rreth nesh">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8v.5"/></svg>
+      </button>
+    </nav>
+    <div class="header-actions">
+      <button class="header-btn theme-toggle" id="themeToggle" type="button" aria-label="Aktivizo pamjen e bardhë" aria-pressed="true" title="Ndrysho pamjen">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14a8.5 8.5 0 0 1-10-10A8.5 8.5 0 1 0 20 14Z"/></svg>
+      </button>
+    </div>
+  </div>
 </section>
 
   <main id="homeView">
+    <button type="button" class="sport-launch" id="sportLaunch" hidden>Futbolli shqiptar <span aria-hidden="true">↗</span></button>
     <section class="teams" id="sportBox" hidden aria-label="Futbolli Shqiptar"></section>
     <div class="feat-head"><h2 data-i18n="topStories">Lajmet kryesore</h2><b id="featNum">01</b></div>
     <div id="featured"></div>
@@ -452,6 +527,13 @@ html{overflow-anchor:none}
   </div>
   <div class="about" id="aboutBody"></div>
 </dialog>
+<dialog id="sportDialog">
+  <div class="reader-top">
+    <strong>Futbolli shqiptar</strong>
+    <button class="bm" data-close="sportDialog" aria-label="Mbyll">✕</button>
+  </div>
+  <div class="reader teams" id="sportDialogBody"></div>
+</dialog>
 <dialog id="articleDialog">
   <div class="reader-top">
     <strong>Lajmet e mia</strong>
@@ -478,10 +560,12 @@ function applyTheme(theme){
   document.getElementById('themeColor').content=dark?'#151715':'#f5f3ee';
 }
 applyTheme(document.documentElement.dataset.theme);
-document.getElementById('themeToggle').addEventListener('click',()=>{
-  const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
-  applyTheme(theme);
-  try{localStorage.setItem('newsTheme',theme);}catch{}
+document.querySelectorAll('.theme-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';
+    applyTheme(theme);
+    try{localStorage.setItem('newsTheme',theme);}catch{}
+  });
 });
 // ===== BURIMET =====
 // hint = kategoria e sigurt kur feed-i është feed kategorie (p.sh. /sport/feed/).
@@ -489,9 +573,9 @@ document.getElementById('themeToggle').addEventListener('click',()=>{
 const FEEDS = [
  // 5 portalet që përditësohen më shpesh: kontrollohen të parat në çdo cikël
  {src:'Telegrafi',url:'https://telegrafi.com/feed/'},
- {src:'Gazeta Express',url:'https://www.gazetaexpress.com/feed/'},
+ {src:'Gazeta Express',url:'https://www.gazetaexpress.com/feed/',wp:true},
  {src:'Indeksonline',url:'https://indeksonline.net/feed/',wp:true},
- {src:'Reporteri',url:'https://reporteri.net/feed/'},
+ {src:'Reporteri',url:'https://reporteri.net/feed/',wp:true},
  {src:'Lajmi.net',url:'https://lajmi.net/feed/',wp:true},
  // feed-e kategorish nga të njëjtat portale
  {src:'Telegrafi',url:'https://telegrafi.com/sport/feed/',hint:'sport'},
@@ -501,12 +585,18 @@ const FEEDS = [
  {src:'Indeksonline',url:'https://indeksonline.net/sport/feed/',hint:'sport'},
  {src:'Reporteri',url:'https://reporteri.net/lajme/bote/feed/',hint:'world'},
  {src:'Telegrafi',url:'https://telegrafi.com/kultura/feed/',hint:'culture'},
+ {src:'Telegrafi',url:'https://telegrafi.com/kultura/',kind:'website',hint:'culture'},
+ {src:'Telegrafi',url:'https://telegrafi.com/shendetesi/',kind:'website',hint:'health'},
+ {src:'Gazeta Express',url:'https://www.gazetaexpress.com/roze/',kind:'website',hint:'health'},
  // federatat e futbollit
  {src:'FSHF',url:'https://fshf.org/sq/feed/',hint:'sport',only:true,wp:true},
  {src:'FFK',url:'https://ffk-kosova.com/feed/',hint:'sport',only:true,wp:true},
  // burime të tjera
  {src:'TopSporti',url:'https://topsporti.com/feed/',hint:'sport',only:true,wp:true},
  {src:'Nacionale',url:'https://nacionale.com/',kind:'website'},
+ {src:'Nacionale',url:'https://nacionale.com/aktuale',kind:'website'},
+ {src:'Telegrafi',url:'https://telegrafi.com/',kind:'website'},
+ {src:'Gazeta Express',url:'https://www.gazetaexpress.com/',kind:'website'},
  {src:'Zëri',url:'https://zeri.info/',kind:'website'}
 ];
 const REFRESH_MS=5*60*1000;
@@ -985,9 +1075,46 @@ function classify(n){ return (n&&n.cat)||"national"; }
 // Do not retain photo-free cards after an image fails in this browser.
 const failedArticleImages=new Set();
 let imageRenderPending=false;
+const COVER_BY_CAT={
+  sport:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=60",
+  world:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=60",
+  culture:"https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=60",
+  health:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=60",
+  national:"https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=60"
+};
+function posterSvg(n){
+  const title=String((n&&n.title)||"Lajm").replace(/[<>]/g,"").slice(0,64);
+  const cat=String((labels&&labels[n&&n.cat])||"Lajme").toUpperCase();
+  const bg=n&&n.cat==="sport"?"#24352c":n&&n.cat==="culture"?"#3a2e22":n&&n.cat==="world"?"#1e2a36":"#2b2622";
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750"><rect width="1200" height="750" fill="${bg}"/><text x="64" y="92" fill="#ff8a83" font-size="26" font-family="system-ui,sans-serif" letter-spacing="4">${cat}</text><text x="64" y="390" fill="#f2efe8" font-size="44" font-family="Georgia,serif">${title.replace(/&/g,"&amp;")}</text></svg>`;
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+}
 function hasArticleImage(n){
   if(typeof n?.image!=="string" || failedArticleImages.has(n.image)) return false;
   try{return ["https:","http:"].includes(new URL(n.image).protocol);}catch{return false;}
+}
+function ensurePicture(n){
+  if(!n) return n;
+  if(!hasArticleImage(n)) n.image=COVER_BY_CAT[n.cat]||COVER_BY_CAT.national;
+  else n.image=fullImage(n.image)||n.image;
+  return n;
+}
+function coverImage(n){
+  if(hasArticleImage(n)) return fullImage(n.image)||n.image;
+  return COVER_BY_CAT[n&&n.cat]||COVER_BY_CAT.national;
+}
+function coverError(img){
+  const step=Number(img.dataset.coverStep||0);
+  const cat=img.dataset.cat||"national";
+  const title=img.dataset.title||"";
+  if(step<1){
+    img.dataset.coverStep="1";
+    const next=COVER_BY_CAT[cat]||COVER_BY_CAT.national;
+    if(img.getAttribute("src")!==next){ img.src=next; return; }
+  }
+  img.dataset.coverStep="2";
+  img.onerror=null;
+  img.src=posterSvg({title,cat});
 }
 // WordPress i ruan fotot edhe në madhësi të plotë: "foto-300x200.jpg" -> "foto.jpg"
 function fullImage(u){ return String(u||"").replace(/-\d{2,4}x\d{2,4}(?=\.(jpe?g|png|webp)(\?|$))/i,""); }
@@ -1018,7 +1145,6 @@ function filtered(){
   return news.filter(n=>{
     if(isNotNews(n)) return false;
     // foto e dhënë nga burimi, por që nuk hapet → lajmi nuk shfaqet
-    if(n.image && failedArticleImages.has(n.image)) return false;
     if(sourceFilter!=="all" && n.source!==sourceFilter) return false;
     if(category==="all") return true;
     return n.cat===category;
@@ -1148,13 +1274,24 @@ async function loadCategory(cat,more=false){
 const HOME_SECTIONS=[['national','Lajme lokale',3],['world','Ndërkombëtare',2],['sport','Sport',3],['culture','Kulturë',1],['health','Shëndet',1]];
 function homeGroups(items){return HOME_SECTIONS.map(([cat,title,limit])=>({cat,title,items:items.filter(n=>n.cat===cat).slice(0,limit)}));}
 function homepageCardGroups(items){
- const take=(cat,count)=>items.filter(n=>n.cat===cat).slice(0,count);
+ const pool=(news||[]).filter(n=>n&&n.title&&!isNotNews(n));
+ const take=(cat,count)=>pool.filter(n=>n.cat===cat)
+   .sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0))
+   .slice(0,count);
  return [
   {cat:'national',title:t('grpLocal'),items:take('national',6)},
   {cat:'world',title:t('grpWorld'),items:take('world',3)},
-  {cat:'culture',title:t('grpCulture'),items:[...take('culture',2),...take('health',1)]},
+  {cat:'culture',title:t('grpCulture'),items:take('culture',3)},
+  {cat:'health',title:t('grpHealth')||'Shëndet',items:take('health',3)},
   {cat:'sport',title:t('grpSport'),items:take('sport',6)}
- ];
+ ].map(g=>{
+   if(g.items.length) return g;
+   // nëse kategoria s’ka lajme të reja, merr më të fundit që i ngjajnë nga titulli
+   const rx=g.cat==='health'?/shendet|mjek|spital|vaksin|semund/:g.cat==='culture'?/kultur|muzik|film|teater|art/:null;
+   if(!rx) return g;
+   g.items=pool.filter(n=>rx.test(norm(n.title||''))).slice(0,3);
+   return g;
+ });
 }
 function render(){
   const state=categoryState[category];
@@ -1179,7 +1316,7 @@ function render(){
     <div class="feat-track" id="featTrack" style="transform:translateX(-${(featIndex%top.length)*100}%)">
       ${top.map(n=>`
       <div class="feat-slide">
-        ${hasArticleImage(n)?`<div class="hero" data-open="${n.id}"><img src="${esc(fullImage(n.image))}" data-orig="${esc(n.image)}" alt="" onerror="heroImageError(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>`:''}
+        <div class="hero" data-open="${n.id}"><img src="${esc(coverImage(n))}" data-cat="${n.cat||'national'}" data-title="${esc(dispTitle(n))}" alt="" onerror="coverError(this)"><span class="hero-label">${labels[n.cat]||'Lajme'}</span></div>
         <div class="feature-body">
           <div class="kicker">${esc(n.source)} · ${labels[n.cat]||'Lajme'}</div>
           <h3 class="headline"><button data-open="${n.id}">${esc(dispTitle(n))}</button></h3>
@@ -1203,7 +1340,7 @@ function render(){
         <h4 data-open="${n.id}">${esc(dispTitle(n))}</h4>
         <div class="article-meta">${isNew(n)?'<b class="new-badge">'+t('newBadge')+'</b> · ':''}${labels[n.cat]||labels.national} · ${esc(relTime(n.publishedAt))} · ${t('readArticle')} ↗</div>
       </div>
-      ${hasArticleImage(n)?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
+      <img class="thumb" src="${esc(coverImage(n))}" data-cat="${n.cat||'national'}" data-title="${esc(dispTitle(n))}" alt="" loading="lazy" onerror="coverError(this)">
     </article>`;
   $('feed').innerHTML=isHome?homepageCardGroups(rest).map(group=>`
     <section class="news-category" data-category="${group.cat}" aria-labelledby="section-${group.cat}">
@@ -1227,7 +1364,7 @@ function renderSaved(){
         <h4 data-open="${n.id}">${esc(dispTitle(n))}</h4>
         <div class="article-meta">${labels[n.cat]||labels.national} · ${esc(relTime(n.publishedAt))} · ${t('readArticle')} ↗</div>
       </div>
-      ${hasArticleImage(n)?`<img class="thumb" src="${esc(n.image)}" alt="" loading="lazy" onerror="hideFailedArticleImage(this)">`:""}
+      <img class="thumb" src="${esc(coverImage(n))}" data-cat="${n.cat||'national'}" data-title="${esc(dispTitle(n))}" alt="" loading="lazy" onerror="coverError(this)">
     </article>`).join(""):`<p class="empty">${t('noSaved')}</p>`;
 }
 function strip(html){
@@ -1285,7 +1422,7 @@ function openArticle(id){
   $("reader").innerHTML=`
     <div class="kicker">${labels[n.cat]||""} | ${esc(n.source||"")}</div>
     <h2>${esc(title)}</h2>
-    ${hasArticleImage(n) && !/unsplash/.test(n.image)?`<img src="${esc(n.image)}" onerror="this.remove()" alt="" style="width:100%;height:200px;object-fit:cover;margin:8px 0">`:""}
+    <img src="${esc(coverImage(n))}" data-cat="${n.cat||'national'}" data-title="${esc(title)}" alt="" onerror="coverError(this)" style="width:100%;height:220px;object-fit:cover;margin:8px 0;border-radius:14px">
     <div class="credits">${t('source')}: ${esc(n.source)}${n.author && n.author!==n.source ? " · "+t('author')+": "+esc(n.author) : ""}</div>
     <p class="note">${n.previewOnly?t('previewOnly'):t('fromRss')}${n.publishedAt?" "+t('published')+" "+esc(relTime(n.publishedAt)||n.publishedAt):""}</p>
     <div class="reader-actions">
@@ -1358,7 +1495,7 @@ function mapRssItems(feed, items){
       image:rssImage(item,url),author:item.author||feed.src,
       publishedAt:parseDate(item.pubDate||item.published||item.date),
       previewOnly:body.length<400}];
-  });
+  }).map(ensurePicture);
 }
 // ===== MARRJA E FEED-EVE =====
 // Lexohet RSS përmes shërbimit JSON, me provë direkte të XML kur ai dështon.
@@ -1388,7 +1525,7 @@ async function grab(url,ms=15000){
   const controller=new AbortController();
   const timer=setTimeout(()=>controller.abort(),ms);
   try{
-    const res=await fetch(url,{signal:controller.signal,cache:"no-store"});
+    const res=await fetch(url,{signal:controller.signal,mode:"cors"});
     if(!res.ok) return null;
     return await res.text();
   }catch{return null;}
@@ -1420,14 +1557,34 @@ async function fetchJsonRss(feed){
        if(xml){const items=xmlToItems(xml);if(items.length)return items;}
      }
    }
-   throw new Error('RSS nuk u përgjigj');
+   const xmlTries=[
+     'https://api.allorigins.win/raw?url='+encodeURIComponent(feed),
+     'https://corsproxy.io/?'+encodeURIComponent(feed)
+   ];
+   for(const u of xmlTries){
+     const xml=await grab(u,15000);
+     const items=xml?xmlToItems(xml.includes('<rss')||xml.includes('<feed')?xml:(()=>{try{const j=JSON.parse(xml);return j.contents||'';}catch{return xml;}})()):[];
+     if(items.length) return items;
+   }
+   return [];
  })();
  pendingFeeds.set(feed,work);try{return await work;}finally{pendingFeeds.delete(feed);}
 }
 async function publicPage(url){
- for(const endpoint of [url,'https://api.allorigins.win/raw?url='+encodeURIComponent(url)]){
+ const tries=[
+   url,
+   'https://api.allorigins.win/raw?url='+encodeURIComponent(url),
+   'https://api.allorigins.win/get?url='+encodeURIComponent(url),
+   'https://corsproxy.io/?'+encodeURIComponent(url)
+ ];
+ for(const endpoint of tries){
    const html=await grab(endpoint,15000);
-   if(html && /<html[\s>]/i.test(html) && !/cf-chl-|Just a moment|Access denied/i.test(html.slice(0,6000)))return html;
+   if(!html) continue;
+   let body=html;
+   if(html.trim()[0]==='{'){
+     try{const j=JSON.parse(html); if(j&&typeof j.contents==='string') body=j.contents;}catch{}
+   }
+   if(body && /<html[\s>]/i.test(body) && !/cf-chl-|Just a moment|Access denied/i.test(body.slice(0,6000))) return body;
  }
  return '';
 }
@@ -1458,7 +1615,10 @@ async function fetchWebsite(feed){
  const doc=new DOMParser().parseFromString(html,'text/html');const home=new URL(feed.url);
  const urls=[...new Set([...doc.querySelectorAll('a[href]')].map(a=>{
    try{const u=new URL(a.getAttribute('href'),home);if(u.hostname.replace(/^www\./,'')!==home.hostname.replace(/^www\./,''))return null;
-     if(!/^\/[^/]+\/[^/]+/.test(u.pathname)||/\.(jpg|png|pdf)|\/page\//i.test(u.pathname))return null;
+     const path=(u.pathname||'/').replace(/\/+$/,'');
+     const parts=path.split('/').filter(Boolean);
+     const looksArticle=parts.length>=2 || (parts.length===1 && parts[0].length>20 && /[-_]/.test(parts[0]));
+     if(!looksArticle||/\.(jpg|jpeg|png|pdf|webp)|\/page\/|\/author\/|\/tag\/|\/category\//i.test(path))return null;
      u.hash='';u.search='';return safeURL(u.href);
    }catch{return null;}
  }).filter(Boolean))].slice(0,10);
@@ -1470,7 +1630,7 @@ async function fetchWebsite(feed){
 // Përdoret për burimet me wp:true; nëse s'punon, kalohet te RSS.
 async function fetchWpJson(feed){
  const origin=new URL(feed.url).origin;
- const api=origin+'/wp-json/wp/v2/posts?per_page=20&_embed=wp:term,wp:featuredmedia&lm='+Math.floor(Date.now()/60000);
+ const api=origin+'/wp-json/wp/v2/posts?per_page=20&_embed=1';
  for(const endpoint of [api,'https://api.allorigins.win/raw?url='+encodeURIComponent(api)]){
    const text=await grab(endpoint,15000);
    if(!text) continue;
@@ -1496,8 +1656,14 @@ async function fetchWpJson(feed){
 async function fetchArticles(feed){
  let items=[];
  if(feed.wp && !/[?&]paged=/.test(feed.url)){ try{items=await fetchWpJson(feed);}catch{items=[];} }
- if(!items.length) items=feed.kind==='website'?await fetchWebsite(feed):mapRssItems(feed,await fetchJsonRss(feed.url));
- return items;
+ if(!items.length && feed.kind!=='website'){
+   try{ items=mapRssItems(feed,await fetchJsonRss(feed.url)); }catch{items=[];}
+ }
+ if(!items.length){
+   const home=feed.url.replace(/\/feed\/?$/,'/');
+   try{ items=await fetchWebsite({...feed,url:home,kind:'website'}); }catch{items=[];}
+ }
+ return items.filter(n=>n&&n.title&&n.url).map(ensurePicture);
 }
 function readableContent(content, description){
   if(!content) return false;
@@ -1552,11 +1718,13 @@ function scheduleNext(){
   nextRefresh=Math.max(Date.now()+1000,(refreshStarted||Date.now())+REFRESH_MS);
   refreshTimer=setTimeout(()=>refreshAll({silent:true}),nextRefresh-Date.now());
 }
+setInterval(()=>{ if(!refreshing && Date.now()-(refreshStarted||0)>=REFRESH_MS-2000) refreshAll({silent:true}); }, 60*1000);
+
 async function refreshAll(opts={}){
   const silent=!!opts.silent;
   if(refreshing) return;
   // kur aplikacioni është në sfond nuk harxhojmë kërkesa; rifreskohet kur rikthehesh
-  if(silent && document.hidden){ clearTimeout(refreshTimer); nextRefresh=0; return; }
+  if(silent && document.hidden){ scheduleNext(); return; }
   refreshing=true; refreshStarted=Date.now(); updateRefreshInfo();
   if(!silent && !news.length){ loading=true; render(); }
   $("loadStatus").textContent=silent?t("stChecking"):t("stLoading");
@@ -1577,8 +1745,19 @@ async function refreshAll(opts={}){
         renderSourceList();
       }
     }));
+    const got=new Set(incoming.map(n=>n.source));
+    for(const name of [...new Set(FEEDS.map(f=>f.src))]){
+      if(got.has(name) || incoming.some(n=>n.source===name)) continue;
+      const home=FEEDS.find(f=>f.src===name && (f.kind==='website' || /\/$/.test(f.url) || !f.url.includes('/feed')));
+      const url=home?home.url:(FEEDS.find(f=>f.src===name)||{}).url;
+      if(!url) continue;
+      try{
+        const extra=await fetchWebsite({src:name,url:url.replace(/\/feed\/?$/,'/'),kind:'website'});
+        if(extra&&extra.length){ incoming.push(...extra.map(ensurePicture)); got.add(name); sourceStatus[name]={state:'ok',count:extra.length}; }
+      }catch{}
+    }
     ok=incoming.length>0;
-    if(ok){fresh=new Set(incoming.filter(n=>!before.has(n.url)).map(n=>n.url)).size;mergeNews(incoming);lastSuccess=Date.now();}
+    if(ok){fresh=new Set(incoming.filter(n=>!before.has(n.url)).map(n=>n.url)).size;mergeNews(incoming.map(ensurePicture));lastSuccess=Date.now();}
   }finally{
     refreshing=false; loading=false; initialDone=true;
     lastRefresh=Date.now(); scheduleNext();
@@ -1611,7 +1790,8 @@ function renderSourceList(){
   const names=[...new Set(FEEDS.map(f=>f.src))];
   $("sourceList").innerHTML=names.filter(n=>n.toLowerCase().includes(q)).map(n=>{
     const status=sourceStatus[n];
-    const info=status?.state==='ok'?'Lajme të ngarkuara':status?.state==='loading'?'Duke kontrolluar…':status?'Pa përgjigje ose pa artikuj':'Në pritje të kontrollit';
+    const has=news.some(n=>n.source===name);
+    const info=(status?.state==='ok'||has)?'Lajme të ngarkuara':status?.state==='loading'?'Duke kontrolluar…':status?'Pa përgjigje ose pa artikuj':'Në pritje të kontrollit';
     return `<li><button class="bm" style="line-height:1.5" data-source-select="${esc(n)}">${esc(n)}<small style="display:block;color:var(--muted);font-size:11px">${info}</small></button></li>`;
   }).join('')||'<li>Nuk u gjet burimi.</li>';
 
@@ -1691,9 +1871,9 @@ document.addEventListener("click",e=>{
     if(el && el.close) el.close();
   }
 });
-document.querySelector(".tabbar").addEventListener("click",e=>{
-  const b=e.target.closest("[data-tab]"); if(!b)return;
-  document.querySelectorAll(".tabbar button").forEach(x=>x.classList.toggle("on",x===b));
+function onAppTab(b){
+  if(!b) return;
+  document.querySelectorAll(".tabbar button, #utilNav button").forEach(x=>x.classList.toggle("on",x.dataset.tab===b.dataset.tab));
   if(b.dataset.tab==="sources"){showSources();return;}
   if(b.dataset.tab==="about"){showAbout();return;}
   if(b.dataset.tab==="saved"){
@@ -1701,6 +1881,13 @@ document.querySelector(".tabbar").addEventListener("click",e=>{
   }else{
     $("homeView").hidden=false; $("savedView").hidden=true;
   }
+}
+document.querySelector(".tabbar").addEventListener("click",e=>{
+  onAppTab(e.target.closest("[data-tab]"));
+});
+const utilNav=document.getElementById("utilNav");
+if(utilNav) utilNav.addEventListener("click",e=>{
+  onAppTab(e.target.closest("[data-tab]"));
 });
 document.addEventListener("keydown",e=>{
   const card=e.target.closest("article[data-open]");
@@ -1721,6 +1908,14 @@ const brandHome=document.querySelector('.brand-logo');brandHome&&brandHome.addEv
   chips();render();window.scrollTo({top:0,behavior:'smooth'});
 });
 $("refresh").onclick=()=>refreshAll();
+const sportLaunch=$("sportLaunch");
+if(sportLaunch) sportLaunch.onclick=()=>{
+  renderSportBox();
+  const dlg=$("sportDialog");
+  if(dlg && !dlg.open) dlg.showModal();
+};
+window.addEventListener('resize',()=>{ if(category==='sport') renderSportBox(); });
+
 document.addEventListener("visibilitychange",()=>{
   if(!document.hidden && Date.now()-refreshStarted>=REFRESH_MS) refreshAll({silent:true});
 });
@@ -1752,7 +1947,7 @@ setInterval(()=>{updateRefreshInfo();},1000);
     if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){ goFeat(featIndex+(dx<0?1:-1)); startFeatRotate(featCount); }
   },{passive:true});
 })();
-$("searchBtn").onclick=showSources;
+const searchBtn=$("searchBtn"); if(searchBtn) searchBtn.onclick=showSources;
 $("sourceSearch").oninput=renderSourceList;
 const editionDate=document.getElementById('editionDate');
 editionDate.textContent=new Intl.DateTimeFormat('sq',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
@@ -1792,15 +1987,27 @@ let teamsBusy=false, teamsChecked=0;
 let teamsTab='alb'; try{ if(localStorage.getItem('teamsTab')==='kos') teamsTab='kos'; }catch{}
 async function jsonFrom(urls){
   for(const u of urls){
-    const txt=await grab(u,12000);
-    if(!txt) continue;
-    try{ return JSON.parse(txt); }catch{}
+    const txt=await grab(u,14000);
+    if(!txt || txt[0]==='<') continue;
+    try{
+      const data=JSON.parse(txt);
+      if(data && typeof data.contents==='string'){
+        try{ return JSON.parse(data.contents); }catch{ continue; }
+      }
+      if(data && data.error) continue;
+      return data;
+    }catch{}
   }
   return null;
 }
 function sofa(path){
   const a='https://api.sofascore.com/api/v1/'+path, b='https://www.sofascore.com/api/v1/'+path;
-  return jsonFrom([a,b,'https://api.allorigins.win/raw?url='+encodeURIComponent(a),'https://corsproxy.io/?url='+encodeURIComponent(a),'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(a)]);
+  return jsonFrom([
+    'https://api.allorigins.win/get?url='+encodeURIComponent(a),
+    'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(a),
+    'https://corsproxy.io/?'+encodeURIComponent(a),
+    a,b
+  ]);
 }
 function sofaEvent(e){
   if(!e) return null;
@@ -1889,6 +2096,24 @@ function liveMinute(m){
   const min=base+Math.floor((Date.now()-m.periodStart)/60000)+1;
   return min>cap?cap+"+'":min+"'";
 }
+async function loadTeamTSDB(tm){
+  const id=tm.key==='alb'?'135981':'136518';
+  const [last,next]=await Promise.all([
+    jsonFrom(['https://www.thesportsdb.com/api/v1/json/3/eventslast.php?id='+id]),
+    jsonFrom(['https://www.thesportsdb.com/api/v1/json/3/eventsnext.php?id='+id])
+  ]);
+  const map=e=>{
+    if(!e||!e.strHomeTeam) return null;
+    const ts=Date.parse(e.strTimestamp||'')||Date.parse((e.dateEvent||'')+'T'+(e.strTime||'00:00:00')+'Z')||0;
+    const hs=e.intHomeScore==null||e.intHomeScore===''?null:Number(e.intHomeScore);
+    const as=e.intAwayScore==null||e.intAwayScore===''?null:Number(e.intAwayScore);
+    return {home:e.strHomeTeam,away:e.strAwayTeam,homeId:null,awayId:null,hs,as,ts,comp:e.strLeague||'',state:hs!=null?'finished':'notstarted',id:e.idEvent,code:'',desc:'',periodStart:0};
+  };
+  const past=(last&&last.results||[]).map(map).filter(Boolean);
+  const upcoming=(next&&next.events||[]).map(map).filter(Boolean);
+  if(!past.length && !upcoming.length) return null;
+  return {src:'TheSportsDB',coach:'',rank:null,last:past[0]||null,next:upcoming[0]||null,table:null,past,upcoming};
+}
 async function refreshTeams(force){
   if(teamsBusy || document.hidden) return;
   if(!force && Date.now()-teamsChecked<10*60*1000){ scheduleLive(); return; }
@@ -1898,6 +2123,7 @@ async function refreshTeams(force){
       let d=null;
       try{ d=await loadTeamSofa(t); }catch{}
       if(!d || (!d.last && !d.next)){ try{ const e=await loadTeamEspn(t); if(e) d={...e,coach:d?.coach||'',rank:d?.rank||null}; }catch{} }
+      if(!d || (!d.last && !d.next)){ try{ const s=await loadTeamTSDB(t); if(s) d=d?{...s,...d,last:d.last||s.last,next:d.next||s.next,past:d.past||s.past,upcoming:d.upcoming||s.upcoming,src:d.src||s.src}:s; }catch{} }
       if(d){ d.at=Date.now(); teamsData[t.key]=d; }
       if(category==='sport') renderTeams();
     }
@@ -1976,11 +2202,21 @@ let sportTab=teamsTab; // default = 'alb'
 try{ const v=localStorage.getItem('sportTab'); if(v) sportTab=v; }catch{}
 const isTeamTab=k=>NATIONAL_TEAMS.some(t=>t.key===k);
 const isLeagueTab=k=>LEAGUES.some(l=>l.key===k);
+function isMobileSport(){ return window.matchMedia('(max-width:759px)').matches; }
 function renderSportBox(){
-  const box=$('sportBox'); if(!box) return;
   const show=category==='sport'&&sourceFilter==='all';
-  box.hidden=!show; $('homeView').classList.toggle('has-teams',show);
-  if(!show) return;
+  const launch=$('sportLaunch');
+  if(launch) launch.hidden=!show;
+  const inline=$('sportBox');
+  if(inline) inline.hidden=!(show && !isMobileSport());
+  $('homeView').classList.toggle('has-teams',show && !isMobileSport());
+  if(!show){
+    const dlg=$('sportDialog');
+    if(dlg && dlg.open) dlg.close();
+    return;
+  }
+  const box=isMobileSport()?$('sportDialogBody'):$('sportBox');
+  if(!box) return;
   // tabs: kombëtaret + ligat
   const allTabs=[...NATIONAL_TEAMS.map(x=>({key:x.key,label:lang==='en'?x.en:x.sq,flag:x.flag})),...LEAGUES.map(l=>({key:l.key,label:lang==='en'?l.en:l.sq,flag:'https://flagcdn.com/w40/'+l.flag+'.png',league:true}))];
   const tabs=`<div class="tm-tabs sp-tabs" role="tablist">${allTabs.map(x=>`<button type="button" role="tab" data-sp-tab="${x.key}" class="${x.key===sportTab?'on':''}" aria-selected="${x.key===sportTab}"><img src="${x.flag&&x.flag.startsWith('http')?x.flag:'https://flagcdn.com/w40/'+x.flag+'.png'}" alt="">${esc(x.label)}</button>`).join('')}</div>`;
